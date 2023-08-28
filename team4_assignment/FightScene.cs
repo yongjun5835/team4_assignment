@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,9 @@ internal class FightScene
     Random rand = new Random();
     int stageLevel;
     int[] monsterIndex = new int[5];
+    FastSpin fastSpin = new FastSpin();
+    WriggleWriggleSpin wriggleWriggleSpin = new WriggleWriggleSpin();
+    Rest rest = new Rest();
 
     public FightScene()
     {
@@ -19,6 +23,7 @@ internal class FightScene
         CreateMonster(25, 8, "블루길");
         CreateMonster(40, 15, "농어");
         CreateMonster(70, 25, "참치");
+        SetRandomMonster();
     }
 
     public void CreateMonster(int hp, int atk, string name)
@@ -27,7 +32,7 @@ internal class FightScene
         monsters.Add(monster);
     }
 
-    public void StartPhase()
+    public void SetRandomMonster()
     {
         for (int i = 0; i < 5; i++)
         {
@@ -44,7 +49,10 @@ internal class FightScene
                 monsterIndex[i] = rand.Next(0, 5);
             }
         }
+    }
 
+    public void StartPhase()
+    {
         DrawDisplay("도망가기", "맞서 싸우기", "생선과 친해지기", "생선과 대화하기");
 
         InfoClear();
@@ -65,7 +73,32 @@ internal class FightScene
             Console.Write($"'{monsters[monsterIndex[4]].Name}'이(가) 출현했습니다!");
         }
 
-        ShowChoice();
+        ShowChoice1();
+    }
+
+    public void PlayerPhase()
+    {
+        DrawDisplay("취소하기", fastSpin.Name, wriggleWriggleSpin.Name, rest.Name);
+
+        InfoClear();
+        Console.SetCursorPosition(2, 4);
+        Console.Write($"{fastSpin.Name}   | {fastSpin.Description}");
+        Console.SetCursorPosition(2, 5);
+        Console.Write($"{wriggleWriggleSpin.Name} | {wriggleWriggleSpin.Description}");
+        Console.SetCursorPosition(2, 6);
+        Console.Write($"{rest.Name}          | {rest.Description}");
+
+        ShowChoice2();
+    }
+
+    public void MonsterPhase()
+    {
+
+    }
+
+    public void Result()
+    {
+
     }
 
     public void InfoClear()
@@ -84,7 +117,7 @@ internal class FightScene
         Console.Write("                                                         ");
     }
 
-    public void ShowChoice()
+    public void ShowChoice1()
     {
         bool isSelect = false;
         Console.SetCursorPosition(0, 28);
@@ -161,19 +194,40 @@ internal class FightScene
         }
     }
 
-    public void PlayerPhase()
+    public void ShowChoice2()
     {
+        bool isSelect = false;
+        Console.SetCursorPosition(0, 28);
+        Console.Write("선택지를 입력해주세요.: ");
+        while (isSelect == false)
+        {
+            string key = Console.ReadLine();
 
-    }
+            if (key == "0")
+            {
+                StartPhase();
+                isSelect = true;
+            }
+            else if (key == "1")
+            {
 
-    public void MonsterPhase()
-    {
+            }
+            else if (key == "2")
+            {
 
-    }
+            }
+            else if (key == "3")
+            {
 
-    public void Result()
-    {
-
+            }
+            else
+            {
+                Console.SetCursorPosition(0, 28);
+                Console.Write("                                               ");
+                Console.SetCursorPosition(0, 28);
+                Console.Write("올바른 값을 입력해주세요.: ");
+            }
+        }
     }
 
     public void DrawDisplay(string choice1, string choice2, string choice3, string choice4)
