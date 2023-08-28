@@ -46,7 +46,11 @@ internal class FightScene
         }
 
         DrawDisplay("", "");
+        ShowChoice();
+    }
 
+    public void ShowChoice()
+    {
         bool isSelect = false;
         Console.SetCursorPosition(0, 28);
         Console.Write("선택지를 입력해주세요.: ");

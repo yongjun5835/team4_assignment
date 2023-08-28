@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 .vs/team4_assignment/v17/.suo
+team4_assignment/obj/Debug/net6.0/team4_assignment.assets.cache
