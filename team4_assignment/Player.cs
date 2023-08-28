@@ -3,11 +3,12 @@
     public Player()
     {
         hp = 100;
+        maxHp = hp;
         atk = 10;
         def = 5;
         gold = 1500;
-
         mp = 50;
+        maxMp = mp;
     }
 
     private string job = "";
@@ -21,6 +22,8 @@
         Console.Clear();
         Console.WriteLine($"이름 : {Name}");
         Console.WriteLine($"직업 : {Job}");
+        Console.WriteLine($"체력 : {Hp} / {maxHp}");
+        Console.WriteLine($"마나 : {mp} / {maxMp}");
         Console.WriteLine($"공격력 : {Atk}");
         Console.WriteLine($"방어력 : {Def}");
         Console.WriteLine($"금화 : {Gold}");

@@ -49,7 +49,7 @@ internal class FightScene
 
         if (key == 0)
         {
-            Program.entrance.EntranceUI();
+            //Program.entrance.EntranceUI();
         }
         else if (key == 1)
         {
