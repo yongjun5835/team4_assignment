@@ -31,7 +31,17 @@ class Entrance
             EntranceImage();
 
             Console.WriteLine("1. 상태보기 2. 던전 입장 3. 인벤토리");
+<<<<<<< HEAD
             int input = GameManager.GM.SelectOption(optionNum, false);
+=======
+
+            if (Program.player.Hp <= 0)
+            {
+                Console.WriteLine("당신은 체력이 없어 던전에 입장할 수 없습니다!");
+            }
+
+            int input = GameManager.GM.SelectOption(optionNum, false, "");
+>>>>>>> main
             switch (input)
             {
                 case 1:
@@ -39,7 +49,14 @@ class Entrance
                     break;
                 case 2:
                     Console.WriteLine("던전 입장");
-                    Program.fightScene.StartPhase();
+                    if (Program.player.Hp > 0)
+                    {
+                        Program.fightScene.StartPhase();
+                    }
+                    else
+                    {
+                        continue;
+                    }
                     break;
                 case 3:
                     inventory.DisplayInventory();
