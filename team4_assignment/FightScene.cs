@@ -46,7 +46,32 @@ internal class FightScene
         }
 
         DrawDisplay("도망가기", "맞서 싸우기", "생선과 친해지기", "생선과 대화하기");
+
+        InfoClear();
+        Console.SetCursorPosition(2, 4);
+        Console.Write($"'{monsters[monsterIndex[0]].Name}'이(가) 출현했습니다!");
+        Console.SetCursorPosition(2, 5);
+        Console.Write($"'{monsters[monsterIndex[1]].Name}'이(가) 출현했습니다!");
+        Console.SetCursorPosition(2, 6);
+        Console.Write($"'{monsters[monsterIndex[2]].Name}'이(가) 출현했습니다!");
+
         ShowChoice();
+    }
+
+    public void InfoClear()
+    {
+        Console.SetCursorPosition(2, 4);
+        Console.Write("                                                         ");
+        Console.SetCursorPosition(2, 5);
+        Console.Write("                                                         ");
+        Console.SetCursorPosition(2, 6);
+        Console.Write("                                                         ");
+        Console.SetCursorPosition(2, 7);
+        Console.Write("                                                         ");
+        Console.SetCursorPosition(2, 8);
+        Console.Write("                                                         ");
+        Console.SetCursorPosition(2, 9);
+        Console.Write("                                                         ");
     }
 
     public void ShowChoice()
