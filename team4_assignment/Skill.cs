@@ -20,8 +20,8 @@ class Skill
     public string Description { get { return description; } set { description = value; } }
 
     public virtual void Activate(Unit useUnit) { }
-    public virtual void UseSkill(Unit useUnit, Unit taget) { }
-    public virtual void UseSkill(Unit useUnit, Unit[] taget) { }
+    public virtual void Activate(Unit useUnit, Unit taget) { }
+    public virtual void Activate(Unit useUnit, Unit[] taget) { }
 }
 
 class FastSpin : Skill
@@ -36,7 +36,7 @@ class FastSpin : Skill
         description = $"(공격력*{atkPercent})으로 한 마리 공격";
     }
 
-    public override void UseSkill(Unit useUnit, Unit[] tagets)
+    public override void Activate(Unit useUnit, Unit[] tagets)
     {
         int num = random.Next(0, tagets.Length);
         tagets[num].Hp -= (int)(useUnit.Atk*atkPercent);
@@ -75,7 +75,7 @@ class WriggleWriggleSpin : Skill
         description = $"(공격력*{atkPercent})로 {AttckUnits} 마리 랜덤으로 공격";
     }
 
-    public override void UseSkill(Unit useUnit, Unit[] tagets)
+    public override void Activate(Unit useUnit, Unit[] tagets)
     {
         for (int i = 0; i < AttckUnits; i++) 
         {

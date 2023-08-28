@@ -234,19 +234,19 @@ internal class FightScene
             }
             else if (key == "1")
             {
-                fastSpin.UseSkill(Program.player, monsters);
+                fastSpin.Activate(Program.player, monsters[1]);
                 SkillPhase();
                 isSelect = true;
             }
             else if (key == "2")
             {
-                wriggleWriggleSpin.UseSkill(Program.player, monsters);
+                wriggleWriggleSpin.Activate(Program.player, monsters[1]);
                 SkillPhase();
                 isSelect = true;
             }
             else if (key == "3")
             {
-                rest.UseSkill(Program.player);
+                rest.UseSkill(Program.player.);
                 SkillPhase();
                 isSelect = true;
             }

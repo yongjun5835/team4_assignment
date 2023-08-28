@@ -53,5 +53,6 @@
         }
         Mp -= skill.RequiredMp;
         skill.Activate(this);
+
     }
 }
