@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 class GameManager
 {
@@ -68,5 +64,4 @@ class GameManager
         Console.WriteLine("입력 값을 다시 확인해주세요.");
         return -1;
     }
-
 }
