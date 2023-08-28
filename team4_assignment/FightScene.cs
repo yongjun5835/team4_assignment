@@ -10,45 +10,37 @@ internal class FightScene
     List<Monster> monsters = new List<Monster>();
     Random rand = new Random();
     int stageLevel;
-    int[] monsterIndex = new int[5];
     FastSpin fastSpin = new FastSpin();
     WriggleWriggleSpin wriggleWriggleSpin = new WriggleWriggleSpin();
     Rest rest = new Rest();
 
     public FightScene()
     {
-        stageLevel = 3;
-        CreateMonster(15, 5, "송사리", 1, 1);
-        CreateMonster(10, 9, "꺽지", 2, 2);
-        CreateMonster(25, 8, "블루길", 3, 3);
-        CreateMonster(40, 15, "농어", 4, 4);
-        CreateMonster(70, 25, "참치", 5, 5);
-        SetRandomMonster();
-    }
-
-    public void CreateMonster(int hp, int atk, string name,int level,int exp)
-    {
-        Monster monster = new Monster(hp, atk, name,level,exp);
-        monsters.Add(monster);
-    }
-
-    public void SetRandomMonster()
-    {
-        for (int i = 0; i < 5; i++)
+        stageLevel = 1;
+        int type1 = rand.Next(0, 3);
+        CreateMonster(type1);
+        int type2 = rand.Next(0, 3);
+        CreateMonster(type2);
+        int type3 = rand.Next(0, 3);
+        CreateMonster(type3);
+        int type4 = rand.Next(2, 4);
+        CreateMonster(type4);
+        int type5 = rand.Next(3, 5);
+        CreateMonster(type5);
+        if (stageLevel <= 2)
         {
-            if (stageLevel == 1)
-            {
-                monsterIndex[i] = rand.Next(0, 3);
-            }
-            else if (stageLevel == 2)
-            {
-                monsterIndex[i] = rand.Next(0, 4);
-            }
-            else if (stageLevel == 3)
-            {
-                monsterIndex[i] = rand.Next(0, 5);
-            }
+            monsters[3].Hp = 0;
         }
+        if (stageLevel <= 3)
+        {
+            monsters[4].Hp = 0;
+        }
+    }
+
+    public void CreateMonster(int type)
+    {
+        Monster monster = new Monster(type);
+        monsters.Add(monster);
     }
 
     public void StartPhase()
@@ -57,20 +49,20 @@ internal class FightScene
 
         InfoClear();
         Console.SetCursorPosition(2, 4);
-        Console.Write($"'{monsters[monsterIndex[0]].Name}'이(가) 출현했습니다!");
+        Console.Write($"'{monsters[0].Name}'이(가) 출현했습니다!");
         Console.SetCursorPosition(2, 5);
-        Console.Write($"'{monsters[monsterIndex[1]].Name}'이(가) 출현했습니다!");
+        Console.Write($"'{monsters[1].Name}'이(가) 출현했습니다!");
         Console.SetCursorPosition(2, 6);
-        Console.Write($"'{monsters[monsterIndex[2]].Name}'이(가) 출현했습니다!");
+        Console.Write($"'{monsters[2].Name}'이(가) 출현했습니다!");
         if (stageLevel >= 2)
         {
             Console.SetCursorPosition(2, 7);
-            Console.Write($"'{monsters[monsterIndex[3]].Name}'이(가) 출현했습니다!");
+            Console.Write($"'{monsters[3].Name}'이(가) 출현했습니다!");
         }
         if (stageLevel >= 3)
         {
             Console.SetCursorPosition(2, 8);
-            Console.Write($"'{monsters[monsterIndex[4]].Name}'이(가) 출현했습니다!");
+            Console.Write($"'{monsters[4].Name}'이(가) 출현했습니다!");
         }
 
         ShowChoice1();
@@ -99,6 +91,16 @@ internal class FightScene
         Console.SetCursorPosition(2, 4);
         Console.Write("당신은 신중하게 스킬을 사용했습니다!");
 
+        if (monsters[0].Hp <= 0 &&
+            monsters[1].Hp <= 0 &&
+            monsters[2].Hp <= 0 &&
+            monsters[3].Hp <= 0 &&
+            monsters[4].Hp <= 0)
+        {
+            Console.SetCursorPosition(2, 5);
+            Console.Write("당신은 모든 생선들을 잡았습니다!");
+        }
+
         ShowChoice3();
     }
 
@@ -107,35 +109,35 @@ internal class FightScene
         DrawDisplay("다음 페이즈로", "X", "X", "X");
 
         InfoClear();
-        if (monsters[monsterIndex[0]].Hp > 0)
+        if (monsters[0].Hp > 0)
         {
-            monsters[monsterIndex[0]].AttackPlayer();
+            monsters[0].AttackPlayer();
             Console.SetCursorPosition(2, 4);
-            Console.Write($"{monsters[monsterIndex[0]].Name}의 공격으로 {monsters[monsterIndex[0]].Atk}의 피해를 입었습니다!");
+            Console.Write($"{monsters[0].Name}의 공격으로 {monsters[0].Atk}의 피해를 입었습니다!");
         }
-        if (monsters[monsterIndex[1]].Hp > 0)
+        if (monsters[1].Hp > 0)
         {
-            monsters[monsterIndex[1]].AttackPlayer();
+            monsters[1].AttackPlayer();
             Console.SetCursorPosition(2, 5);
-            Console.Write($"{monsters[monsterIndex[1]].Name}의 공격으로 {monsters[monsterIndex[1]].Atk}의 피해를 입었습니다!");
+            Console.Write($"{monsters[1].Name}의 공격으로 {monsters[1].Atk}의 피해를 입었습니다!");
         }
-        if (monsters[monsterIndex[2]].Hp > 0)
+        if (monsters[2].Hp > 0)
         {
-            monsters[monsterIndex[2]].AttackPlayer();
+            monsters[2].AttackPlayer();
             Console.SetCursorPosition(2, 6);
-            Console.Write($"{monsters[monsterIndex[2]].Name}의 공격으로 {monsters[monsterIndex[2]].Atk}의 피해를 입었습니다!");
+            Console.Write($"{monsters[2].Name}의 공격으로 {monsters[2].Atk}의 피해를 입었습니다!");
         }
-        if (monsters[monsterIndex[3]].Hp > 0 && stageLevel >= 2)
+        if (monsters[3].Hp > 0 && stageLevel >= 2)
         {
-            monsters[monsterIndex[3]].AttackPlayer();
+            monsters[3].AttackPlayer();
             Console.SetCursorPosition(2, 7);
-            Console.Write($"{monsters[monsterIndex[3]].Name}의 공격으로 {monsters[monsterIndex[3]].Atk}의 피해를 입었습니다!");
+            Console.Write($"{monsters[3].Name}의 공격으로 {monsters[3].Atk}의 피해를 입었습니다!");
         }
-        if (monsters[monsterIndex[4]].Hp > 0 && stageLevel >= 3)
+        if (monsters[4].Hp > 0 && stageLevel >= 3)
         {
-            monsters[monsterIndex[4]].AttackPlayer();
+            monsters[4].AttackPlayer();
             Console.SetCursorPosition(2, 8);
-            Console.Write($"{monsters[monsterIndex[4]].Name}의 공격으로 {monsters[monsterIndex[4]].Atk}의 피해를 입었습니다!");
+            Console.Write($"{monsters[4].Name}의 공격으로 {monsters[4].Atk}의 피해를 입었습니다!");
         }
 
         if (Program.player.Hp <= 0)
@@ -164,29 +166,10 @@ internal class FightScene
         ShowChoice4();
     }
 
-    public void Result(Player player, Monster monster)//결과창
+    public void Result()//결과창
     {
         Console.Clear();
-
-        bool playerWin = false;//승패 판결
-
-        if (player.Hp > 0 && monster.Hp <= 0)
-        {
-            playerWin = true;
-            Console.WriteLine($"{monster.Name}을/를 잡았어요!");
-            Console.WriteLine($"{monster.Exp}의 Exp를 획득했습니다!");
-            player.Exp += monster.Exp;
-            player.CheckLevelup();
-        }
-        else if (player.Hp <= 0 && monster.Hp > 0)
-        {
-            Console.WriteLine($"{monster.Name}을 잡지못했어요..ㅜ");
-        }
-        if (playerWin)
-        {
-            //승리후
-        }
-
+        Console.Write("qwdqwd");
     }
 
     
@@ -230,20 +213,20 @@ internal class FightScene
             {
                 InfoClear();
                 Console.SetCursorPosition(2, 4);
-                Console.Write($"'{monsters[monsterIndex[0]].Name}'이(가) 당신의 요청을 거절했습니다!");
+                Console.Write($"'{monsters[0].Name}'이(가) 당신의 요청을 거절했습니다!");
                 Console.SetCursorPosition(2, 5);
-                Console.Write($"'{monsters[monsterIndex[1]].Name}'이(가) 당신의 요청을 거절했습니다!");
+                Console.Write($"'{monsters[1].Name}'이(가) 당신의 요청을 거절했습니다!");
                 Console.SetCursorPosition(2, 6);
-                Console.Write($"'{monsters[monsterIndex[2]].Name}'이(가) 당신의 요청을 거절했습니다!");
+                Console.Write($"'{monsters[2].Name}'이(가) 당신의 요청을 거절했습니다!");
                 if (stageLevel >= 2)
                 {
                     Console.SetCursorPosition(2, 7);
-                    Console.Write($"'{monsters[monsterIndex[3]].Name}'이(가) 당신의 요청을 거절했습니다!");
+                    Console.Write($"'{monsters[3].Name}'이(가) 당신의 요청을 거절했습니다!");
                 }
                 if (stageLevel >= 3)
                 {
                     Console.SetCursorPosition(2, 8);
-                    Console.Write($"'{monsters[monsterIndex[4]].Name}'이(가) 당신의 요청을 거절했습니다!");
+                    Console.Write($"'{monsters[4].Name}'이(가) 당신의 요청을 거절했습니다!");
                 }
                 Console.SetCursorPosition(0, 28);
                 Console.Write("                                               ");
@@ -254,20 +237,20 @@ internal class FightScene
             {
                 InfoClear();
                 Console.SetCursorPosition(2, 4);
-                Console.Write($"'{monsters[monsterIndex[0]].Name}': 보글보글보글(널 가만두지 않겠다!)");
+                Console.Write($"'{monsters[0].Name}': 보글보글보글(널 가만두지 않겠다!)");
                 Console.SetCursorPosition(2, 5);
-                Console.Write($"'{monsters[monsterIndex[1]].Name}': 보글보글보글(널 가만두지 않겠다!)");
+                Console.Write($"'{monsters[1].Name}': 보글보글보글(널 가만두지 않겠다!)");
                 Console.SetCursorPosition(2, 6);
-                Console.Write($"'{monsters[monsterIndex[2]].Name}': 보글보글보글(널 가만두지 않겠다!)");
+                Console.Write($"'{monsters[2].Name}': 보글보글보글(널 가만두지 않겠다!)");
                 if (stageLevel >= 2)
                 {
                     Console.SetCursorPosition(2, 7);
-                    Console.Write($"'{monsters[monsterIndex[3]].Name}': 보글보글보글(널 가만두지 않겠다!)");
+                    Console.Write($"'{monsters[3].Name}': 보글보글보글(널 가만두지 않겠다!)");
                 }
                 if (stageLevel >= 3)
                 {
                     Console.SetCursorPosition(2, 8);
-                    Console.Write($"'{monsters[monsterIndex[4]].Name}': 보글보글보글(널 가만두지 않겠다!)");
+                    Console.Write($"'{monsters[4].Name}': 보글보글보글(널 가만두지 않겠다!)");
                 }
                 Console.SetCursorPosition(0, 28);
                 Console.Write("                                               ");
@@ -337,7 +320,18 @@ internal class FightScene
 
             if (key == "0")
             {
-                MonsterPhase();
+                if (monsters[0].Hp <= 0 &&
+                    monsters[1].Hp <= 0 &&
+                    monsters[2].Hp <= 0 &&
+                    monsters[3].Hp <= 0 &&
+                    monsters[4].Hp <= 0)
+                {
+                    Result();
+                }
+                else
+                {
+                    MonsterPhase();
+                }
                 isSelect = true;
             }
             else
@@ -446,12 +440,12 @@ internal class FightScene
         if (stageLevel >= 1)
         {
             Console.SetCursorPosition(10, 15);
-            Console.Write($"{monsters[monsterIndex[0]].Name}");
+            Console.Write($"{monsters[0].Name}");
             Console.SetCursorPosition(10, 17);
-            Console.Write($"HP: {monsters[monsterIndex[0]].Hp}");
+            Console.Write($"HP: {monsters[0].Hp}");
             Console.SetCursorPosition(10, 18);
-            Console.Write($"ATK: {monsters[monsterIndex[0]].Atk}");
-            if (monsters[monsterIndex[0]].Hp > 0)
+            Console.Write($"ATK: {monsters[0].Atk}");
+            if (monsters[0].Hp > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.SetCursorPosition(9, 20);
@@ -475,12 +469,12 @@ internal class FightScene
         if (stageLevel >= 1)
         {
             Console.SetCursorPosition(26, 15);
-            Console.Write($"{monsters[monsterIndex[1]].Name}");
+            Console.Write($"{monsters[1].Name}");
             Console.SetCursorPosition(26, 17);
-            Console.Write($"HP: {monsters[monsterIndex[1]].Hp}");
+            Console.Write($"HP: {monsters[1].Hp}");
             Console.SetCursorPosition(26, 18);
-            Console.Write($"ATK: {monsters[monsterIndex[1]].Atk}");
-            if (monsters[monsterIndex[1]].Hp > 0)
+            Console.Write($"ATK: {monsters[1].Atk}");
+            if (monsters[1].Hp > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.SetCursorPosition(25, 20);
@@ -504,12 +498,12 @@ internal class FightScene
         if (stageLevel >= 1)
         {
             Console.SetCursorPosition(42, 15);
-            Console.Write($"{monsters[monsterIndex[2]].Name}");
+            Console.Write($"{monsters[2].Name}");
             Console.SetCursorPosition(42, 17);
-            Console.Write($"HP: {monsters[monsterIndex[2]].Hp}");
+            Console.Write($"HP: {monsters[2].Hp}");
             Console.SetCursorPosition(42, 18);
-            Console.Write($"ATK: {monsters[monsterIndex[2]].Atk}");
-            if (monsters[monsterIndex[2]].Hp > 0)
+            Console.Write($"ATK: {monsters[2].Atk}");
+            if (monsters[2].Hp > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.SetCursorPosition(41, 20);
@@ -533,12 +527,12 @@ internal class FightScene
         if (stageLevel >= 2)
         {
             Console.SetCursorPosition(58, 15);
-            Console.Write($"{monsters[monsterIndex[3]].Name}");
+            Console.Write($"{monsters[3].Name}");
             Console.SetCursorPosition(58, 17);
-            Console.Write($"HP: {monsters[monsterIndex[3]].Hp}");
+            Console.Write($"HP: {monsters[3].Hp}");
             Console.SetCursorPosition(58, 18);
-            Console.Write($"ATK: {monsters[monsterIndex[3]].Atk}");
-            if (monsters[monsterIndex[3]].Hp > 0)
+            Console.Write($"ATK: {monsters[3].Atk}");
+            if (monsters[3].Hp > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.SetCursorPosition(57, 20);
@@ -557,12 +551,12 @@ internal class FightScene
         if (stageLevel >= 3)
         {
             Console.SetCursorPosition(74, 15);
-            Console.Write($"{monsters[monsterIndex[4]].Name}");
+            Console.Write($"{monsters[4].Name}");
             Console.SetCursorPosition(74, 17);
-            Console.Write($"HP: {monsters[monsterIndex[4]].Hp}");
+            Console.Write($"HP: {monsters[4].Hp}");
             Console.SetCursorPosition(74, 18);
-            Console.Write($"ATK: {monsters[monsterIndex[4]].Atk}");
-            if (monsters[monsterIndex[4]].Hp > 0)
+            Console.Write($"ATK: {monsters[4].Atk}");
+            if (monsters[4].Hp > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.SetCursorPosition(73, 20);

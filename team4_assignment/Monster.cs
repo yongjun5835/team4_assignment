@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 internal class Monster : Unit
 {
-    public Monster(int hp, int atk, string name,int level,int exp)
+    public Monster(int type)
     {
-        this.Hp = hp;
-        this.Atk = atk;
-        this.Name = name;
-        this.Level = level;
-        this.Exp = exp;
+        int[] monsterHp = { 10, 20, 30, 40, 50 };
+        int[] monsterAtk = { 5, 10, 15, 20, 25 };
+        int[] monsterExp = { 5, 10, 15, 20, 25 };
+        string[] monsterName = { "송사리", "꺽지", "블루길", "농어", "참치" };
+
+        this.hp = monsterHp[type];
+        this.atk = monsterAtk[type];
+        this.exp = monsterExp[type];
+        this.name = monsterName[type];
     }
     
     public void AttackPlayer()
