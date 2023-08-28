@@ -41,7 +41,7 @@ class Entrance
                     Console.WriteLine("던전 입장");
                     if (Program.player.Hp > 0)
                     {
-                        Program.fightScene.StartPhase();
+                        Program.stageSelectScene.StageSelect();
                     }
                     else
                     {

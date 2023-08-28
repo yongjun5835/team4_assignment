@@ -9,14 +9,41 @@ internal class FightScene
 {
     List<Monster> monsters = new List<Monster>();
     Random rand = new Random();
-    int stageLevel;
+    public int stageLevel;
     FastSpin fastSpin = new FastSpin();
     WriggleWriggleSpin wriggleWriggleSpin = new WriggleWriggleSpin();
     Rest rest = new Rest();
 
     public FightScene()
     {
-        stageLevel = 1;
+        int type1 = rand.Next(0, 3);
+        CreateMonster(type1);
+        int type2 = rand.Next(0, 3);
+        CreateMonster(type2);
+        int type3 = rand.Next(0, 3);
+        CreateMonster(type3);
+        int type4 = rand.Next(2, 4);
+        CreateMonster(type4);
+        int type5 = rand.Next(3, 5);
+        CreateMonster(type5);
+        if (stageLevel <= 2)
+        {
+            monsters[3].Hp = 0;
+        }
+        if (stageLevel <= 3)
+        {
+            monsters[4].Hp = 0;
+        }
+    }
+
+    public void Restart()
+    {
+        monsters.RemoveAt(4);
+        monsters.RemoveAt(3);
+        monsters.RemoveAt(2);
+        monsters.RemoveAt(1);
+        monsters.RemoveAt(0);
+
         int type1 = rand.Next(0, 3);
         CreateMonster(type1);
         int type2 = rand.Next(0, 3);
@@ -206,7 +233,7 @@ internal class FightScene
             }
             else if (key == "1")
             {
-                PlayerPhase();
+                Program.fightScene.PlayerPhase();
                 isSelect = true;
             }
             else if (key == "2")
@@ -278,25 +305,25 @@ internal class FightScene
 
             if (key == "0")
             {
-                StartPhase();
+                Program.fightScene.StartPhase();
                 isSelect = true;
             }
             else if (key == "1")
             {
                 fastSpin.UseSkill(Program.player, monsters);
-                SkillPhase();
+                Program.fightScene.SkillPhase();
                 isSelect = true;
             }
             else if (key == "2")
             {
                 wriggleWriggleSpin.UseSkill(Program.player, monsters);
-                SkillPhase();
+                Program.fightScene.SkillPhase();
                 isSelect = true;
             }
             else if (key == "3")
             {
                 rest.UseSkill(Program.player);
-                SkillPhase();
+                Program.fightScene.SkillPhase();
                 isSelect = true;
             }
             else
@@ -326,11 +353,11 @@ internal class FightScene
                     monsters[3].Hp <= 0 &&
                     monsters[4].Hp <= 0)
                 {
-                    Result();
+                    Program.fightScene.Result();
                 }
                 else
                 {
-                    MonsterPhase();
+                    Program.fightScene.MonsterPhase();
                 }
                 isSelect = true;
             }
@@ -357,7 +384,7 @@ internal class FightScene
             {
                 if (Program.player.Hp > 0)
                 {
-                    PlayerPhase();
+                    Program.fightScene.PlayerPhase();
                 }
                 else
                 {
