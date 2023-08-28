@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "fXRZIw5sw4oS1EAdE+Tprsekser46Xg8dFOhCFPUXfIldNamkxsqy9uAQO/y6hpBVbuYSEOvVJ0m29VVIwD+hQ==",
   "success": true,
   "projectFilePath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
+=======
+  "dgSpecHash": "bej8TjcToZyO8NAeippB6bSAR8Z0ZSyBqyjB3BKfSChmgo2QgFcNK2w/GGq59HtGpkPjalFu+d0YDlS9g3wAdQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lee001\\Desktop\\github\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
+>>>>>>> main
   "expectedPackageFiles": [],
   "logs": []
 }

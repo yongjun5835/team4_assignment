@@ -18,17 +18,17 @@ internal class FightScene
     public FightScene()
     {
         stageLevel = 3;
-        CreateMonster(15, 5, "송사리");
-        CreateMonster(10, 9, "꺽지");
-        CreateMonster(25, 8, "블루길");
-        CreateMonster(40, 15, "농어");
-        CreateMonster(70, 25, "참치");
+        CreateMonster(15, 5, "송사리", 1, 1);
+        CreateMonster(10, 9, "꺽지", 2, 2);
+        CreateMonster(25, 8, "블루길", 3, 3);
+        CreateMonster(40, 15, "농어", 4, 4);
+        CreateMonster(70, 25, "참치", 5, 5);
         SetRandomMonster();
     }
 
-    public void CreateMonster(int hp, int atk, string name)
+    public void CreateMonster(int hp, int atk, string name,int level,int exp)
     {
-        Monster monster = new Monster(hp, atk, name);
+        Monster monster = new Monster(hp, atk, name,level,exp);
         monsters.Add(monster);
     }
 
@@ -104,26 +104,90 @@ internal class FightScene
 
     public void MonsterPhase()
     {
-        DrawDisplay("도망가기", "이제 내 차례다!", "화해하자", "엉엉울기");
+        DrawDisplay("다음 페이즈로", "X", "X", "X");
 
         InfoClear();
-        monsters[monsterIndex[0]].AttackPlayer();
-        Console.SetCursorPosition(2, 4);
-        Console.Write($"{monsters[monsterIndex[0]].Name}의 공격으로 {monsters[monsterIndex[0]].Atk}의 피해를 입었습니다!");
-        monsters[monsterIndex[1]].AttackPlayer();
-        Console.SetCursorPosition(2, 5);
-        Console.Write($"{monsters[monsterIndex[1]].Name}의 공격으로 {monsters[monsterIndex[1]].Atk}의 피해를 입었습니다!");
-        monsters[monsterIndex[2]].AttackPlayer();
-        Console.SetCursorPosition(2, 6);
-        Console.Write($"{monsters[monsterIndex[2]].Name}의 공격으로 {monsters[monsterIndex[2]].Atk}의 피해를 입었습니다!");
+        if (monsters[monsterIndex[0]].Hp > 0)
+        {
+            monsters[monsterIndex[0]].AttackPlayer();
+            Console.SetCursorPosition(2, 4);
+            Console.Write($"{monsters[monsterIndex[0]].Name}의 공격으로 {monsters[monsterIndex[0]].Atk}의 피해를 입었습니다!");
+        }
+        if (monsters[monsterIndex[1]].Hp > 0)
+        {
+            monsters[monsterIndex[1]].AttackPlayer();
+            Console.SetCursorPosition(2, 5);
+            Console.Write($"{monsters[monsterIndex[1]].Name}의 공격으로 {monsters[monsterIndex[1]].Atk}의 피해를 입었습니다!");
+        }
+        if (monsters[monsterIndex[2]].Hp > 0)
+        {
+            monsters[monsterIndex[2]].AttackPlayer();
+            Console.SetCursorPosition(2, 6);
+            Console.Write($"{monsters[monsterIndex[2]].Name}의 공격으로 {monsters[monsterIndex[2]].Atk}의 피해를 입었습니다!");
+        }
+        if (monsters[monsterIndex[3]].Hp > 0 && stageLevel >= 2)
+        {
+            monsters[monsterIndex[3]].AttackPlayer();
+            Console.SetCursorPosition(2, 7);
+            Console.Write($"{monsters[monsterIndex[3]].Name}의 공격으로 {monsters[monsterIndex[3]].Atk}의 피해를 입었습니다!");
+        }
+        if (monsters[monsterIndex[4]].Hp > 0 && stageLevel >= 3)
+        {
+            monsters[monsterIndex[4]].AttackPlayer();
+            Console.SetCursorPosition(2, 8);
+            Console.Write($"{monsters[monsterIndex[4]].Name}의 공격으로 {monsters[monsterIndex[4]].Atk}의 피해를 입었습니다!");
+        }
+
+        if (Program.player.Hp <= 0)
+        {
+            Console.SetCursorPosition(2, 9);
+            Console.Write("더 이상 싸울 체력이 없습니다!");
+        }
+
+        Console.SetCursorPosition(63, 6);
+        Console.Write("                ");
+        Console.SetCursorPosition(63, 7);
+        Console.Write("                ");
+        Console.SetCursorPosition(63, 8);
+        Console.Write("                ");
+        Console.SetCursorPosition(63, 9);
+        Console.Write("                ");
+        Console.SetCursorPosition(66, 6);
+        Console.Write($"HP: {Program.player.Hp}");
+        Console.SetCursorPosition(66, 7);
+        Console.Write($"MP: {Program.player.Mp}");
+        Console.SetCursorPosition(66, 8);
+        Console.Write($"ATK: {Program.player.Atk}");
+        Console.SetCursorPosition(66, 9);
+        Console.Write($"DEF: {Program.player.Def}");
 
         ShowChoice4();
     }
 
-    public void Result()
+    public void Result(Player player, Monster monster)//결과창
     {
+        bool playerWin = false;//승패 판결
+
+        if (player.Hp > 0 && monster.Hp <= 0)
+        {
+            playerWin = true;
+            Console.WriteLine($"{monster.Name}을/를 잡았어요!");
+            Console.WriteLine($"{monster.Exp}의 Exp를 획득했습니다!");
+            player.Exp += monster.Exp;
+            player.CheckLevelup();
+        }
+        else if (player.Hp <= 0 && monster.Hp > 0)
+        {
+            Console.WriteLine($"{monster.Name}을 잡지못했어요..ㅜ");
+        }
+        if (playerWin)
+        {
+            //승리후
+        }
 
     }
+
+    
 
     public void InfoClear()
     {
@@ -295,20 +359,15 @@ internal class FightScene
 
             if (key == "0")
             {
-                Program.entrance.EntranceUI();
+                if (Program.player.Hp > 0)
+                {
+                    PlayerPhase();
+                }
+                else
+                {
+                    Program.entrance.EntranceUI();
+                }
                 isSelect = true;
-            }
-            else if (key == "1")
-            {
-
-            }
-            else if (key == "2")
-            {
-
-            }
-            else if (key == "3")
-            {
-
             }
             else
             {
