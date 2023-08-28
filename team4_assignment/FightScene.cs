@@ -45,15 +45,32 @@ internal class FightScene
             }
         }
 
-        int key = GameManager.GM.SelectOption(2, true);
+        DrawDisplay("", "");
 
-        if (key == 0)
+        bool isSelect = false;
+        Console.SetCursorPosition(0, 28);
+        Console.Write("선택지를 입력해주세요.: ");
+        while (isSelect == false)
         {
-            //Program.entrance.EntranceUI();
-        }
-        else if (key == 1)
-        {
-            PlayerPhase();
+            string key = Console.ReadLine();
+
+            if (key == "0")
+            {
+                Program.entrance.EntranceUI();
+                isSelect = true;
+            }
+            else if (key == "1")
+            {
+                PlayerPhase();
+                isSelect = true;
+            }
+            else
+            {
+                Console.SetCursorPosition(0, 28);
+                Console.Write("                                               ");
+                Console.SetCursorPosition(0, 28);
+                Console.Write("올바른 값을 입력해주세요.: ");
+            }
         }
     }
 
@@ -70,5 +87,51 @@ internal class FightScene
     public void Result()
     {
 
+    }
+
+    public void DrawDisplay(string choice1, string choice2)
+    {
+        Console.Clear();
+
+        Console.SetCursorPosition(0, 0);
+        Console.Write("*-----------------------------------------------------------------------------------*");
+        Console.SetCursorPosition(0, 25);
+        Console.Write("*-----------------------------------------------------------------------------------*");
+        for (int i = 1; i <25; i++)
+        {
+            Console.SetCursorPosition(0, i);
+            Console.Write("|");
+            Console.SetCursorPosition(84, i);
+            Console.Write("|");
+        }
+
+        Console.SetCursorPosition(3, 1);
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Write($"스파르타 던전 {stageLevel}층 | 생선을 처치하고 더 높은 층으로 가세요!");
+        Console.ResetColor();
+        Console.SetCursorPosition(1, 2);
+        Console.Write("-----------------------------------------------------------------------------------");
+
+        for (int i = 3; i < 12; i++)
+        {
+            Console.SetCursorPosition(60, i);
+            Console.Write("|");
+        }
+        Console.SetCursorPosition(66, 3);
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write("플레이어 스탯");
+        Console.ResetColor();
+        Console.SetCursorPosition(61, 4);
+        Console.Write("-----------------------");
+        Console.SetCursorPosition(66, 6);
+        Console.Write($"HP: {Program.player.Hp}");
+        Console.SetCursorPosition(66, 7);
+        Console.Write($"MP: {Program.player.Mp}");
+        Console.SetCursorPosition(66, 8);
+        Console.Write($"ATK: {Program.player.Atk}");
+        Console.SetCursorPosition(66, 9);
+        Console.Write($"DEF: {Program.player.Def}");
+        Console.SetCursorPosition(1, 12);
+        Console.Write("-----------------------------------------------------------------------------------");
     }
 }
