@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 internal class Program
 {
     static void Main(string[] args)
@@ -8,7 +7,5 @@ internal class Program
         Entrance entrance = new Entrance();
 
         entrance.EntranceUI();
-
-
     }
 }
