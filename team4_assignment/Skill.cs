@@ -27,6 +27,8 @@ class Skill
 
 class FastSpin : Skill
 {
+    Random random = new Random();
+
     public FastSpin()
     {
         name = "빨리 감기!!";
@@ -35,10 +37,13 @@ class FastSpin : Skill
         description = $"(공격력*{atkPercent})으로 한 마리 공격";
     }
 
-    public override void UseSkill(Unit useUnit, Unit taget)
+    public override void UseSkill(Unit useUnit, Unit[] tagets)
     {
-        taget.Hp -= (int)(useUnit.Atk*atkPercent);
-    } 
+        int num = random.Next(0, tagets.Length);
+        tagets[num].Hp -= (int)(useUnit.Atk*atkPercent);
+        Console.WriteLine($"공격 멘트!!.");
+
+    }
 }
 
 class Rest : Skill
