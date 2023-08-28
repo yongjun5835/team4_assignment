@@ -23,7 +23,7 @@ namespace team4_assignment
 
 			Console.Clear();
 			Console.WriteLine($"당신의 이름은 {userName}입니다.");
-            Console.WriteLine("1. 입장 하기 \n2.이름 변경");
+            Console.WriteLine("1. 직업 선택 \n2. 이름 변경");
 
 
             int optionNum = 2;
@@ -49,7 +49,7 @@ namespace team4_assignment
 
             Console.Clear();
             Console.WriteLine($"당신의 이름은 {userName}입니다.");
-            Console.WriteLine("1. 입장 하기 \n2.이름 변경");
+            Console.WriteLine("1. 직업 선택 \n2.이름 변경");
 
 
             int optionNum = 2;
