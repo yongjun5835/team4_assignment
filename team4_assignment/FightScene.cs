@@ -55,11 +55,11 @@ internal class FightScene
         CreateMonster(type4);
         int type5 = rand.Next(3, 5);
         CreateMonster(type5);
-        if (stageLevel <= 2)
+        if (stageLevel < 2)
         {
             monsters[3].Hp = 0;
         }
-        if (stageLevel <= 3)
+        if (stageLevel < 3)
         {
             monsters[4].Hp = 0;
         }

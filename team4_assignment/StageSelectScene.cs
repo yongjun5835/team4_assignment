@@ -32,14 +32,14 @@ internal class StageSelectScene
                 Program.fightScene.StartPhase();
                 isSelect = true;
             }
-            else if (key == "2")
+            else if (key == "2" && Program.fightScene.clearLevel >= 1)
             {
                 Program.fightScene.stageLevel = 2;
                 Program.fightScene.Restart();
                 Program.fightScene.StartPhase();
                 isSelect = true;
             }
-            else if (key == "3")
+            else if (key == "3" && Program.fightScene.clearLevel >= 2)
             {
                 Program.fightScene.stageLevel = 3;
                 Program.fightScene.Restart();
