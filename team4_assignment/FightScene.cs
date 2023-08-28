@@ -97,7 +97,7 @@ internal class FightScene
 
         InfoClear();
         Console.SetCursorPosition(2, 4);
-        Console.Write($"공격에 성공했습니다!");
+        Console.Write("당신은 신중하게 스킬을 사용했습니다!");
 
         ShowChoice3();
     }
@@ -166,6 +166,8 @@ internal class FightScene
 
     public void Result(Player player, Monster monster)//결과창
     {
+        Console.Clear();
+
         bool playerWin = false;//승패 판결
 
         if (player.Hp > 0 && monster.Hp <= 0)
@@ -517,7 +519,7 @@ internal class FightScene
             else
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.SetCursorPosition(51, 20);
+                Console.SetCursorPosition(41, 20);
                 Console.Write($"[잡았다!]");
                 Console.ResetColor();
             }
