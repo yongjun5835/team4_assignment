@@ -12,6 +12,13 @@ interface IPassive
 
 }
 
+enum SkillRange
+{
+    MySelf,
+    Single,
+
+}
+
 class Skill
 {
     protected string name = "";
@@ -30,9 +37,12 @@ class Skill
 =======
     public virtual void UseSkill(Unit useUnit) { }
     public virtual void UseSkill(Unit useUnit, List<Monster> tagets) { }
+<<<<<<< Updated upstream
 
 
 >>>>>>> main
+=======
+>>>>>>> Stashed changes
 }
 
 class FastSpin : Skill
