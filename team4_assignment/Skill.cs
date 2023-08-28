@@ -94,12 +94,10 @@ class WriggleWriggleSpin : Skill
                 randomNum = random.Next(0, tagets.Count);
                 if (tagets[randomNum].IsDead == false)
                 {
-                    Console.WriteLine("죽지 않았다");
-                    Console.ReadLine();
                     break;
                 }
             }
-            tagets[randomNum].Hp -= (int)(useUnit.Atk * atkPercent)+100;
+            tagets[randomNum].Hp -= (int)(useUnit.Atk * atkPercent);
         }
         Thread.Sleep(1000);
     }
