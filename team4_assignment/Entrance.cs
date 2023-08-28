@@ -1,4 +1,6 @@
-﻿class Entrance
+﻿using System;
+
+class Entrance
 {
     public Entrance()
     {

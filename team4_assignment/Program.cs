@@ -1,10 +1,11 @@
-﻿
+﻿using System;
+
 internal class Program
 {
     static void Main(string[] args)
     {
+        new GameManager();
         Entrance entrance = new Entrance();
-        GameManager gameManager = new GameManager();
 
         entrance.EntranceUI();
 
