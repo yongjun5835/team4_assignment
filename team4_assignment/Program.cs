@@ -2,11 +2,16 @@
 using team4_assignment;
 
 internal class Program
-{ 
+
+
+{
+    public static Player player = new Player();
+
     static void Main(string[] args)
     {
         new GameManager();
-        Entrance entrance = new Entrance();
+        GameManager.GM.player = player;
+
 
         Character character = new Character();
 
@@ -15,4 +20,6 @@ internal class Program
 
 
     }
+
+
 }
