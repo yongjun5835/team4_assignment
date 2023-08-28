@@ -22,7 +22,6 @@ class Skill
     public virtual void UseSkill(Unit useUnit) { }
     public virtual void UseSkill(Unit useUnit, List<Monster> tagets) { }
 
-
 }
 
 class FastSpin : Skill
@@ -39,8 +38,17 @@ class FastSpin : Skill
 
     public override void UseSkill(Unit useUnit, List<Monster> tagets)
     {
-        int num = random.Next(0, tagets.Count);
-        tagets[num].Hp -= (int)(useUnit.Atk*atkPercent);
+        int randomNum;
+        while (true)
+        {
+            randomNum = random.Next(0, tagets.Count);
+            if (tagets[randomNum].IsDead == false)
+            {
+                break;
+            }
+        }
+
+        tagets[randomNum].Hp -= (int)(useUnit.Atk*atkPercent);
     }
 }
 
@@ -58,6 +66,7 @@ class Rest : Skill
     public override void UseSkill(Unit useUnit)
     {
         useUnit.Hp += (int)(useUnit.Atk * atkPercent);
+
         Console.WriteLine($"{useUnit.Name}은(는) 잠깐 휴식합니다. \n체력 {(int)(useUnit.Atk * atkPercent)} 회복!!.");
     }
 }
@@ -79,8 +88,18 @@ class WriggleWriggleSpin : Skill
     {
         for (int i = 0; i < AttckUnits; i++) 
         {
-            int num = random.Next(0, tagets.Count);
-            tagets[num].Hp -= (int)(useUnit.Atk * atkPercent);
+            int randomNum;
+            while (true)
+            {
+                randomNum = random.Next(0, tagets.Count);
+                if (tagets[randomNum].IsDead == false)
+                {
+                    Console.WriteLine("죽지 않았다");
+                    Console.ReadLine();
+                    break;
+                }
+            }
+            tagets[randomNum].Hp -= (int)(useUnit.Atk * atkPercent)+100;
         }
         Thread.Sleep(1000);
     }

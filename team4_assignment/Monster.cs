@@ -18,7 +18,20 @@ internal class Monster : Unit
         this.exp = monsterExp[type];
         this.name = monsterName[type];
     }
-    
+    public override int Hp 
+    { 
+        get { return hp; } 
+        set 
+        { 
+            hp = value; 
+            if (hp <= 0)
+            {
+                hp = 0;
+                isDead = true;
+            }
+        } 
+    }
+
     public void AttackPlayer()
     {
         Program.player.Hp -= this.atk;
