@@ -4,7 +4,10 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Entrance entrance = new Entrance();
+            GameManager gameManager = new GameManager();
+
+            entrance.EntranceUI();
         }
     }
 }

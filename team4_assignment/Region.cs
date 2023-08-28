@@ -1,0 +1,5 @@
+﻿enum Region
+{
+    Dungeon,
+    Entrance
+}
