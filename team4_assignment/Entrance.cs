@@ -19,7 +19,7 @@ class Entrance
 
     public void DefaultSetting()
     {
-        player = GameManager.GM.player;
+        player = Program.player;
     }
 
     public void EntranceUI()
