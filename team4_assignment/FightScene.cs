@@ -10,6 +10,7 @@ internal class FightScene
     List<Monster> monsters = new List<Monster>();
     Random rand = new Random();
     public int stageLevel;
+    public int clearLevel = 0;
     FastSpin fastSpin = new FastSpin();
     WriggleWriggleSpin wriggleWriggleSpin = new WriggleWriggleSpin();
     Rest rest = new Rest();
@@ -353,6 +354,14 @@ internal class FightScene
                     monsters[3].Hp <= 0 &&
                     monsters[4].Hp <= 0)
                 {
+                    if (clearLevel == 0 && stageLevel == 1)
+                    {
+                        clearLevel = 1;
+                    }
+                    else if (clearLevel == 1 && stageLevel == 2)
+                    {
+                        clearLevel = 2;
+                    }
                     Program.fightScene.Result();
                 }
                 else
