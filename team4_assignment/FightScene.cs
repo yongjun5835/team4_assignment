@@ -91,9 +91,33 @@ internal class FightScene
         ShowChoice2();
     }
 
+    public void SkillPhase()
+    {
+        DrawDisplay("다음 페이즈로", "X", "X", "X");
+
+        InfoClear();
+        Console.SetCursorPosition(2, 4);
+        Console.Write($"공격에 성공했습니다!");
+
+        ShowChoice3();
+    }
+
     public void MonsterPhase()
     {
+        DrawDisplay("도망가기", "이제 내 차례다!", "화해하자", "엉엉울기");
 
+        InfoClear();
+        monsters[monsterIndex[0]].AttackPlayer();
+        Console.SetCursorPosition(2, 4);
+        Console.Write($"{monsters[monsterIndex[0]].Name}의 공격으로 {monsters[monsterIndex[0]].Atk}의 피해를 입었습니다!");
+        monsters[monsterIndex[1]].AttackPlayer();
+        Console.SetCursorPosition(2, 5);
+        Console.Write($"{monsters[monsterIndex[1]].Name}의 공격으로 {monsters[monsterIndex[1]].Atk}의 피해를 입었습니다!");
+        monsters[monsterIndex[2]].AttackPlayer();
+        Console.SetCursorPosition(2, 6);
+        Console.Write($"{monsters[monsterIndex[2]].Name}의 공격으로 {monsters[monsterIndex[2]].Atk}의 피해를 입었습니다!");
+
+        ShowChoice4();
     }
 
     public void Result()
@@ -206,6 +230,72 @@ internal class FightScene
             if (key == "0")
             {
                 StartPhase();
+                isSelect = true;
+            }
+            else if (key == "1")
+            {
+                fastSpin.UseSkill(Program.player, monsters);
+                SkillPhase();
+                isSelect = true;
+            }
+            else if (key == "2")
+            {
+                wriggleWriggleSpin.UseSkill(Program.player, monsters);
+                SkillPhase();
+                isSelect = true;
+            }
+            else if (key == "3")
+            {
+                rest.UseSkill(Program.player);
+                SkillPhase();
+                isSelect = true;
+            }
+            else
+            {
+                Console.SetCursorPosition(0, 28);
+                Console.Write("                                               ");
+                Console.SetCursorPosition(0, 28);
+                Console.Write("올바른 값을 입력해주세요.: ");
+            }
+        }
+    }
+
+    public void ShowChoice3()
+    {
+        bool isSelect = false;
+        Console.SetCursorPosition(0, 28);
+        Console.Write("선택지를 입력해주세요.: ");
+        while (isSelect == false)
+        {
+            string key = Console.ReadLine();
+
+            if (key == "0")
+            {
+                MonsterPhase();
+                isSelect = true;
+            }
+            else
+            {
+                Console.SetCursorPosition(0, 28);
+                Console.Write("                                               ");
+                Console.SetCursorPosition(0, 28);
+                Console.Write("올바른 값을 입력해주세요.: ");
+            }
+        }
+    }
+
+    public void ShowChoice4()
+    {
+        bool isSelect = false;
+        Console.SetCursorPosition(0, 28);
+        Console.Write("선택지를 입력해주세요.: ");
+        while (isSelect == false)
+        {
+            string key = Console.ReadLine();
+
+            if (key == "0")
+            {
+                Program.entrance.EntranceUI();
                 isSelect = true;
             }
             else if (key == "1")
