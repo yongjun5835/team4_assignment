@@ -196,8 +196,13 @@ internal class FightScene
 
     public void Result()//결과창
     {
-        Console.Clear();
-        Console.Write("qwdqwd");
+        DrawDisplay("메인으로", "X", "X", "X");
+
+        InfoClear();
+        Console.SetCursorPosition(2, 4);
+        Console.Write("클리어 되면 할 말");
+
+        ShowChoice5();
     }
 
     
@@ -399,6 +404,30 @@ internal class FightScene
                 {
                     Program.entrance.EntranceUI();
                 }
+                isSelect = true;
+            }
+            else
+            {
+                Console.SetCursorPosition(0, 28);
+                Console.Write("                                               ");
+                Console.SetCursorPosition(0, 28);
+                Console.Write("올바른 값을 입력해주세요.: ");
+            }
+        }
+    }
+
+    public void ShowChoice5()
+    {
+        bool isSelect = false;
+        Console.SetCursorPosition(0, 28);
+        Console.Write("선택지를 입력해주세요.: ");
+        while (isSelect == false)
+        {
+            string key = Console.ReadLine();
+
+            if (key == "0")
+            {
+                Program.entrance.EntranceUI();
                 isSelect = true;
             }
             else
