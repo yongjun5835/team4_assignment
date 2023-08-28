@@ -3,7 +3,7 @@
 class GameManager
 {
     public static GameManager GM;
-
+    public Player player;
     public GameManager()
     {
         GM = this;
