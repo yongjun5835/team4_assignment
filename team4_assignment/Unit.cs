@@ -15,4 +15,7 @@
     public int MaxMp { get { return maxMp; } set { maxMp = value; } }
     public int Mp { get { return mp; } set { mp = value; } }
 
+    public void AttckUnit(Unit target)
+    {
+    }
 }

@@ -68,7 +68,7 @@ class WriggleWriggleSpin : Skill
         name = "요리조리 감기";
         requiredMp = 20;
         atkPercent = 1.5f;
-        description = $"(공격력*{atkPercent})로 {AttckUnits}마리의 물고기를 랜덤으로 공격합니다.";
+        description = $"(공격력*{atkPercent})로 {AttckUnits} 마리의 물고기를 랜덤으로 공격합니다.";
     }
 
     public override void UseSkill(Unit useUnit, Unit[] tagets)
