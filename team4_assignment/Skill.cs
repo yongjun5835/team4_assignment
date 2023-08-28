@@ -17,11 +17,9 @@ class Skill
     public int RequiredMp {get { return requiredMp;}set { requiredMp = value; } }
     public string Name {get { return name;}set { name = value; } }
 
-    public virtual void UseSkill(Unit useUnit) { }
+    public virtual void Activate(Unit useUnit) { }
     public virtual void UseSkill(Unit useUnit, Unit taget) { }
     public virtual void UseSkill(Unit useUnit, Unit[] taget) { }
-
-
 }
 
 class FastSpin : Skill
@@ -37,7 +35,9 @@ class FastSpin : Skill
     public override void UseSkill(Unit useUnit, Unit taget)
     {
         taget.Hp -= (int)(useUnit.Atk*atkPercent);
-    } 
+        Console.WriteLine($"{useUnit.Name}의 손목이 빨리 회전하기 시작했습니다. ");
+
+    }
 }
 
 class Rest : Skill
@@ -51,7 +51,7 @@ class Rest : Skill
         description = $"(사용자의 체력을 (공격력*{atkPercent})만큼 회복합니다)";
     }
 
-    public override void UseSkill(Unit useUnit)
+    public override void Activate(Unit useUnit)
     {
         useUnit.Hp += (int)(useUnit.Atk * atkPercent);
         Console.WriteLine($"{useUnit.Name}은(는) 잠깐 휴식합니다. \n체력 {(int)(useUnit.Atk * atkPercent)} 회복!!.");

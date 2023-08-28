@@ -52,6 +52,6 @@
             return;
         }
         Mp -= skill.RequiredMp;
-        skill.UseSkill(this);
+        skill.Activate(this);
     }
 }
