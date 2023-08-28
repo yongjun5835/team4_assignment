@@ -78,4 +78,16 @@
         Mp -= skill.RequiredMp;
         skill.UseSkill(this);
     }
+
+    public void UseSkill(Skill skill, List<Monster> tagets)
+    {
+        if (Mp < skill.RequiredMp)
+        {
+            Console.WriteLine("\n마나가 부족합니다.");
+            Thread.Sleep(1000);
+            return;
+        }
+        Mp -= skill.RequiredMp;
+        skill.UseSkill(this, tagets);
+    }
 }

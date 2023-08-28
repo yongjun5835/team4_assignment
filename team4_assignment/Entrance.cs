@@ -7,12 +7,6 @@ class Entrance
 
     public Entrance()
     {
-        if (GameManager.GM.player == null)
-        {
-            Console.WriteLine("플레이어가 null 입니다.");
-            Console.ReadLine();
-        }
-
         DefaultSetting();
         inventory = new Inventory();
     }
