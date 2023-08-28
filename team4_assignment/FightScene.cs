@@ -18,17 +18,17 @@ internal class FightScene
     public FightScene()
     {
         stageLevel = 3;
-        CreateMonster(15, 5, "송사리");
-        CreateMonster(10, 9, "꺽지");
-        CreateMonster(25, 8, "블루길");
-        CreateMonster(40, 15, "농어");
-        CreateMonster(70, 25, "참치");
+        CreateMonster(15, 5, "송사리", 1, 1);
+        CreateMonster(10, 9, "꺽지", 2, 2);
+        CreateMonster(25, 8, "블루길", 3, 3);
+        CreateMonster(40, 15, "농어", 4, 4);
+        CreateMonster(70, 25, "참치", 5, 5);
         SetRandomMonster();
     }
 
-    public void CreateMonster(int hp, int atk, string name)
+    public void CreateMonster(int hp, int atk, string name,int level,int exp)
     {
-        Monster monster = new Monster(hp, atk, name);
+        Monster monster = new Monster(hp, atk, name,level,exp);
         monsters.Add(monster);
     }
 
@@ -120,10 +120,30 @@ internal class FightScene
         ShowChoice4();
     }
 
-    public void Result()
+    public void Result(Player player, Monster monster)//결과창
     {
+        bool playerWin = false;//승패 판결
+
+        if (player.Hp > 0 && monster.Hp <= 0)
+        {
+            playerWin = true;
+            Console.WriteLine($"{monster.Name}을/를 잡았어요!");
+            Console.WriteLine($"{monster.Exp}의 Exp를 획득했습니다!");
+            player.Exp += monster.Exp;
+            player.CheckLevelup();
+        }
+        else if (player.Hp <= 0 && monster.Hp > 0)
+        {
+            Console.WriteLine($"{monster.Name}을 잡지못했어요..ㅜ");
+        }
+        if (playerWin)
+        {
+            //승리후
+        }
 
     }
+
+    
 
     public void InfoClear()
     {
