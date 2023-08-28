@@ -17,8 +17,7 @@ class Skill
 
     public int RequiredMp {get { return requiredMp;}set { requiredMp = value; } }
     public string Name {get { return name;}set { name = value; } }
-
-    protected StringBuilder attckTxt = new StringBuilder();
+    public string Description { get { return description; } set { description = value; } }
 
     public virtual void Activate(Unit useUnit) { }
     public virtual void UseSkill(Unit useUnit, Unit taget) { }
@@ -27,22 +26,21 @@ class Skill
 
 class FastSpin : Skill
 {
+    Random random = new Random();
+
     public FastSpin()
     {
         name = "빨리 감기!!";
         requiredMp = 10;
         atkPercent = 2.0f;
-        description = $"(공격력*{atkPercent})으로 한 마리의 물고기를 공격합니다.";
+        description = $"(공격력*{atkPercent})으로 한 마리 공격";
     }
 
-    public override void UseSkill(Unit useUnit, Unit taget)
+    public override void UseSkill(Unit useUnit, Unit[] tagets)
     {
-        taget.Hp -= (int)(useUnit.Atk*atkPercent);
-
-        attckTxt = new StringBuilder($"{useUnit.Name}의 손목이 빨리 회전하기 시작했습니다. ");
-        Console.WriteLine(attckTxt);
-        attckTxt = new StringBuilder($"{taget.Name}은(는) {(int)(useUnit.Atk * atkPercent)}의 대미지를 받았습니다.");
-        Console.WriteLine(attckTxt);
+        int num = random.Next(0, tagets.Length);
+        tagets[num].Hp -= (int)(useUnit.Atk*atkPercent);
+        Console.WriteLine($"공격 멘트!!.");
     }
 }
 
@@ -54,7 +52,7 @@ class Rest : Skill
         requiredMp = 5;
         atkPercent = 1.2f;
 
-        description = $"(사용자의 체력을 (공격력*{atkPercent})만큼 회복합니다)";
+        description = $"사용자의 체력을 (공격력*{atkPercent})만큼 회복";
     }
 
     public override void Activate(Unit useUnit)
@@ -74,7 +72,7 @@ class WriggleWriggleSpin : Skill
         name = "요리조리 감기";
         requiredMp = 20;
         atkPercent = 1.5f;
-        description = $"(공격력*{atkPercent})로 {AttckUnits} 마리의 물고기를 랜덤으로 공격합니다.";
+        description = $"(공격력*{atkPercent})로 {AttckUnits} 마리 랜덤으로 공격";
     }
 
     public override void UseSkill(Unit useUnit, Unit[] tagets)
