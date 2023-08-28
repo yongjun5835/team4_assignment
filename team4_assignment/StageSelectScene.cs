@@ -10,9 +10,12 @@ internal class StageSelectScene
     {
         Console.Clear();
 
-        Console.WriteLine("1. 세 마리의 생선과 전투를 합니다!");
-        Console.WriteLine("2. 네 마리의 생선과 전투를 합니다!");
-        Console.WriteLine("3. 다섯 마리의 생선과 전투를 합니다!");
+        string canEnter2 = (Program.fightScene.clearLevel >= 1) ? "[입장가능]" : "[입장불가]";
+        string canEnter3 = (Program.fightScene.clearLevel >= 2) ? "[입장가능]" : "[입장불가]";
+
+        Console.WriteLine("[입장가능] 1. 세 마리의 생선과 전투를 합니다!");
+        Console.WriteLine($"{canEnter2} 2. 네 마리의 생선과 전투를 합니다!");
+        Console.WriteLine($"{canEnter3} 3. 다섯 마리의 생선과 전투를 합니다!");
         Console.WriteLine("");
 
         bool isSelect = false;
@@ -29,14 +32,14 @@ internal class StageSelectScene
                 Program.fightScene.StartPhase();
                 isSelect = true;
             }
-            else if (key == "2")
+            else if (key == "2" && Program.fightScene.clearLevel >= 1)
             {
                 Program.fightScene.stageLevel = 2;
                 Program.fightScene.Restart();
                 Program.fightScene.StartPhase();
                 isSelect = true;
             }
-            else if (key == "3")
+            else if (key == "3" && Program.fightScene.clearLevel >= 2)
             {
                 Program.fightScene.stageLevel = 3;
                 Program.fightScene.Restart();
