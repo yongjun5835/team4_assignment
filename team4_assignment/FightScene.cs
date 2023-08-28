@@ -13,7 +13,7 @@ internal class FightScene
 
     public FightScene()
     {
-        stageLevel = 1;
+        stageLevel = 3;
         CreateMonster(15, 5, "송사리");
         CreateMonster(10, 9, "꺽지");
         CreateMonster(25, 8, "블루길");
@@ -54,6 +54,16 @@ internal class FightScene
         Console.Write($"'{monsters[monsterIndex[1]].Name}'이(가) 출현했습니다!");
         Console.SetCursorPosition(2, 6);
         Console.Write($"'{monsters[monsterIndex[2]].Name}'이(가) 출현했습니다!");
+        if (stageLevel >= 2)
+        {
+            Console.SetCursorPosition(2, 7);
+            Console.Write($"'{monsters[monsterIndex[3]].Name}'이(가) 출현했습니다!");
+        }
+        if (stageLevel >= 3)
+        {
+            Console.SetCursorPosition(2, 8);
+            Console.Write($"'{monsters[monsterIndex[4]].Name}'이(가) 출현했습니다!");
+        }
 
         ShowChoice();
     }
@@ -95,13 +105,51 @@ internal class FightScene
             }
             else if (key == "2")
             {
-                PlayerPhase();
-                isSelect = true;
+                InfoClear();
+                Console.SetCursorPosition(2, 4);
+                Console.Write($"'{monsters[monsterIndex[0]].Name}'이(가) 당신의 요청을 거절했습니다!");
+                Console.SetCursorPosition(2, 5);
+                Console.Write($"'{monsters[monsterIndex[1]].Name}'이(가) 당신의 요청을 거절했습니다!");
+                Console.SetCursorPosition(2, 6);
+                Console.Write($"'{monsters[monsterIndex[2]].Name}'이(가) 당신의 요청을 거절했습니다!");
+                if (stageLevel >= 2)
+                {
+                    Console.SetCursorPosition(2, 7);
+                    Console.Write($"'{monsters[monsterIndex[3]].Name}'이(가) 당신의 요청을 거절했습니다!");
+                }
+                if (stageLevel >= 3)
+                {
+                    Console.SetCursorPosition(2, 8);
+                    Console.Write($"'{monsters[monsterIndex[4]].Name}'이(가) 당신의 요청을 거절했습니다!");
+                }
+                Console.SetCursorPosition(0, 28);
+                Console.Write("                                               ");
+                Console.SetCursorPosition(0, 28);
+                Console.Write("선택지를 입력해주세요.: ");
             }
             else if (key == "3")
             {
-                PlayerPhase();
-                isSelect = true;
+                InfoClear();
+                Console.SetCursorPosition(2, 4);
+                Console.Write($"'{monsters[monsterIndex[0]].Name}': 보글보글보글(널 가만두지 않겠다!)");
+                Console.SetCursorPosition(2, 5);
+                Console.Write($"'{monsters[monsterIndex[1]].Name}': 보글보글보글(널 가만두지 않겠다!)");
+                Console.SetCursorPosition(2, 6);
+                Console.Write($"'{monsters[monsterIndex[2]].Name}': 보글보글보글(널 가만두지 않겠다!)");
+                if (stageLevel >= 2)
+                {
+                    Console.SetCursorPosition(2, 7);
+                    Console.Write($"'{monsters[monsterIndex[3]].Name}': 보글보글보글(널 가만두지 않겠다!)");
+                }
+                if (stageLevel >= 3)
+                {
+                    Console.SetCursorPosition(2, 8);
+                    Console.Write($"'{monsters[monsterIndex[4]].Name}': 보글보글보글(널 가만두지 않겠다!)");
+                }
+                Console.SetCursorPosition(0, 28);
+                Console.Write("                                               ");
+                Console.SetCursorPosition(0, 28);
+                Console.Write("선택지를 입력해주세요.: ");
             }
             else
             {
