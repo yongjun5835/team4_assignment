@@ -3,6 +3,7 @@
 class Entrance
 {
     Player player;
+    Inventory inventory;
 
     public Entrance()
     {
@@ -13,6 +14,7 @@ class Entrance
         }
 
         DefaultSetting();
+        inventory = new Inventory();
     }
 
     public void DefaultSetting()
@@ -22,14 +24,13 @@ class Entrance
 
     public void EntranceUI()
     {
-        int optionNum = 2;
-
+        int optionNum = 3;
         while (true) 
         {
             Console.Clear();
             Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
 
-            Console.WriteLine("1. 상태보기 2. 던전 입장");
+            Console.WriteLine("1. 상태보기 2. 던전 입장 3. 인벤토리");
             int input = GameManager.GM.SelectOption(optionNum, false, "");
             switch (input)
             {
@@ -39,6 +40,10 @@ class Entrance
                 case 2:
                     Console.WriteLine("던전 입장");
                     break;
+                case 3:
+                    inventory.DisplayInventory();
+                    break;
+
             }
         }
     }
