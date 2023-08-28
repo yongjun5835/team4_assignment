@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 class GameManager
 {
@@ -64,4 +65,6 @@ class GameManager
         Console.WriteLine("입력 값을 다시 확인해주세요.");
         return -1;
     }
+
+
 }

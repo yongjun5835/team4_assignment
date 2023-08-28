@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Text;
 using System.Threading.Channels;
 
 interface IPassive
@@ -16,6 +17,8 @@ class Skill
 
     public int RequiredMp {get { return requiredMp;}set { requiredMp = value; } }
     public string Name {get { return name;}set { name = value; } }
+
+    protected StringBuilder attckTxt = new StringBuilder();
 
     public virtual void Activate(Unit useUnit) { }
     public virtual void UseSkill(Unit useUnit, Unit taget) { }
@@ -35,8 +38,11 @@ class FastSpin : Skill
     public override void UseSkill(Unit useUnit, Unit taget)
     {
         taget.Hp -= (int)(useUnit.Atk*atkPercent);
-        Console.WriteLine($"{useUnit.Name}의 손목이 빨리 회전하기 시작했습니다. ");
 
+        attckTxt = new StringBuilder($"{useUnit.Name}의 손목이 빨리 회전하기 시작했습니다. ");
+        Console.WriteLine(attckTxt);
+        attckTxt = new StringBuilder($"{taget.Name}은(는) {(int)(useUnit.Atk * atkPercent)}의 대미지를 받았습니다.");
+        Console.WriteLine(attckTxt);
     }
 }
 

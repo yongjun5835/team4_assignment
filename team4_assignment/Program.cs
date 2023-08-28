@@ -6,6 +6,8 @@ internal class Program
     public static FightScene fightScene = new FightScene();
     static void Main(string[] args)
     {
+        Console.SetWindowSize(100, 35);
+
         new GameManager();
         GameManager.GM.player = player;
 
