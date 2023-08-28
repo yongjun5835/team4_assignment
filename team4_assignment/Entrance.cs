@@ -9,7 +9,7 @@
         int optionNum = 2;
         Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
 
-        Console.WriteLine("1. 상태보기 2. 던전 입장");
+        Console.WriteLine("1. 상태보기 2. 던전 입장 3. 인벤토리");
         int input = GameManager.GM.SelectOption(optionNum, false,"");
         switch (input)
         {
@@ -18,6 +18,9 @@
                 break;
             case 2:
                 Console.WriteLine("던전 입장");
+                break;
+            case 3:
+                Console.WriteLine("인벤토리");
                 break;
         }
     }
