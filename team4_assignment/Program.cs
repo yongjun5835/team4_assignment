@@ -8,6 +8,7 @@
             GameManager gameManager = new GameManager();
 
             entrance.EntranceUI();
+            
         }
     }
 }
