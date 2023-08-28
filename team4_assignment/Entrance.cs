@@ -39,6 +39,7 @@ class Entrance
                     break;
                 case 2:
                     Console.WriteLine("던전 입장");
+                    Program.fightScene.StartPhase();
                     break;
                 case 3:
                     inventory.DisplayInventory();
