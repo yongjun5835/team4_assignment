@@ -15,12 +15,13 @@ class Skill
     protected int requiredMp;
     protected float atkPercent;
 
-    public int RequiredMp {get { return requiredMp;}set { requiredMp = value; } }
-    public string Name {get { return name;}set { name = value; } }
+    public int RequiredMp { get { return requiredMp; } set { requiredMp = value; } }
+    public string Name { get { return name; } set { name = value; } }
     public string Description { get { return description; } set { description = value; } }
 
     public virtual void UseSkill(Unit useUnit) { }
     public virtual void UseSkill(Unit useUnit, List<Monster> tagets) { }
+
 
 }
 
@@ -48,7 +49,7 @@ class FastSpin : Skill
             }
         }
 
-        tagets[randomNum].Hp -= (int)(useUnit.Atk*atkPercent);
+        tagets[randomNum].Hp -= (int)(useUnit.Atk * atkPercent);
     }
 }
 
@@ -86,16 +87,30 @@ class WriggleWriggleSpin : Skill
 
     public override void UseSkill(Unit useUnit, List<Monster> tagets)
     {
-        for (int i = 0; i < AttckUnits; i++) 
+        bool isAllDeath = false;
+        for (int i = 0; i < AttckUnits; i++)
         {
-            int randomNum;
-            while (true)
+            int randomNum =0;
+            while (isAllDeath == false)
             {
                 randomNum = random.Next(0, tagets.Count);
                 if (tagets[randomNum].IsDead == false)
                 {
                     break;
                 }
+                for (int num = 0; num < tagets.Count; num++)
+                {
+                    if (tagets[num].Hp > 0)
+                    {
+                        break;
+                    }
+                    if (num == tagets.Count-1)
+                    {
+                        isAllDeath = true;
+                        break;
+                    }
+                }
+
             }
             tagets[randomNum].Hp -= (int)(useUnit.Atk * atkPercent);
         }
