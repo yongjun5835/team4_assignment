@@ -186,7 +186,7 @@ class TunaSliced : Skill
         skillType = SkillType.Taget;
         requiredMp = 10;
         atkPercent = 0.4f;
-        description = $"(공격력 * {atkPercent} * 3) 보디 슬라이스! 테일 슬라이스!";
+        description = $"(공격력 * {atkPercent} * 3) 참치 슬라이스!";
     }
 
     public override void UseSkill(Unit useUnit, Unit taget)
