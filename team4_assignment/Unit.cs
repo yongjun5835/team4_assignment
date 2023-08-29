@@ -1,4 +1,6 @@
-﻿class Unit
+﻿using static GameManager;
+
+class Unit
 {
     protected string name = "";
     protected int maxHp;
@@ -21,7 +23,18 @@
     public int Exp { get { return exp; } set { exp = value; } }
     public bool IsDead { get { return isDead; } set { isDead = value; } }
 
-    public void AttckUnit(Unit target)
+
+
+
+
+
+    public int AttackUnit(Unit target, AttackTypeDele atkTypeDelegate )
     {
+        int damage = this.Atk /*- target.def*/;
+        atkTypeDelegate(ref damage);
+        target.hp -= damage;
+        return damage;
     }
+
+
 }

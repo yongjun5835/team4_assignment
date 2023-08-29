@@ -34,6 +34,7 @@ internal class Monster : Unit
 
     public void AttackPlayer()
     {
-        Program.player.Hp -= this.atk;
+        //Program.player.Hp -= this.Atk;
+        AttackUnit(Program.player, GameManager.GM.physicalDmg);
     }
 }

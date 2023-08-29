@@ -88,6 +88,14 @@
             return;
         }
         Mp -= skill.RequiredMp;
-        skill.UseSkill(this, tagets);
+
+        if (skill.SkillType == SkillType.Solo)
+        {
+            skill.UseSkill(this);
+        }
+        else if (skill.SkillType == SkillType.Taget)
+        {
+            skill.UseSkill(this, tagets);
+        }
     }
 }
