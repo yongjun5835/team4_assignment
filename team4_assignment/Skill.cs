@@ -238,7 +238,7 @@ class Itadakimasu : Skill
         {
             if (Program.player.vsBossSkillCombo == true)
             {
-                description = $"(HP 90 회복, 공격력 * {atkPercent}) 눈 앞에서 살점..";
+                description = $"(HP 60 회복, 공격력 * {atkPercent}) 눈 앞에서 살점";
             }else
             {
                 description = $"HP 10을 회복한다.";
@@ -254,7 +254,7 @@ class Itadakimasu : Skill
         if (Program.player.vsBossSkillCombo == true)
         {
             taget.Hp -= (int)(useUnit.Atk * atkPercent);
-            useUnit.Hp += 90;
+            useUnit.Hp += 60;
             Program.player.vsBossSkillCombo = false;
 
         }

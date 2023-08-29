@@ -86,7 +86,7 @@ internal class BossScene
     public void MonsterPhase()
     {
         Random rand = new Random();
-        int damage = rand.Next(30, 91);
+        int damage = rand.Next(20, 61);
         Program.player.Hp -= damage;
 
         ClearInfo();
