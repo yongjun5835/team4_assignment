@@ -21,29 +21,62 @@ internal class BossScene
         Console.Write("자이언트 첨치가 출현했습니다!");
         Console.ForegroundColor = ConsoleColor.Red;
         Console.SetCursorPosition(55, 3);
-        Console.Write("녀석은 무지하게 화가 나 있습니다!");
+        Console.Write("녀석은 무지하게 화가 나 있습니다.");
         Console.ResetColor();
         Choice1();
     }
 
     public void SkillPhase()
     {
+        ClearInfo();
+        Console.SetCursorPosition(55, 2);
+        Console.Write("당신은 스킬 사용을 선택했습니다.");
+        Console.SetCursorPosition(55, 3);
+        Console.Write("사용할 스킬을 선택해주세요.");
         Choice2();
+    }
+
+    public void DamagePhase()
+    {
+        ClearInfo();
+        ReduceHpBar(0, 20);
+        Console.SetCursorPosition(55, 2);
+        Console.Write("스킬 사용에 성공했습니다!");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.SetCursorPosition(55, 3);
+        Console.Write($"자이언트 참치의 체력은 {boss.Hp}남았습니다.");
+        Console.ResetColor();
+        Console.SetCursorPosition(55, 4);
+        Console.Write("자이언트 참치는 몹시 화가 났습니다.");
+        Console.SetCursorPosition(55, 5);
+        Console.Write("다음 행동을 선택해주세요.");
+        Choice3();
+    }
+
+    public void MonsterPhase()
+    {
+        ClearInfo();
+        Console.SetCursorPosition(55, 2);
+        Console.Write("자이언트 참치가 당신을 공격했습니다!");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.SetCursorPosition(55, 3);
+        Console.Write($"당신의 체력은 {Program.player.Hp}남았습니다.");
+        Console.ResetColor();
+        Console.SetCursorPosition(55, 4);
+        Console.Write("다음 행동을 선택해주세요.");
+        Choice4();
     }
 
     public void Choice1()
     {
-        ConsoleKeyInfo input;
+        bool isSelect = false;
         Console.SetCursorPosition(53, 28);
-        Console.Write("[0]도망가기 [1]스킬쓰기");
+        Console.Write("                                                        ");
+        Console.SetCursorPosition(53, 28);
+        Console.Write("[0]도망가기 [1]스킬사용 | 선택지를 입력해주세요.: ");
 
-        while (true)
+        while (isSelect == false)
         {
-            bool isSelect = false;
-            Console.SetCursorPosition(53, 28);
-            Console.Write("                                                        ");
-            Console.SetCursorPosition(53, 28);
-            Console.Write("[0]도망가기 [1]스킬사용 | 선택지를 입력해주세요.: ");
             while (isSelect == false)
             {
                 string key = Console.ReadLine();
@@ -55,7 +88,7 @@ internal class BossScene
                 }
                 else if (key == "1")
                 {
-                    Program.entrance.EntranceUI();
+                    SkillPhase();
                     isSelect = true;
                 }
                 else
@@ -71,17 +104,54 @@ internal class BossScene
 
     public void Choice2()
     {
-        ConsoleKeyInfo input;
+        bool isSelect = false;
         Console.SetCursorPosition(53, 28);
-        Console.Write("[0]도망가기 [1]스킬쓰기");
+        Console.Write("                                                        ");
+        Console.SetCursorPosition(53, 28);
+        Console.Write("[1]사용 [2]사용 [3]사용 | 선택지를 입력해주세요.: ");
 
-        while (true)
+        while (isSelect == false)
         {
-            bool isSelect = false;
-            Console.SetCursorPosition(53, 28);
-            Console.Write("                                                        ");
-            Console.SetCursorPosition(53, 28);
-            Console.Write("[0]도망가기 [1]스킬사용 | 선택지를 입력해주세요.: ");
+            while (isSelect == false)
+            {
+                string key = Console.ReadLine();
+
+                if (key == "1")
+                {
+                    DamagePhase();
+                    isSelect = true;
+                }
+                else if (key == "2")
+                {
+                    DamagePhase();
+                    isSelect = true;
+                }
+                else if (key == "3")
+                {
+                    DamagePhase();
+                    isSelect = true;
+                }
+                else
+                {
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("                                                        ");
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("[1]사용 [2]사용 [3]사용 | 올바른 값을 입력해주세요.: ");
+                }
+            }
+        }
+    }
+
+    public void Choice3()
+    {
+        bool isSelect = false;
+        Console.SetCursorPosition(53, 28);
+        Console.Write("                                                        ");
+        Console.SetCursorPosition(53, 28);
+        Console.Write("[0]도망가기 [1]계속하기 | 선택지를 입력해주세요.: ");
+
+        while (isSelect ==  false)
+        {
             while (isSelect == false)
             {
                 string key = Console.ReadLine();
@@ -93,7 +163,42 @@ internal class BossScene
                 }
                 else if (key == "1")
                 {
+                    MonsterPhase();
+                    isSelect = true;
+                }
+                else
+                {
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("                                                        ");
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("[0]도망가기 [1]계속하기 | 올바른 값을 입력해주세요.: ");
+                }
+            }
+        }
+    }
+
+    public void Choice4()
+    {
+        bool isSelect = false;
+        Console.SetCursorPosition(53, 28);
+        Console.Write("                                                        ");
+        Console.SetCursorPosition(53, 28);
+        Console.Write("[0]도망가기 [1]스킬사용 | 선택지를 입력해주세요.: ");
+
+        while (isSelect == false)
+        {
+            while (isSelect == false)
+            {
+                string key = Console.ReadLine();
+
+                if (key == "0")
+                {
                     Program.entrance.EntranceUI();
+                    isSelect = true;
+                }
+                else if (key == "1")
+                {
+                    SkillPhase();
                     isSelect = true;
                 }
                 else
