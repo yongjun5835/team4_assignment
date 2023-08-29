@@ -8,11 +8,25 @@
     "net6.0": []
   },
   "packageFolders": {
+<<<<<<< HEAD
+    "C:\\Users\\조용준\\.nuget\\packages\\": {}
+=======
     "C:\\Users\\ChuNyan\\.nuget\\packages\\": {}
+>>>>>>> SkillSystem
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
+      "projectName": "team4_assignment",
+      "projectPath": "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
+      "packagesPath": "C:\\Users\\조용준\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\조용준\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
       "projectUniqueName": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
       "projectName": "team4_assignment",
       "projectPath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
@@ -21,6 +35,7 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ChuNyan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> SkillSystem
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

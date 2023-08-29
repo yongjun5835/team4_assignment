@@ -200,12 +200,34 @@ internal class FightScene
 
         InfoClear();
         Console.SetCursorPosition(2, 4);
-        Console.Write("클리어 되면 할 말");
+        int totalExp = 0;
+        int totalGold = 0;
+
+        foreach (var monster in monsters)
+        {
+            if (monster.IsDead)
+            {
+                totalExp += monster.Exp;
+                totalGold += monster.Gold;
+            }
+        }
+        if (totalExp > 0)
+        {
+            Program.player.Exp += totalExp;
+            Program.player.Gold += totalGold;
+
+            Console.SetCursorPosition(2, 5);
+            Console.WriteLine($"골드 {totalGold}를 획득했습니다!");
+            Console.SetCursorPosition(2, 6);
+            Console.WriteLine($"총 소지하신 골드는 {Program.player.Gold}원 입니다.");
+            Console.SetCursorPosition(2, 7);
+            Console.WriteLine($"경험치 {totalExp}를 획득했습니다");
+
+            Program.player.CheckLevelup();
+        }
 
         ShowChoice5();
     }
-
-    
 
     public void InfoClear()
     {

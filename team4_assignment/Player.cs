@@ -19,6 +19,10 @@
 
     private string job = "";
     private int gold;
+
+    public bool vsBoss = false;
+    public bool vsBossSkillCombo = false;
+
     List<Skill> skills = new List<Skill>();
 
     public string Job { get { return job; } set { job = value; } }
@@ -30,7 +34,7 @@
         Console.Clear();
         Console.WriteLine($"이름 : {Name}");
         Console.WriteLine($"직업 : {Job}");
-        Console.WriteLine($"레벨 : {level} {exp}/{maxExp}");
+        Console.WriteLine($"레벨 : {level}    경험치 :{exp}/{maxExp[level]}");
         Console.WriteLine($"체력 : {Hp} / {maxHp}");
         Console.WriteLine($"마나 : {mp} / {maxMp}");
         Console.WriteLine($"공격력 : {Atk}");
@@ -49,16 +53,16 @@
 
     public void CheckLevelup()
     {
-        for (int i = level -1; i < maxExp.Length; i++) // maxExp 배열 사용
+        for (int i = level - 1; i < maxExp.Length; i++) // maxExp 배열 사용
         {
             if (exp >= maxExp[i])
             {
                 level++; // 레벨업
                 atk += 1;
                 def++;
-
-                // 레벨업 후 경험치 초기화
                 exp = 0;
+                Console.SetCursorPosition(2, 8);
+                Console.WriteLine($"레벨업!{level}레벨을 달성하셨습니다!");
             }
             else
             {
@@ -98,4 +102,5 @@
             skill.UseSkill(this, tagets);
         }
     }
+
 }
