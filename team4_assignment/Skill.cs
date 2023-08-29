@@ -131,7 +131,7 @@ class TheOldManAndTheSea : Skill
 
     public TheOldManAndTheSea()
     {
-        name = "도서 정독";
+        name = "도서정독";
         requiredMp = 10;
         atkPercent = 1.0f;
         description = $"84일간 물고기도 못 잡은 선배 이야기다. ";

@@ -8,19 +8,25 @@
     "net6.0": []
   },
   "packageFolders": {
-    "/Users/hamyoungjoo/.nuget/packages/": {}
+
+    "C:\\Users\\조용준\\.nuget\\packages\\": {}
+
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/hamyoungjoo/Desktop/team4_assignment/team4_assignment/team4_assignment.csproj",
+
+      "projectUniqueName": "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
+
       "projectName": "team4_assignment",
       "projectPath": "/Users/hamyoungjoo/Desktop/team4_assignment/team4_assignment/team4_assignment.csproj",
       "packagesPath": "/Users/hamyoungjoo/.nuget/packages/",
       "outputPath": "/Users/hamyoungjoo/Desktop/team4_assignment/team4_assignment/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/hamyoungjoo/.nuget/NuGet/NuGet.Config"
+
+        "C:\\Users\\조용준\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"

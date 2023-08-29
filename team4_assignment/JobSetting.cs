@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 namespace team4_assignment
 {
     public class JobSetting
