@@ -16,6 +16,7 @@ internal class BossScene
     public void StartPhase()
     {
         Program.player.vsBoss = true;
+        boss.Hp = 500;
         Console.Clear();
         DrawTuna(0, 0);
         DrawHpBar(0, 20);
