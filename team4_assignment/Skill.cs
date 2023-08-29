@@ -134,7 +134,7 @@ class TheOldManAndTheSea : Skill
         name = "도서정독";
         requiredMp = 10;
         atkPercent = 1.0f;
-        description = $"84일간 물고기도 못 잡은 선배 이야기다. ";
+        description = $"84일간 물고기 못 잡은 선배 이야기";
     }
 
     public override void UseSkill(Unit useUnit)
@@ -168,7 +168,7 @@ class LookAtThisCan : Skill
         skillType = SkillType.Taget;
         requiredMp = 10;
         atkPercent = 2.0f;
-        description = $"(공격력 * {atkPercent}) 저 안에 든 건 나의 가족이었을까..?";
+        description = $"(공격력 * {atkPercent}) 저 안에 든 건 나의 가족?";
     }
 
     public override void UseSkill(Unit useUnit, Unit taget)
@@ -186,7 +186,7 @@ class TunaSliced : Skill
         skillType = SkillType.Taget;
         requiredMp = 10;
         atkPercent = 0.4f;
-        description = $"(공격력 * {atkPercent} * 3) 넥 슬라이스! 보디 슬라이스! 테일 슬라이스!";
+        description = $"(공격력 * {atkPercent} * 3) 보디 슬라이스! 테일 슬라이스!";
     }
 
     public override void UseSkill(Unit useUnit, Unit taget)
