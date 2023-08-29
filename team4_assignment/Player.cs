@@ -1,5 +1,6 @@
 ﻿class Player : Unit
 {
+    private int[] maxExp = { 0, 10, 35, 65, 100 }; // 레벨별 필요 경험치
     public Player()
     {
         hp = 100;
@@ -9,6 +10,8 @@
         gold = 1500;
         mp = 50;
         maxMp = mp;
+        level = 1;
+        exp = 0;
 
         skills.Add(new FastSpin());
         skills.Add(new Rest());
@@ -27,6 +30,7 @@
         Console.Clear();
         Console.WriteLine($"이름 : {Name}");
         Console.WriteLine($"직업 : {Job}");
+        Console.WriteLine($"레벨 : {level} {exp}/{maxExp}");
         Console.WriteLine($"체력 : {Hp} / {maxHp}");
         Console.WriteLine($"마나 : {mp} / {maxMp}");
         Console.WriteLine($"공격력 : {Atk}");
@@ -43,6 +47,26 @@
         }
     }
 
+    public void CheckLevelup()
+    {
+        for (int i = level -1; i < maxExp.Length; i++) // maxExp 배열 사용
+        {
+            if (exp >= maxExp[i])
+            {
+                level++; // 레벨업
+                atk += 1;
+                def++;
+
+                // 레벨업 후 경험치 초기화
+                exp = 0;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
     public void UseSkill(Skill skill)
     {
         if (Mp < skill.RequiredMp)
@@ -53,5 +77,17 @@
         }
         Mp -= skill.RequiredMp;
         skill.UseSkill(this);
+    }
+
+    public void UseSkill(Skill skill, List<Monster> tagets)
+    {
+        if (Mp < skill.RequiredMp)
+        {
+            Console.WriteLine("\n마나가 부족합니다.");
+            Thread.Sleep(1000);
+            return;
+        }
+        Mp -= skill.RequiredMp;
+        skill.UseSkill(this, tagets);
     }
 }
