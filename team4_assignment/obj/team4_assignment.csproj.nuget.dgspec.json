@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/Users/hamyoungjoo/Desktop/team4_assignment/team4_assignment/team4_assignment.csproj": {}
+
+    "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj": {}
   },
   "projects": {
-    "/Users/hamyoungjoo/Desktop/team4_assignment/team4_assignment/team4_assignment.csproj": {
+    "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/hamyoungjoo/Desktop/team4_assignment/team4_assignment/team4_assignment.csproj",
+        "projectUniqueName": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
         "projectName": "team4_assignment",
-        "projectPath": "/Users/hamyoungjoo/Desktop/team4_assignment/team4_assignment/team4_assignment.csproj",
-        "packagesPath": "/Users/hamyoungjoo/.nuget/packages/",
-        "outputPath": "/Users/hamyoungjoo/Desktop/team4_assignment/team4_assignment/obj/",
+        "projectPath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
+        "packagesPath": "C:\\Users\\ChuNyan\\.nuget\\packages\\",
+        "outputPath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/hamyoungjoo/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ChuNyan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+
         ],
         "originalTargetFrameworks": [
           "net6.0"

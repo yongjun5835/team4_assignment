@@ -135,37 +135,36 @@ internal class FightScene
     public void MonsterPhase()
     {
         DrawDisplay("다음 페이즈로", "X", "X", "X");
-        int currentDmg;
         InfoClear();
         if (monsters[0].Hp > 0)
         {
-            currentDmg = monsters[0].AttackUnit(Program.player, GameManager.GM.physicalDmg);
             Console.SetCursorPosition(2, 4);
-            Console.Write($"{monsters[0].Name}의 공격으로 {currentDmg}의 피해를 입었습니다!");
+            monsters[0].AttackUnit(Program.player, GameManager.GM.physicalDmg);
+            //Console.Write($"{monsters[0].Name}의 공격으로 {currentDmg}의 피해를 입었습니다!");
         }
         if (monsters[1].Hp > 0)
         {
-            currentDmg = monsters[1].AttackUnit(Program.player, GameManager.GM.physicalDmg);
             Console.SetCursorPosition(2, 5);
-            Console.Write($"{monsters[1].Name}의 공격으로 {currentDmg}의 피해를 입었습니다!");
+            monsters[1].AttackUnit(Program.player, GameManager.GM.physicalDmg);
+            //Console.Write($"{monsters[1].Name}의 공격으로 {currentDmg}의 피해를 입었습니다!");
         }
         if (monsters[2].Hp > 0)
         {
-            currentDmg = monsters[2].AttackUnit(Program.player, GameManager.GM.physicalDmg);
             Console.SetCursorPosition(2, 6);
-            Console.Write($"{monsters[2].Name}의 공격으로 {currentDmg}의 피해를 입었습니다!");
+            monsters[2].AttackUnit(Program.player, GameManager.GM.physicalDmg);
+            //Console.Write($"{monsters[2].Name}의 공격으로 {currentDmg}의 피해를 입었습니다!");
         }
         if (monsters[3].Hp > 0 && stageLevel >= 2)
         {
-            currentDmg = monsters[3].AttackUnit(Program.player, GameManager.GM.physicalDmg);
             Console.SetCursorPosition(2, 7);
-            Console.Write($"{monsters[3].Name}의 공격으로 {currentDmg}의 피해를 입었습니다!");
+            monsters[3].AttackUnit(Program.player, GameManager.GM.physicalDmg);
+            ////Console.Write($"{monsters[3].Name}의 공격으로 {currentDmg}의 피해를 입었습니다!");
         }
         if (monsters[4].Hp > 0 && stageLevel >= 3)
         {
-            currentDmg = monsters[4].AttackUnit(Program.player, GameManager.GM.physicalDmg);
             Console.SetCursorPosition(2, 8);
-            Console.Write($"{monsters[4].Name}의 공격으로 {currentDmg}의 피해를 입었습니다!");
+            monsters[4].AttackUnit(Program.player, GameManager.GM.physicalDmg);
+            //Console.Write($"{monsters[4].Name}의 공격으로 {currentDmg}의 피해를 입었습니다!");
         }
 
         if (Program.player.Hp <= 0)
