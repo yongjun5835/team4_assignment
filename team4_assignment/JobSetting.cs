@@ -53,6 +53,8 @@ namespace team4_assignment
             Program.player.Atk = jobAtk; 
             Program.player.Def = jobDef;
 
+            
+
             int choiceInput = GameManager.GM.SelectOption(2, false);
 
             if (choiceInput == 1)

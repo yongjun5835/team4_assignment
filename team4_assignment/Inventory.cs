@@ -1,17 +1,24 @@
-﻿class Inventory
+﻿using System;
+using System.Numerics;
+
+class Inventory
 
 {
 
-
+    public Player Player;
     Item[] inventory;
     Item[] inventoryPotion;
+
+
+
+    
 
     public Inventory()
     {
         inventory = new Item[10];
 
-        inventory[0] = new Item(name: "무쇠 갑옷", atk: 0, def: 5, desc: "아주 오래 된 무쇠 갑옷이다.", hp: 0, qu: 0);
-        inventory[1] = new Item(name: "낡은 검", atk: 10, def: 0, desc: "낡은 검이다.", hp: 0, qu: 0);
+        inventory[0] = new Item(name: "무쇠 갑옷", atk: 0, def: 5, desc: "아주 오래 된 갑옷이다.", hp: 0, qu: 0);
+        inventory[1] = new Item(name: "낡은 검", atk: 5, def: 0, desc: "낡은 검인데 금방이라도 부러질 거 같다.", hp: 0, qu: 0);
 
 
         inventoryPotion = new Item[5];
@@ -20,12 +27,23 @@
     }
 
     static void Equipitem(Item item)
+
     {
+        Player player = new Player();
+
         item.isEquiped = true;
+
+            
+            Program.player.Atk += item.Atk;
+            Program.player.Def += item.Def;
     }
     static void Unequopitem(Item item)
     {
         item.isEquiped = false;
+
+        Player player = new Player(); 
+        Program.player.Atk -= item.Atk;
+        Program.player.Def -= item.Def;
     }
 
     class Item
@@ -90,9 +108,9 @@
                 break;
 
             if (inventory[i].isEquiped)
-                Console.Write("[E]");
+                Console.Write("\u001b[31m[E]\u001b[0m");
 
-            Console.WriteLine($" {inventory[i].Name,-8}| 방어력 : {inventory[i].Def,-3} | {inventory[i].Desc}");
+            Console.WriteLine($" {inventory[i].Name,-8}| 공격력 : {inventory[i].Atk, -3} | 방어력 : {inventory[i].Def,-3} | {inventory[i].Desc}");
         }
         Console.WriteLine();
         Console.WriteLine("1. 장착관리");
@@ -105,7 +123,7 @@
         {
             case 1:
                 InventoryEquipManagement();
-                break;
+                break;   
         }
     }
 
@@ -116,48 +134,61 @@
         Console.WriteLine();
         Console.WriteLine("[아이템 목록]");
         Console.WriteLine();
+
         // 아이템
         for (int i = 0; i < inventory.Length; i++)
         {
             if (inventory[i] == null)
                 break;
 
-            Console.Write(i + 1 + "");
+            Console.Write(i + 1 + ".");
             if (inventory[i].isEquiped)
-                Console.Write("[E]");
+                Console.Write("\u001b[31m[E]\u001b[0m");
 
-            Console.WriteLine($" {inventory[i].Name,-8}| 방어력 : {inventory[i].Def,-3} | {inventory[i].Desc}");
+
+            Console.WriteLine($" {inventory[i].Name,-8}| 공격력 : {inventory[i].Atk,-3} | 방어력 : {inventory[i].Def,-3} | {inventory[i].Desc}");
         }
         Console.WriteLine();
         Console.WriteLine("0. 뒤로가기");
+        Console.WriteLine();
+
 
         //장착
         string input = Console.ReadLine();
-        if(int.TryParse(input, out int x))
+        if (int.TryParse(input, out int x))
         {
             if (x == 0)
             {
                 InventoryEquip();
             }
-            else if(x >= 0 && x<= 5)
+            else if (x >= 1 && x <= inventory.Length)
             {
-                Item item = inventory[x -1];
+                Item item = inventory[x - 1]; 
                 if (item.isEquiped)
                 {
                     Unequopitem(item);
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("아이템이 해제되었습니다.");
+                    Console.ResetColor();
+                    Thread.Sleep(1000);
                 }
                 else
                 {
                     Equipitem(item);
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("아이템이 장착되었습니다.");
+                    Console.ResetColor();
+                    Thread.Sleep(1000);
                 }
                 InventoryEquipManagement();
             }
+            else
+            {
+                Console.WriteLine("잘못 입력하셨습니다.");
+                Thread.Sleep(1300);
+            }
         }
     }
-
-
-
-
     public void InventoryConsumption() // 물약
     {
         Console.Clear();
@@ -169,15 +200,56 @@
             if (inventoryPotion[i] == null)
                 break;
 
-            Console.Write(i + 1 + "");
-            Console.WriteLine($" {inventoryPotion[0].Name,-5} | {inventoryPotion[0].Desc,-3}  (남은 갯수 : {inventoryPotion[0].Quantity})");
+            Console.Write(i + 1 + ".");
+            Console.WriteLine($" {inventoryPotion[0].Name,-5} | {inventoryPotion[0].Desc,-3}  (남은 갯수 : \u001b[32m{inventoryPotion[0].Quantity}\u001b[0m)");
         }
         Console.WriteLine();
         Console.WriteLine("1. 사용하기");
         Console.WriteLine("0. 뒤로가기");
-        //1번 입력시 갯수 - hp30회복시키기
 
+        //포션 사용!
+        string input = Console.ReadLine();
+        if (int.TryParse(input, out int x))
+        {
+            if (x == 0)
+            {
+                DisplayInventory();
+            }
+            else if (x == 1)
+            {
+                if (inventoryPotion[0].Quantity > 0)
+                {
+                    int healAmount = inventoryPotion[0].Hp;
 
+                    // 현재 체력 + 회복량이 최대 체력(MaxHp)를 넘지 않도록 처리
+                    int maxHealAmount = Program.player.MaxHp - Program.player.Hp;
+                    if (healAmount > maxHealAmount)
+                    {
+                        healAmount = maxHealAmount;
+                    }
+
+                    // 체력 회복 및 물약 수량 감소
+                    Program.player.Hp += healAmount;
+                    inventoryPotion[0].Quantity--;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"물약을 사용하셨습니다.");
+                    Console.ResetColor();
+                    Thread.Sleep(1300);
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("남은 물약이 없습니다.");
+                    Console.ResetColor();
+                    Thread.Sleep(1300);
+                }
+            }
+            else
+            {
+                Console.WriteLine("잘못 입력하셨습니다.");
+                Thread.Sleep(1300);
+            }
+            InventoryConsumption();
+        }
     }
-
 }

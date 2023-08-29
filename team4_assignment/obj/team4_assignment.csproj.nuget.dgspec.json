@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj": {}
+    "/Users/junkwon/team4_assignment/team4_assignment/team4_assignment.csproj": {}
   },
   "projects": {
-    "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj": {
+    "/Users/junkwon/team4_assignment/team4_assignment/team4_assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
+        "projectUniqueName": "/Users/junkwon/team4_assignment/team4_assignment/team4_assignment.csproj",
         "projectName": "team4_assignment",
-        "projectPath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
-        "packagesPath": "C:\\Users\\ChuNyan\\.nuget\\packages\\",
-        "outputPath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\obj\\",
+        "projectPath": "/Users/junkwon/team4_assignment/team4_assignment/team4_assignment.csproj",
+        "packagesPath": "/Users/junkwon/.nuget/packages/",
+        "outputPath": "/Users/junkwon/team4_assignment/team4_assignment/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ChuNyan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/junkwon/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.307/RuntimeIdentifierGraph.json"
         }
       }
     }

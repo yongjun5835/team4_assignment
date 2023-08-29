@@ -1,5 +1,6 @@
 ﻿class Player : Unit
 {
+
     private int[] maxExp = { 0, 10, 35, 65, 100 }; // 레벨별 필요 경험치
     public Player()
     {
@@ -27,14 +28,15 @@
 
     public void StatusUI()
     {
+
         Console.Clear();
         Console.WriteLine($"이름 : {Name}");
         Console.WriteLine($"직업 : {Job}");
         Console.WriteLine($"레벨 : {level} {exp}/{maxExp}");
-        Console.WriteLine($"체력 : {Hp} / {maxHp}");
+        Console.WriteLine($"체력 : {hp} / {maxHp}");
         Console.WriteLine($"마나 : {mp} / {maxMp}");
         Console.WriteLine($"공격력 : {Atk}");
-        Console.WriteLine($"방어력 : {Def}");
+        Console.WriteLine($"방어력 : {Def}" );
         Console.WriteLine($"금화 : {Gold}");
         Console.WriteLine("\n1. 나가기");
         int inputKey = GameManager.GM.SelectOption(1, false);
@@ -90,4 +92,5 @@
         Mp -= skill.RequiredMp;
         skill.UseSkill(this, tagets);
     }
+
 }

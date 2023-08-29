@@ -16,6 +16,7 @@
     public int Mp { get { return mp; } set { mp = value; } }
     public int Atk { get { return atk; } set { atk = value; } }
     public int Def { get { return def; } set { def = value; } }
+    public int MaxHp { get { return maxHp; } set { maxHp = value; } }
     public int MaxMp { get { return maxMp; } set { maxMp = value; } }
     public int Level { get { return level; } set { level = value; } }
     public int Exp { get { return exp; } set { exp = value; } }
