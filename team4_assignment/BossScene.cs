@@ -55,6 +55,7 @@ internal class BossScene
         ClearInfo();
         DrawStatUI(53, 10);
         ReduceHpBar(0, 20);
+        DrawSkillUI(81, 10);
         if (boss.Hp > 0)
         {
             Console.SetCursorPosition(55, 2);
@@ -84,7 +85,9 @@ internal class BossScene
 
     public void MonsterPhase()
     {
-        Program.player.Hp -= boss.Atk;
+        Random rand = new Random();
+        int damage = rand.Next(30, 91);
+        Program.player.Hp -= damage;
 
         ClearInfo();
         DrawStatUI(53, 10);
