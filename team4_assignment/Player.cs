@@ -34,7 +34,7 @@
         Console.Clear();
         Console.WriteLine($"이름 : {Name}");
         Console.WriteLine($"직업 : {Job}");
-        Console.WriteLine($"레벨 : {level} {exp}/{maxExp[level]}");
+        Console.WriteLine($"레벨 : {level}    경험치 :{exp}/{maxExp[level]}");
         Console.WriteLine($"체력 : {Hp} / {maxHp}");
         Console.WriteLine($"마나 : {mp} / {maxMp}");
         Console.WriteLine($"공격력 : {Atk}");
