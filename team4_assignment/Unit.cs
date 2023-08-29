@@ -11,6 +11,7 @@ class Unit
     protected int def;
     protected int level;
     protected int exp;
+    protected int gold;
     protected bool isDead = false;
 
     public string Name { get { return name; } set { name = value; } }
@@ -21,6 +22,7 @@ class Unit
     public int MaxMp { get { return maxMp; } set { maxMp = value; } }
     public int Level { get { return level; } set { level = value; } }
     public int Exp { get { return exp; } set { exp = value; } }
+    public int Gold { get { return gold; } set { gold = value; } }
     public bool IsDead { get { return isDead; } set { isDead = value; } }
 
 
