@@ -29,6 +29,7 @@ internal class BossScene
     public void SkillPhase()
     {
         ClearInfo();
+        DrawStatUI(53, 10);
         Console.SetCursorPosition(55, 2);
         Console.Write("당신은 스킬 사용을 선택했습니다.");
         Console.SetCursorPosition(55, 3);
@@ -39,6 +40,7 @@ internal class BossScene
     public void DamagePhase()
     {
         ClearInfo();
+        DrawStatUI(53, 10);
         ReduceHpBar(0, 20);
         Console.SetCursorPosition(55, 2);
         Console.Write("스킬 사용에 성공했습니다!");
@@ -56,6 +58,7 @@ internal class BossScene
     public void MonsterPhase()
     {
         ClearInfo();
+        DrawStatUI(53, 10);
         Console.SetCursorPosition(55, 2);
         Console.Write("자이언트 참치가 당신을 공격했습니다!");
         Console.ForegroundColor = ConsoleColor.Red;
@@ -258,6 +261,30 @@ internal class BossScene
             Console.SetCursorPosition(x + 25, y + i + 1);
             Console.Write("|");
         }
+
+        Console.SetCursorPosition(x + 4, y + 2);
+        Console.Write($"                     ");
+        Console.SetCursorPosition(x + 4, y + 3);
+        Console.Write($"                     ");
+        Console.SetCursorPosition(x + 4, y + 4);
+        Console.Write($"                     ");
+        Console.SetCursorPosition(x + 4, y + 5);
+        Console.Write($"                     ");
+        Console.SetCursorPosition(x + 4, y + 6);
+        Console.Write($"                     ");
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.SetCursorPosition(x + 4, y + 2);
+        Console.Write($"플레이어 레벨: {Program.player.Level}");
+        Console.SetCursorPosition(x + 4, y + 3);
+        Console.Write($"플레이어 체력: {Program.player.Hp}");
+        Console.SetCursorPosition(x + 4, y + 4);
+        Console.Write($"플레이어 마나: {Program.player.Mp}");
+        Console.SetCursorPosition(x + 4, y + 5);
+        Console.Write($"플레이어 공격: {Program.player.Atk}");
+        Console.SetCursorPosition(x + 4, y + 6);
+        Console.Write($"플레이어 방어: {Program.player.Def}");
+        Console.ResetColor();
     }
 
     public void DrawSkillUI (int x, int y)
@@ -273,6 +300,22 @@ internal class BossScene
             Console.SetCursorPosition(x + 22, y + i + 1);
             Console.Write("|");
         }
+
+        Console.SetCursorPosition(x + 2, y + 2);
+        Console.Write("[1] 스킬이름 ");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write("/ 10MP");
+        Console.ResetColor();
+        Console.SetCursorPosition(x + 2, y + 3);
+        Console.Write("[2] 스킬이름 ");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write("/ 10MP");
+        Console.ResetColor();
+        Console.SetCursorPosition(x + 2, y + 4);
+        Console.Write("[3] 스킬이름 ");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write("/ 10MP");
+        Console.ResetColor();
     }
 
     public void DrawHpBar(int x, int y)
@@ -292,12 +335,15 @@ internal class BossScene
 
     public void ReduceHpBar(int x, int y)
     {
-        for (int i = 50; i > 0; i--)
+        if (boss.Hp < 500)
         {
-            if (boss.Hp <= i * 10)
+            for (int i = 50; i > 0; i--)
             {
-                Console.SetCursorPosition(x + i, y);
-                Console.Write(" ");
+                if (boss.Hp <= i * 10)
+                {
+                    Console.SetCursorPosition(x + i, y);
+                    Console.Write(" ");
+                }
             }
         }
     }
