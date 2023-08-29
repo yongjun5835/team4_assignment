@@ -1,4 +1,5 @@
-﻿using static GameManager;
+﻿using System.Text;
+using static GameManager;
 
 class Unit
 {
@@ -32,6 +33,7 @@ class Unit
 
     public int AttackUnit(Unit target, AttackTypeDele atkTypeDelegate )
     {
+        StringBuilder AtkTxt = new StringBuilder();
         int damage = this.Atk /*- target.def*/;
         atkTypeDelegate(ref damage);
         target.hp -= damage;

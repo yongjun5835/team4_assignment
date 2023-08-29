@@ -39,7 +39,7 @@ class FastSpin : Skill
         skillType = SkillType.Taget;
         requiredMp = 10;
         atkPercent = 2.0f;
-        description = $"(공격력*{atkPercent})로 한 마리 랜덤으로 공격";
+        description = $"(공격력 * {atkPercent})로 1마리 랜덤으로 공격";
     }
 
     public override void UseSkill(Unit useUnit, List<Monster> tagets)
@@ -66,7 +66,7 @@ class Rest : Skill
         requiredMp = 5;
         atkPercent = 1.2f;
 
-        description = $"사용자의 체력을 (공격력*{atkPercent})만큼 회복";
+        description = $"사용자의 체력을 (공격력 * {atkPercent})만큼 회복";
     }
 
     public override void UseSkill(Unit useUnit)
@@ -87,7 +87,7 @@ class WriggleWriggleSpin : Skill
         name = "요리조리 감기";
         requiredMp = 20;
         atkPercent = 1.5f;
-        description = $"(공격력*{atkPercent})로 {AttckUnits} 마리 랜덤으로 공격";
+        description = $"(공격력 * {atkPercent})로 {AttckUnits}마리 랜덤으로 공격";
     }
 
     public override void UseSkill(Unit useUnit, List<Monster> tagets)
@@ -131,10 +131,10 @@ class TheOldManAndTheSea : Skill
 
     public TheOldManAndTheSea()
     {
-        name = "노인과 바다 정독";
+        name = "도서 정독";
         requiredMp = 10;
         atkPercent = 1.0f;
-        description = $"선배 낚시꾼의 지식을 습득합니다. ";
+        description = $"84일간 물고기도 못 잡은 선배 이야기다. ";
     }
 
     public override void UseSkill(Unit useUnit)
@@ -164,11 +164,11 @@ class LookAtThisCan : Skill
 
     public LookAtThisCan()
     {
-        name = "사조 참치 보여주기";
+        name = "캔 따기";
         skillType = SkillType.Taget;
         requiredMp = 10;
         atkPercent = 2.0f;
-        description = $"저 안에 든 건 나의 가족이었을까..? (공격력*{atkPercent}의 정신 피해)";
+        description = $"(공격력 * {atkPercent}) 저 안에 든 건 나의 가족이었을까..?";
     }
 
     public override void UseSkill(Unit useUnit, Unit taget)
@@ -182,11 +182,11 @@ class TunaSliced : Skill
 
     public TunaSliced()
     {
-        name = "참치 회 썰기";
+        name = "회 썰기";
         skillType = SkillType.Taget;
         requiredMp = 10;
         atkPercent = 0.4f;
-        description = $"(공격력*{atkPercent}*3) 넥 슬라이스! 보디 슬라이스! 테일 슬라이스!";
+        description = $"(공격력 * {atkPercent} * 3) 넥 슬라이스! 보디 슬라이스! 테일 슬라이스!";
     }
 
     public override void UseSkill(Unit useUnit, Unit taget)
@@ -213,7 +213,7 @@ class Itadakimasu : Skill
         skillType = SkillType.Taget;
         requiredMp = 10;
         atkPercent = 2.0f;
-        name = "간식 타임";
+        name = "간식타임";
         description = $"HP 10을 회복한다.";
     }
     public override string Name 
@@ -222,11 +222,11 @@ class Itadakimasu : Skill
         { 
             if (Program.player.vsBossSkillCombo == true)
             {
-                name = "이따다끼마스!!";
+                name = "꺼__억";
             }
             else
             {
-                name = "간식 시간";
+                name = "간식시간";
             }
             return name; 
         } 
@@ -238,7 +238,7 @@ class Itadakimasu : Skill
         {
             if (Program.player.vsBossSkillCombo == true)
             {
-                description = $"(HP 30 회복, 공격력*{atkPercent}) 눈 앞에서 살점을 먹어버렸다...";
+                description = $"(HP 30 회복, 공격력 * {atkPercent}) 눈 앞에서 살점을 먹어버렸다...";
             }else
             {
                 description = $"HP 10을 회복한다.";
