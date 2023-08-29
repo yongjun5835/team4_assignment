@@ -82,14 +82,19 @@ class Inventory
         Console.WriteLine("0. 뒤로가기");
 
         int optionNum = 2;
-        int input = GameManager.GM.SelectOption(optionNum, false, "");
+        int input = GameManager.GM.SelectOption(optionNum, true, "");
         switch (input)
         {
+            case 0:
+                Program.entrance.EntranceUI();
+                break;
             case 1:
                 InventoryEquip();
                 break;
             case 2:
                 InventoryConsumption();
+                break;
+            default:
                 break;
         }
     }
