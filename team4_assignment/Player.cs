@@ -1,8 +1,11 @@
-﻿class Player : Unit
+﻿namespace team4_assignment;
+class Player : Unit
 {
     private int[] maxExp = { 0, 10, 35, 65, 100 }; // 레벨별 필요 경험치
     public Player()
     {
+        physicalDmg += DodgeEvent;
+
         hp = 100;
         maxHp = hp;
         atk = 10;

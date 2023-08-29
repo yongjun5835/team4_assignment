@@ -1,4 +1,5 @@
 ﻿using System;
+namespace team4_assignment;
 
 class Entrance
 {

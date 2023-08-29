@@ -1,4 +1,7 @@
-﻿class Unit
+﻿namespace team4_assignment;
+
+class Unit
+
 {
     protected string name = "";
     protected int maxHp;
@@ -22,7 +25,8 @@
     public bool IsDead { get { return isDead; } set { isDead = value; } }
 
 
-    protected delegate void PhysicalDmg(ref int damage) ;
+
+    protected delegate void PhysicalDmg(ref int damage);
     protected PhysicalDmg physicalDmg;
     public Unit()
     {
@@ -48,13 +52,47 @@
         }
     }
 
-    void DodgeEvent(ref int damage)
+    public void DodgeEvent(ref int damage)
     {
         int dodgePercent = 50;
         int randomNum = new Random().Next(0, 100);
         if (randomNum < dodgePercent)
         {
             damage = 0;
+        }
+    }
+
+    public void EquipItem(Item item, Player player)
+    {
+        item.isEquiped = true;
+        player.Atk += item.Atk;
+        player.Def += item.Def;
+
+        if (item.CriticalModifier != 0)
+        {
+            player.physicalDmg += player.CriticalEvent;
+        }
+
+        if (item.DodgeModifier != 0)
+        {
+            player.physicalDmg += player.DodgeEvent;
+        }
+    }
+
+    public void UnequipItem(Item item, Player player)
+    {
+        item.isEquiped = false;
+        player.Atk -= item.Atk;
+        player.Def -= item.Def;
+
+        if (item.CriticalModifier != 0)
+        {
+            player.physicalDmg -= player.CriticalEvent;
+        }
+
+        if (item.DodgeModifier != 0)
+        {
+            player.physicalDmg -= player.DodgeEvent;
         }
     }
 }
