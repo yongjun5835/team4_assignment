@@ -57,6 +57,7 @@ namespace team4_assignment
 
             if (choiceInput == 1)
             {
+
                 entrance.EntranceUI();
             }
             else if (choiceInput == 2)
