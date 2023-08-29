@@ -8,9 +8,14 @@ using System.Xml.Serialization;
 internal class BossScene
 {
     Monster boss = new Monster(5);
+    TheOldManAndTheSea theOldManAndTheSea = new TheOldManAndTheSea();
+    LookAtThisCan lookAtThisCan = new LookAtThisCan();
+    TunaSliced tunaSliced = new TunaSliced();
+    Itadakimasu itadakimasu = new Itadakimasu();
 
     public void StartPhase()
     {
+        Program.player.vsBoss = true;
         Console.Clear();
         DrawTuna(0, 0);
         DrawHpBar(0, 20);
@@ -58,6 +63,7 @@ internal class BossScene
         }
         else
         {
+            Program.player.vsBoss = false;
             Console.SetCursorPosition(55, 2);
             Console.Write("스킬 사용에 성공했습니다!");
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -89,6 +95,7 @@ internal class BossScene
         }
         else
         {
+            Program.player.vsBoss = false;
             Console.SetCursorPosition(55, 2);
             Console.Write("자이언트 참치가 당신을 공격했습니다!");
             Console.ForegroundColor = ConsoleColor.Red;
@@ -162,7 +169,7 @@ internal class BossScene
         Console.SetCursorPosition(53, 28);
         Console.Write("                                                        ");
         Console.SetCursorPosition(53, 28);
-        Console.Write("[1]사용 [2]사용 [3]사용 | 선택지를 입력해주세요.: ");
+        Console.Write("[1]사용 [2]사용 [3]사용 [4]사용 | 선택지를 입력해주세요.: ");
 
         while (isSelect == false)
         {
@@ -172,17 +179,25 @@ internal class BossScene
 
                 if (key == "1")
                 {
+                    theOldManAndTheSea.UseSkill(Program.player);
                     DamagePhase();
                     isSelect = true;
                 }
                 else if (key == "2")
                 {
+                    lookAtThisCan.UseSkill(Program.player, boss);
                     DamagePhase();
                     isSelect = true;
                 }
                 else if (key == "3")
                 {
-                    boss.Hp = 0;
+                    tunaSliced.UseSkill(Program.player, boss);
+                    DamagePhase();
+                    isSelect = true;
+                }
+                else if (key == "4")
+                {
+                    itadakimasu.UseSkill(Program.player, boss);
                     DamagePhase();
                     isSelect = true;
                 }
@@ -191,7 +206,7 @@ internal class BossScene
                     Console.SetCursorPosition(53, 28);
                     Console.Write("                                                        ");
                     Console.SetCursorPosition(53, 28);
-                    Console.Write("[1]사용 [2]사용 [3]사용 | 올바른 값을 입력해주세요.: ");
+                    Console.Write("[1]사용 [2]사용 [3]사용 [4]사용 | 올바른 값을 입력해주세요.: ");
                 }
             }
         }
@@ -414,19 +429,24 @@ internal class BossScene
         }
 
         Console.SetCursorPosition(x + 2, y + 2);
-        Console.Write("[1] 스킬이름 ");
+        Console.Write($"[1] {theOldManAndTheSea.Name} ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write("/ 10MP");
+        Console.Write($"/ {theOldManAndTheSea.RequiredMp}MP");
         Console.ResetColor();
         Console.SetCursorPosition(x + 2, y + 3);
-        Console.Write("[2] 스킬이름 ");
+        Console.Write($"[2] {lookAtThisCan.Name} ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write("/ 10MP");
+        Console.Write($"/ {lookAtThisCan.RequiredMp}MP");
         Console.ResetColor();
         Console.SetCursorPosition(x + 2, y + 4);
-        Console.Write("[3] 스킬이름 ");
+        Console.Write($"[3] {tunaSliced.Name} ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write("/ 10MP");
+        Console.Write($"/ {tunaSliced.RequiredMp}MP");
+        Console.ResetColor();
+        Console.SetCursorPosition(x + 2, y + 5);
+        Console.Write($"[4] {itadakimasu.Name} ");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write($"/ {itadakimasu.RequiredMp}MP");
         Console.ResetColor();
     }
 
