@@ -4,6 +4,7 @@
 
 
     Item[] inventory;
+    Item[] inventoryPotion;
 
     public Inventory()
     {
@@ -11,9 +12,15 @@
 
         inventory[0] = new Item(name: "무쇠 갑옷", atk: 0, def: 5, desc: "아주 오래 된 무쇠 갑옷이다.", hp: 0, qu: 0);
         inventory[1] = new Item(name: "낡은 검", atk: 10, def: 0, desc: "낡은 검이다.", hp: 0, qu: 0);
-        inventory[2] = new Item(name: "Hp포션", atk: 0, def: 0, desc: "Hp를 30회복한다.", hp: 30, qu: 3);
+
+
+        inventoryPotion = new Item[5];
+
+        inventoryPotion[0] = new Item(name: "Hp포션", atk: 0, def: 0, desc: "Hp를 30회복한다.", hp: 30, qu: 3);
 
     }
+
+
     class Item
     {
         public string Name;
@@ -41,7 +48,7 @@
         Console.WriteLine("[인벤토리]");
         Console.WriteLine();
         Console.WriteLine("1. 장비아이템"); //장비
-        Console.WriteLine("2. 소비아이템"); //물약 
+        Console.WriteLine("2. 회복아이템"); //물약 
         Console.WriteLine();
         Console.WriteLine("0. 뒤로가기");
 
@@ -65,8 +72,15 @@
         Console.WriteLine();
         Console.WriteLine("[아이템 목록]");
         Console.WriteLine();
-        Console.WriteLine($" {inventory[0].Name,-8}| 방어력 : {inventory[0].Def,-3} | {inventory[0].Desc}");
-        Console.WriteLine($" {inventory[1].Name,-8}| 공격력 : {inventory[1].Atk,-3} | {inventory[1].Desc}");
+        // 아이템
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i] == null)
+                break;
+
+
+            Console.WriteLine($" {inventory[i].Name,-8}| 방어력 : {inventory[i].Def,-3} | {inventory[i].Desc}");
+        }
         Console.WriteLine();
         Console.WriteLine("1. 장착관리");
         Console.WriteLine("0. 뒤로가기");
@@ -89,8 +103,15 @@
         Console.WriteLine();
         Console.WriteLine("[아이템 목록]");
         Console.WriteLine();
-        Console.WriteLine($" {inventory[0].Name,-8}| 방어력 : {inventory[0].Def,-3} | {inventory[0].Desc}");
-        Console.WriteLine($" {inventory[1].Name,-8}| 공격력 : {inventory[1].Atk,-3} | {inventory[1].Desc}");
+        // 아이템
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i] == null)
+                break;
+
+
+            Console.WriteLine($" {inventory[i].Name,-8}| 방어력 : {inventory[i].Def,-3} | {inventory[i].Desc}");
+        }
         Console.WriteLine();
         Console.WriteLine("0. 뒤로가기");
 
@@ -111,21 +132,21 @@
     {
         Console.Clear();
 
-        Console.WriteLine("[인벤토리_소비아이템]");
+        Console.WriteLine("[인벤토리_회복아이템]");
         Console.WriteLine();
-        Console.WriteLine($" 1. {inventory[2].Name,-5} | {inventory[2].Desc} | 남은 갯수 : {inventory[2].Quantity}");
+        Console.WriteLine($" 1. {inventoryPotion[0].Name,-5} | {inventoryPotion[0].Desc, -3}  (남은 갯수 : {inventoryPotion[0].Quantity})");
         Console.WriteLine();
         Console.WriteLine("1. 사용하기");
         Console.WriteLine("0. 뒤로가기");
         //1번 입력시 갯수 - hp30회복시키기
 
 
-        int optionNum = 1;
+        int optionNum = 1; //1번 누르면 회복되었습니다.
         int input = GameManager.GM.SelectOption(optionNum, false, "");
         switch (input)
         {
             case 1:
-                InventoryEquipManagement();
+                //회복되었.
                 break;
         }
     }
