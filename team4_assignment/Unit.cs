@@ -33,10 +33,11 @@ class Unit
 
     public int AttackUnit(Unit target, AttackTypeDele atkTypeDelegate )
     {
-        StringBuilder AtkTxt = new StringBuilder();
+        StringBuilder txt = new StringBuilder($"{Name}의 공격");
         int damage = this.Atk /*- target.def*/;
-        atkTypeDelegate(ref damage);
+        atkTypeDelegate(txt, ref damage);
         target.hp -= damage;
+        Console.Write(txt);
         return damage;
     }
 
