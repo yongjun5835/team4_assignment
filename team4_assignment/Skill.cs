@@ -19,8 +19,8 @@ class Skill
     protected float atkPercent;
 
     public int RequiredMp { get { return requiredMp; } set { requiredMp = value; } }
-    public string Name { get { return name; } set { name = value; } }
-    public string Description { get { return description; } set { description = value; } }
+    public virtual string Name { get { return name; } set { name = value; } }
+    public virtual string Description { get { return description; } set { description = value; } }
     public SkillType SkillType { get { return skillType; } set { skillType = value; } }
 
 
@@ -213,17 +213,41 @@ class Itadakimasu : Skill
         skillType = SkillType.Taget;
         requiredMp = 10;
         atkPercent = 2.0f;
-        if (Program.player.vsBossSkillCombo == true)
+        name = "간식 타임";
+        description = $"HP 10을 회복한다.";
+    }
+    public override string Name 
+    { 
+        get 
+        { 
+            if (Program.player.vsBossSkillCombo == true)
+            {
+                name = "이따다끼마스!!";
+            }
+            else
+            {
+                name = "간식 시간";
+            }
+            return name; 
+        } 
+    }
+
+    public override string Description
+    {
+        get
         {
-            name = "이따다끼마스!!";
-            description = $"(HP 30 회복, 공격력*{atkPercent}) 눈 앞에서 살점을 먹어버렸다...";
-        }
-        else
-        {
-            name = "간식 타임";
-            description = $"HP 10을 회복한다.";
+            if (Program.player.vsBossSkillCombo == true)
+            {
+                description = $"(HP 30 회복, 공격력*{atkPercent}) 눈 앞에서 살점을 먹어버렸다...";
+            }else
+            {
+                description = $"HP 10을 회복한다.";
+            }
+            return description;
         }
     }
+
+
 
     public override void UseSkill(Unit useUnit, Unit taget)
     {
