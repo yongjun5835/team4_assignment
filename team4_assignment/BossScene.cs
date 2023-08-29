@@ -42,23 +42,39 @@ internal class BossScene
         ClearInfo();
         DrawStatUI(53, 10);
         ReduceHpBar(0, 20);
-        Console.SetCursorPosition(55, 2);
-        Console.Write("스킬 사용에 성공했습니다!");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.SetCursorPosition(55, 3);
-        Console.Write($"자이언트 참치의 체력은 {boss.Hp}남았습니다.");
-        Console.ResetColor();
-        Console.SetCursorPosition(55, 4);
-        Console.Write("자이언트 참치는 몹시 화가 났습니다.");
-        Console.SetCursorPosition(55, 5);
-        Console.Write("다음 행동을 선택해주세요.");
-        Choice3();
+        if (boss.Hp > 0)
+        {
+            Console.SetCursorPosition(55, 2);
+            Console.Write("스킬 사용에 성공했습니다!");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(55, 3);
+            Console.Write($"자이언트 참치의 체력은 {boss.Hp}남았습니다.");
+            Console.ResetColor();
+            Console.SetCursorPosition(55, 4);
+            Console.Write("자이언트 참치는 몹시 화가 났습니다.");
+            Console.SetCursorPosition(55, 5);
+            Console.Write("다음 행동을 선택해주세요.");
+            Choice3();
+        }
+        else
+        {
+            Console.SetCursorPosition(55, 2);
+            Console.Write("스킬 사용에 성공했습니다!");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.SetCursorPosition(55, 3);
+            Console.Write($"당신은 자이언트 참치를 쓰러뜨렸습니다!");
+            Console.ResetColor();
+            Choice6();
+        }
     }
 
     public void MonsterPhase()
     {
+        Program.player.Hp -= boss.Atk;
+
         ClearInfo();
         DrawStatUI(53, 10);
+
         if (Program.player.Hp > 0)
         {
             Console.SetCursorPosition(55, 2);
@@ -83,6 +99,26 @@ internal class BossScene
             Console.Write("참치는 유유히 당신의 시야에서 사라졌습니다..");
             Choice5();
         }
+    }
+
+    public void Result()
+    {
+        ClearInfo();
+        DrawStatUI(53, 10);
+
+        Random rand = new Random();
+        int gold = rand.Next(2000, 5001);
+
+        Program.player.Gold += gold;
+        Program.player.Exp += boss.Exp;
+
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.SetCursorPosition(55, 2);
+        Console.Write($"당신은 {boss.Exp}의 경험치를 얻었습니다!");
+        Console.SetCursorPosition(55, 3);
+        Console.Write($"당신은 {gold}의 골드를 얻었습니다!");
+        Console.ResetColor();
+        Choice5();
     }
 
     public void Choice1()
@@ -146,6 +182,7 @@ internal class BossScene
                 }
                 else if (key == "3")
                 {
+                    boss.Hp = 0;
                     DamagePhase();
                     isSelect = true;
                 }
@@ -255,6 +292,36 @@ internal class BossScene
                     Console.Write("                                                        ");
                     Console.SetCursorPosition(53, 28);
                     Console.Write("[0]마을로 복귀하기 | 올바른 값을 입력해주세요.: ");
+                }
+            }
+        }
+    }
+
+    public void Choice6()
+    {
+        bool isSelect = false;
+        Console.SetCursorPosition(53, 28);
+        Console.Write("                                                        ");
+        Console.SetCursorPosition(53, 28);
+        Console.Write("[0]보상 확인하기 | 선택지를 입력해주세요.: ");
+
+        while (isSelect == false)
+        {
+            while (isSelect == false)
+            {
+                string key = Console.ReadLine();
+
+                if (key == "0")
+                {
+                    Result();
+                    isSelect = true;
+                }
+                else
+                {
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("                                                        ");
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("[0]보상 확인하기 | 올바른 값을 입력해주세요.: ");
                 }
             }
         }
