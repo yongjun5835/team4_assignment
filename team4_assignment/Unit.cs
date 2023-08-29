@@ -21,7 +21,40 @@
     public int Exp { get { return exp; } set { exp = value; } }
     public bool IsDead { get { return isDead; } set { isDead = value; } }
 
+
+    protected delegate void PhysicalDmg(ref int damage) ;
+    protected PhysicalDmg physicalDmg;
+    public Unit()
+    {
+        physicalDmg += DodgeEvent;
+        physicalDmg += CriticalEvent;
+    }
+
     public void AttckUnit(Unit target)
     {
+    }
+
+    void CriticalEvent(ref int damage)
+    {
+        if (damage == 0)
+            return;
+
+        int criticalPercent = 20;
+        int randomNum = new Random().Next(0, 100);
+
+        if (randomNum < criticalPercent)
+        {
+            damage = (int)(damage * 1.2f);
+        }
+    }
+
+    void DodgeEvent(ref int damage)
+    {
+        int dodgePercent = 50;
+        int randomNum = new Random().Next(0, 100);
+        if (randomNum < dodgePercent)
+        {
+            damage = 0;
+        }
     }
 }

@@ -34,6 +34,8 @@ internal class Monster : Unit
 
     public void AttackPlayer()
     {
-        Program.player.Hp -= this.atk;
+        int damage = this.Atk;
+        physicalDmg(ref damage);
+        Program.player.Hp -= damage;
     }
 }

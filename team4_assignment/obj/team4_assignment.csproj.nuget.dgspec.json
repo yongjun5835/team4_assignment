@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/junkwon/team4_assignment/team4_assignment/team4_assignment.csproj": {}
+    "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj": {}
   },
   "projects": {
-    "/Users/junkwon/team4_assignment/team4_assignment/team4_assignment.csproj": {
+    "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/junkwon/team4_assignment/team4_assignment/team4_assignment.csproj",
+        "projectUniqueName": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
         "projectName": "team4_assignment",
-        "projectPath": "/Users/junkwon/team4_assignment/team4_assignment/team4_assignment.csproj",
-        "packagesPath": "/Users/junkwon/.nuget/packages/",
-        "outputPath": "/Users/junkwon/team4_assignment/team4_assignment/obj/",
+        "projectPath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
+        "packagesPath": "C:\\Users\\ChuNyan\\.nuget\\packages\\",
+        "outputPath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/junkwon/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ChuNyan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.307/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
