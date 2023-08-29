@@ -39,6 +39,14 @@ internal class BossScene
         Console.Write("당신은 스킬 사용을 선택했습니다.");
         Console.SetCursorPosition(55, 3);
         Console.Write("사용할 스킬을 선택해주세요.");
+        Console.SetCursorPosition(55, 4);
+        Console.Write($"[{theOldManAndTheSea.Name}]{theOldManAndTheSea.Description}");
+        Console.SetCursorPosition(55, 5);
+        Console.Write($"[{lookAtThisCan.Name}]{lookAtThisCan.Description}");
+        Console.SetCursorPosition(55, 6);
+        Console.Write($"[{tunaSliced.Name}]{tunaSliced.Description}");
+        Console.SetCursorPosition(55, 7);
+        Console.Write($"[{itadakimasu.Name}]{itadakimasu.Description}");
         Choice2();
     }
 
