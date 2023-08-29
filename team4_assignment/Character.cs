@@ -5,7 +5,7 @@ namespace team4_assignment
 	{
 		
         Entrance entrance = new Entrance();
-        public string UserName { get; private set; }
+        public string UserName { get; set; }
         
 
         public Character()
@@ -20,8 +20,9 @@ namespace team4_assignment
             Console.WriteLine("원하시는 이름을 설정해 주세요.\n");
 
             string userName = Console.ReadLine(); // 사용자가 설정하려는 이름을 입력받는 부분
+            Program.player.Name = userName;
 
-			Console.Clear();
+            Console.Clear();
 			Console.WriteLine($"당신의 이름은 {userName}입니다.");
             Console.WriteLine("1. 직업 선택 \n2. 이름 변경");
 
@@ -40,7 +41,7 @@ namespace team4_assignment
             }
         }
 
-        private void ChangeName() // 이름을 재설정 할 때. 
+        public void ChangeName() // 이름을 재설정 할 때. 
         {
             Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
             Console.WriteLine("변경 할 이름을 설정해 주세요.\n");
