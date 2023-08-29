@@ -7,8 +7,8 @@ internal class Program
     {
         new GameManager();
         Character character = new Character();
-        character.InputName();// 캐릭터 생성기능
-        string userName = character.UserName;
+        character.InputName();// 캐릭터 생성 기능
+        
 
         // Inventory 객체 생성
         Inventory inventory = new Inventory();
