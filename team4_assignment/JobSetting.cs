@@ -5,66 +5,71 @@ namespace team4_assignment
     {
         Entrance entrance = new Entrance();
 
+
         public JobSetting()
         {
 
         }
 
+        private class JobInfo
+        {
+            public string Name { get; set; }
+            public int Atk { get; set; }
+            public int Def { get; set; }
+        }
+
+        private JobInfo[] jobInfos = new JobInfo[] // 직업 종류와 능력치
+        {
+            new JobInfo { Name = "궁수", Atk =7 , Def = 7 },
+            new JobInfo { Name = "전사", Atk = 10, Def = 4 },
+            new JobInfo { Name = "마법사", Atk = 5, Def = 9 }
+        };
+
         public void ChoiceJob()
         {
             Console.Clear();
             Console.WriteLine("원하시는 직업을 선택하세요.\n");
-            Console.WriteLine("1. 궁수(공격력 : 7 방어력 : 7) \n2. 전사(공격력 : 10 방어력 : 4)\n3. 마법사(공격력 : 5 방어력 : 9)");
 
-            int optionNum = 3;
+            for (int i = 0; i < jobInfos.Length; i++) //직업 수 만큼 앞 보기 숫자가 늘어나며 선택지 증가. 
+            {
+                Console.WriteLine($"{i + 1}. {jobInfos[i].Name} (공격력 : {jobInfos[i].Atk} 방어력 : {jobInfos[i].Def})");
+            }
+
+            int optionNum = jobInfos.Length;
             int input = GameManager.GM.SelectOption(optionNum, false, "");
 
-            string jobName = "";
-            int jobAtk = 0;
-            int jobDef = 0;
-            
-            switch (input)
+            if (input >= 1 && input <= jobInfos.Length)
             {
-                case 1:
-                    jobName = "궁수";
-                    jobAtk = 7;
-                    jobDef = 7;
-                    break;
-                case 2:
-                    jobName = "전사";
-                    jobAtk = 10;
-                    jobDef = 4;
-                    break;
-                case 3:
-                    jobName = "마법사";
-                    jobAtk = 5;
-                    jobDef = 9;
-                    break;
-                default:
-                    Console.WriteLine("입력 값을 다시 확인해주세요.");
+                string jobName = jobInfos[input - 1].Name;
+                int jobAtk = jobInfos[input - 1].Atk;
+                int jobDef = jobInfos[input - 1].Def;
+
+                Console.Clear();
+                Console.WriteLine($"당신이 선택한 직업은 {jobName}입니다.\n");
+                Console.WriteLine("1. 확인 \n2. 다시 선택");
+
+                Program.player.Job = jobName; // 직업 선택 시 player 상태보기에서 직업 이름이 입력됨.
+                Program.player.Atk = jobAtk;
+                Program.player.Def = jobDef;
+
+                int choiceInput = GameManager.GM.SelectOption(2, false);
+
+                if (choiceInput == 1)
+                {
+                    entrance.EntranceUI();
+                }
+                else if (choiceInput == 2)
+                {
                     ChoiceJob();
-                    return;
+                }
+
             }
-            Console.Clear();
-            Console.WriteLine($"당신이 선택한 직업은 {jobName}입니다.\n");
-            Console.WriteLine("1. 확인 \n2. 다시 선택");
-
-            Program.player.Job = jobName; // 직업 선택 시 player 상태보기에서 직업 이름이 입력됨.
-            Program.player.Atk = jobAtk; 
-            Program.player.Def = jobDef;
-
-            int choiceInput = GameManager.GM.SelectOption(2, false);
-
-            if (choiceInput == 1)
+            else
             {
-                entrance.EntranceUI();
-            }
-            else if (choiceInput == 2)
-            {
+                Console.WriteLine("입력 값을 다시 확인해주세요.");
                 ChoiceJob();
             }
-            
-        }        
+        }
     }
-}
 
+}
