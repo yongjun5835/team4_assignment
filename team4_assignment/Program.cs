@@ -10,10 +10,15 @@ internal class Program
         character.InputName();// 캐릭터 생성 기능
         
 
+        // Inventory 객체 생성
+        Inventory inventory = new Inventory();
+        inventory.DisplayInventory();
+        inventory.InventoryEquip();
     }
 
     public static FightScene fightScene = new FightScene();
     public static Player player = new Player();
     public static Entrance entrance = new Entrance();
     public static StageSelectScene stageSelectScene = new StageSelectScene();
+    public static BossScene bossScene = new BossScene();
 }

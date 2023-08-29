@@ -67,7 +67,6 @@ namespace team4_assignment
                     ChoiceJob();
                 }
 
-            }
             else
             {
                 Console.WriteLine("입력 값을 다시 확인해주세요.");

@@ -1,4 +1,7 @@
-﻿class Unit
+﻿using System.Text;
+using static GameManager;
+
+class Unit
 {
     protected string name = "";
     protected int maxHp;
@@ -9,6 +12,7 @@
     protected int def;
     protected int level;
     protected int exp;
+    protected int gold;
     protected bool isDead = false;
 
     public string Name { get { return name; } set { name = value; } }
@@ -19,9 +23,22 @@
     public int MaxMp { get { return maxMp; } set { maxMp = value; } }
     public int Level { get { return level; } set { level = value; } }
     public int Exp { get { return exp; } set { exp = value; } }
+    public int Gold { get { return gold; } set { gold = value; } }
     public bool IsDead { get { return isDead; } set { isDead = value; } }
 
-    public void AttckUnit(Unit target)
+
+
+
+
+
+    public int AttackUnit(Unit target, AttackTypeDele atkTypeDelegate )
     {
+        StringBuilder AtkTxt = new StringBuilder();
+        int damage = this.Atk /*- target.def*/;
+        atkTypeDelegate(ref damage);
+        target.hp -= damage;
+        return damage;
     }
+
+
 }

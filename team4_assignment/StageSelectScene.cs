@@ -17,6 +17,11 @@ internal class StageSelectScene
         Console.WriteLine($"{canEnter2} 2. 네 마리의 생선과 전투를 합니다!");
         Console.WriteLine($"{canEnter3} 3. 다섯 마리의 생선과 전투를 합니다!");
         Console.WriteLine("");
+        Console.ForegroundColor = (Program.fightScene.clearLevel >= 2) ? ConsoleColor.Blue : ConsoleColor.Red;
+        Console.Write($"{canEnter3}[보스]");
+        Console.ResetColor();
+        Console.Write(" 4. 자이언트참치 잡으러 가기");
+        Console.WriteLine("");
 
         bool isSelect = false;
         Console.SetCursorPosition(0, 28);
@@ -44,6 +49,11 @@ internal class StageSelectScene
                 Program.fightScene.stageLevel = 3;
                 Program.fightScene.Restart();
                 Program.fightScene.StartPhase();
+                isSelect = true;
+            }
+            else if (key == "4" && Program.fightScene.clearLevel >= 2)
+            {
+                Program.bossScene.StartPhase();
                 isSelect = true;
             }
             else

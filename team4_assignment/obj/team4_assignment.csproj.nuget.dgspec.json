@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj": {}
+    "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\team4_assignment.csproj": {}
   },
   "projects": {
-    "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj": {
+    "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\team4_assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
+        "projectUniqueName": "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
         "projectName": "team4_assignment",
-        "projectPath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
-        "packagesPath": "C:\\Users\\ChuNyan\\.nuget\\packages\\",
-        "outputPath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\obj\\",
+        "projectPath": "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
+        "packagesPath": "C:\\Users\\조용준\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ChuNyan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\조용준\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
