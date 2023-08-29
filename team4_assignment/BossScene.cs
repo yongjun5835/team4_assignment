@@ -11,18 +11,24 @@ internal class BossScene
 
     public void StartPhase()
     {
-        DrawDisplay();
-    }
-
-    public void DrawDisplay()
-    {
         Console.Clear();
         DrawTuna(0, 0);
         DrawHpBar(0, 20);
         DrawInfoUI(53, 0);
         DrawStatUI(53, 10);
         DrawSkillUI(81, 10);
+        Console.SetCursorPosition(55, 2);
+        Console.Write("자이언트 첨치가 출현했습니다!");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.SetCursorPosition(55, 3);
+        Console.Write("녀석은 무지하게 화가 나 있습니다!");
+        Console.ResetColor();
         Choice1();
+    }
+
+    public void SkillPhase()
+    {
+        Choice2();
     }
 
     public void Choice1()
@@ -30,7 +36,75 @@ internal class BossScene
         ConsoleKeyInfo input;
         Console.SetCursorPosition(53, 28);
         Console.Write("[0]도망가기 [1]스킬쓰기");
-        input = Console.ReadKey();
+
+        while (true)
+        {
+            bool isSelect = false;
+            Console.SetCursorPosition(53, 28);
+            Console.Write("                                                        ");
+            Console.SetCursorPosition(53, 28);
+            Console.Write("[0]도망가기 [1]스킬사용 | 선택지를 입력해주세요.: ");
+            while (isSelect == false)
+            {
+                string key = Console.ReadLine();
+
+                if (key == "0")
+                {
+                    Program.entrance.EntranceUI();
+                    isSelect = true;
+                }
+                else if (key == "1")
+                {
+                    Program.entrance.EntranceUI();
+                    isSelect = true;
+                }
+                else
+                {
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("                                                        ");
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("[0]도망가기 [1]스킬사용 | 올바른 값을 입력해주세요.: ");
+                }
+            }
+        }
+    }
+
+    public void Choice2()
+    {
+        ConsoleKeyInfo input;
+        Console.SetCursorPosition(53, 28);
+        Console.Write("[0]도망가기 [1]스킬쓰기");
+
+        while (true)
+        {
+            bool isSelect = false;
+            Console.SetCursorPosition(53, 28);
+            Console.Write("                                                        ");
+            Console.SetCursorPosition(53, 28);
+            Console.Write("[0]도망가기 [1]스킬사용 | 선택지를 입력해주세요.: ");
+            while (isSelect == false)
+            {
+                string key = Console.ReadLine();
+
+                if (key == "0")
+                {
+                    Program.entrance.EntranceUI();
+                    isSelect = true;
+                }
+                else if (key == "1")
+                {
+                    Program.entrance.EntranceUI();
+                    isSelect = true;
+                }
+                else
+                {
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("                                                        ");
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("[0]도망가기 [1]스킬사용 | 올바른 값을 입력해주세요.: ");
+                }
+            }
+        }
     }
 
     public void DrawInfoUI(int x, int y)

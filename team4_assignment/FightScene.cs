@@ -205,8 +205,6 @@ internal class FightScene
         ShowChoice5();
     }
 
-    
-
     public void InfoClear()
     {
         Console.SetCursorPosition(2, 4);
