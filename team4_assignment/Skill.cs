@@ -2,23 +2,13 @@
 using System;
 using System.Net;
 using System.Threading.Channels;
+using System.Xml.Linq;
 
 enum SkillType
 {
     Solo,
     Taget,
 }
-
-interface ITagetSkill
-{
-    public virtual void UseSkill(Unit useUnit, List<Monster> tagets) { }
-}
-
-interface ISoloSkill
-{
-    public virtual void UseSkill(Unit useUnit) { }
-}
-
 
 class Skill
 {
@@ -35,10 +25,11 @@ class Skill
 
 
     public virtual void UseSkill(Unit useUnit) { }
+    public virtual void UseSkill(Unit useUnit, Unit taget) { }
     public virtual void UseSkill(Unit useUnit, List<Monster> tagets) { }
 }
 
-class FastSpin : Skill, ITagetSkill
+class FastSpin : Skill
 {
     Random random = new Random();
 
@@ -67,7 +58,7 @@ class FastSpin : Skill, ITagetSkill
     }
 }
 
-class Rest : Skill, ISoloSkill
+class Rest : Skill
 {
     public Rest()
     {
@@ -86,7 +77,7 @@ class Rest : Skill, ISoloSkill
     }
 }
 
-class WriggleWriggleSpin : Skill, ITagetSkill
+class WriggleWriggleSpin : Skill
 {
     Random random = new Random();
     int AttckUnits = 2;
@@ -131,4 +122,124 @@ class WriggleWriggleSpin : Skill, ITagetSkill
         Thread.Sleep(1000);
     }
 }
+
+// 보스전 시작시 player의 bool vsBoss true으로 바꾸시고
+// 끝나면 vsBoss false한 후 UseSkill() 다시 사용해주세요! 
+class TheOldManAndTheSea : Skill
+{
+    bool useChance = false;
+
+    public TheOldManAndTheSea()
+    {
+        name = "노인과 바다 정독";
+        requiredMp = 10;
+        atkPercent = 1.0f;
+        description = $"선배 낚시꾼의 지식을 습득합니다. ";
+    }
+
+    public override void UseSkill(Unit useUnit)
+    {
+        if (useUnit is Player == false)
+            return;
+        if (((Player)useUnit).vsBoss == true && useChance == false)
+        {
+            useChance = true;
+            useUnit.Atk += 10;
+            useUnit.Def += 5;
+            useUnit.Hp += useUnit.MaxMp;
+        }
+        else if (((Player)useUnit).vsBoss == false && useChance == true)
+        {
+            useChance = false;
+            useUnit.Atk -= 10;
+            useUnit.Def -= 5;
+        }
+
+    }
+} 
+
+class LookAtThisCan : Skill
+{
+    Random random = new Random();
+
+    public LookAtThisCan()
+    {
+        name = "사조 참치 보여주기";
+        skillType = SkillType.Taget;
+        requiredMp = 10;
+        atkPercent = 2.0f;
+        description = $"저 안에 든 건 나의 가족이었을까..? (공격력*{atkPercent}의 정신 피해)";
+    }
+
+    public override void UseSkill(Unit useUnit, Unit taget)
+    {
+        taget.Hp -= (int)(useUnit.Atk * atkPercent);
+    }
+}
+
+class TunaSliced : Skill
+{
+
+    public TunaSliced()
+    {
+        name = "참치 회 썰기";
+        skillType = SkillType.Taget;
+        requiredMp = 10;
+        atkPercent = 0.4f;
+        description = $"(공격력*{atkPercent}*3) 넥 슬라이스! 보디 슬라이스! 테일 슬라이스!";
+    }
+
+    public override void UseSkill(Unit useUnit, Unit taget)
+    {
+        int attckNum = 3;
+
+        for (int i = 0; i < attckNum; i++)
+        {
+            if (taget.IsDead == true)
+            {
+                break;
+            }
+            taget.Hp -= (int)(useUnit.Atk * atkPercent);
+        }
+        Program.player.vsBossSkillCombo = true;
+    }
+}
+
+class Itadakimasu : Skill
+{
+
+    public Itadakimasu()
+    {
+        skillType = SkillType.Taget;
+        requiredMp = 10;
+        atkPercent = 2.0f;
+        if (Program.player.vsBossSkillCombo == true)
+        {
+            name = "이따다끼마스!!";
+            description = $"(HP 30 회복, 공격력*{atkPercent}) 눈 앞에서 살점을 먹어버렸다...";
+        }
+        else
+        {
+            name = "간식 타임";
+            description = $"HP 10을 회복한다.";
+        }
+    }
+
+    public override void UseSkill(Unit useUnit, Unit taget)
+    {
+        if (Program.player.vsBossSkillCombo == true)
+        {
+            taget.Hp -= (int)(useUnit.Atk * atkPercent);
+            useUnit.Hp += 30;
+            Program.player.vsBossSkillCombo = false;
+
+        }
+        else
+        {
+            useUnit.Hp += 10;
+        }
+    }
+}
+
+
 

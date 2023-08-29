@@ -19,6 +19,10 @@
 
     private string job = "";
     private int gold;
+
+    public bool vsBoss = false;
+    public bool vsBossSkillCombo = false;
+
     List<Skill> skills = new List<Skill>();
 
     public string Job { get { return job; } set { job = value; } }
@@ -98,4 +102,5 @@
             skill.UseSkill(this, tagets);
         }
     }
+
 }
