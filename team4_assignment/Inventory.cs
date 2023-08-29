@@ -17,9 +17,16 @@
         inventoryPotion = new Item[5];
 
         inventoryPotion[0] = new Item(name: "Hp포션", atk: 0, def: 0, desc: "Hp를 30회복한다.", hp: 30, qu: 3);
-
     }
 
+    static void Equipitem(Item item)
+    {
+        item.isEquiped = true;
+    }
+    static void Unequopitem(Item item)
+    {
+        item.isEquiped = false;
+    }
 
     class Item
     {
@@ -30,6 +37,8 @@
         public int Hp;
         public int Quantity;
 
+        public bool isEquiped;
+
         public Item(string name, int atk, int def, string desc, int hp, int qu)
         {
             Name = name;
@@ -38,7 +47,9 @@
             Desc = desc;
             Hp = hp;
             Quantity = qu;
+            isEquiped = false;
         }
+
     }
 
 
@@ -78,6 +89,8 @@
             if (inventory[i] == null)
                 break;
 
+            if (inventory[i].isEquiped)
+                Console.Write("[E]");
 
             Console.WriteLine($" {inventory[i].Name,-8}| 방어력 : {inventory[i].Def,-3} | {inventory[i].Desc}");
         }
@@ -109,19 +122,36 @@
             if (inventory[i] == null)
                 break;
 
+            Console.Write(i + 1 + "");
+            if (inventory[i].isEquiped)
+                Console.Write("[E]");
 
             Console.WriteLine($" {inventory[i].Name,-8}| 방어력 : {inventory[i].Def,-3} | {inventory[i].Desc}");
         }
         Console.WriteLine();
         Console.WriteLine("0. 뒤로가기");
 
-        int optionNum = 1;
-        int input = GameManager.GM.SelectOption(optionNum, false, "");
-        switch (input)
+        //장착
+        string input = Console.ReadLine();
+        if(int.TryParse(input, out int x))
         {
-            case 1:
+            if (x == 0)
+            {
+                InventoryEquip();
+            }
+            else if(x >= 0 && x<= 5)
+            {
+                Item item = inventory[x -1];
+                if (item.isEquiped)
+                {
+                    Unequopitem(item);
+                }
+                else
+                {
+                    Equipitem(item);
+                }
                 InventoryEquipManagement();
-                break;
+            }
         }
     }
 
@@ -134,21 +164,20 @@
 
         Console.WriteLine("[인벤토리_회복아이템]");
         Console.WriteLine();
-        Console.WriteLine($" 1. {inventoryPotion[0].Name,-5} | {inventoryPotion[0].Desc, -3}  (남은 갯수 : {inventoryPotion[0].Quantity})");
+        for (int i = 0; i < inventoryPotion.Length; i++)
+        {
+            if (inventoryPotion[i] == null)
+                break;
+
+            Console.Write(i + 1 + "");
+            Console.WriteLine($" {inventoryPotion[0].Name,-5} | {inventoryPotion[0].Desc,-3}  (남은 갯수 : {inventoryPotion[0].Quantity})");
+        }
         Console.WriteLine();
         Console.WriteLine("1. 사용하기");
         Console.WriteLine("0. 뒤로가기");
         //1번 입력시 갯수 - hp30회복시키기
 
 
-        int optionNum = 1; //1번 누르면 회복되었습니다.
-        int input = GameManager.GM.SelectOption(optionNum, false, "");
-        switch (input)
-        {
-            case 1:
-                //회복되었.
-                break;
-        }
     }
 
 }
