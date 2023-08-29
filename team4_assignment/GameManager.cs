@@ -102,10 +102,9 @@ class GameManager
         if (randomNum < criticalPercent)
         {
             damage = (int)(damage * 1.2f);
-            txt.Append("을 회피하였습니다.");
-            return;
+            txt.Replace("공격", "치명적인 공격");
         }
-        txt.Append("을 회피하였습니다.");
+        txt.Append($"으로 {damage}의 피해를 입었습니다!");
     }
 
     void DodgeEvent(StringBuilder txt, ref int damage)
