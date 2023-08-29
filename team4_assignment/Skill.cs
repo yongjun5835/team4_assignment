@@ -3,35 +3,49 @@ using System;
 using System.Net;
 using System.Threading.Channels;
 
-interface IPassive
+enum SkillType
 {
-
+    Solo,
+    Taget,
 }
+
+interface ITagetSkill
+{
+    public virtual void UseSkill(Unit useUnit, List<Monster> tagets) { }
+}
+
+interface ISoloSkill
+{
+    public virtual void UseSkill(Unit useUnit) { }
+}
+
 
 class Skill
 {
     protected string name = "";
     protected string description = "";
+    protected SkillType skillType;
     protected int requiredMp;
     protected float atkPercent;
 
     public int RequiredMp { get { return requiredMp; } set { requiredMp = value; } }
     public string Name { get { return name; } set { name = value; } }
     public string Description { get { return description; } set { description = value; } }
+    public SkillType SkillType { get { return skillType; } set { skillType = value; } }
+
 
     public virtual void UseSkill(Unit useUnit) { }
     public virtual void UseSkill(Unit useUnit, List<Monster> tagets) { }
-
-
 }
 
-class FastSpin : Skill
+class FastSpin : Skill, ITagetSkill
 {
     Random random = new Random();
 
     public FastSpin()
     {
         name = "빨리 감기!!";
+        skillType = SkillType.Taget;
         requiredMp = 10;
         atkPercent = 2.0f;
         description = $"(공격력*{atkPercent})로 한 마리 랜덤으로 공격";
@@ -53,7 +67,7 @@ class FastSpin : Skill
     }
 }
 
-class Rest : Skill
+class Rest : Skill, ISoloSkill
 {
     public Rest()
     {
@@ -72,7 +86,7 @@ class Rest : Skill
     }
 }
 
-class WriggleWriggleSpin : Skill
+class WriggleWriggleSpin : Skill, ITagetSkill
 {
     Random random = new Random();
     int AttckUnits = 2;
@@ -90,7 +104,7 @@ class WriggleWriggleSpin : Skill
         bool isAllDeath = false;
         for (int i = 0; i < AttckUnits; i++)
         {
-            int randomNum =0;
+            int randomNum = 0;
             while (isAllDeath == false)
             {
                 randomNum = random.Next(0, tagets.Count);
@@ -104,7 +118,7 @@ class WriggleWriggleSpin : Skill
                     {
                         break;
                     }
-                    if (num == tagets.Count-1)
+                    if (num == tagets.Count - 1)
                     {
                         isAllDeath = true;
                         break;

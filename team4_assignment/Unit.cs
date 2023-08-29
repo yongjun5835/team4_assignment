@@ -22,19 +22,36 @@
     public bool IsDead { get { return isDead; } set { isDead = value; } }
 
 
-    protected delegate void PhysicalDmg(ref int damage) ;
-    protected PhysicalDmg physicalDmg;
+    public delegate void AttackTypeDele(ref int damage) ;
+    public AttackTypeDele physicalDmg;
+    public AttackTypeDele magicalDmg;
+
     public Unit()
     {
+        physicalDmg += DmgRange;
         physicalDmg += DodgeEvent;
-        physicalDmg += CriticalEvent;
+        physicalDmg += DmgCriticalEvent;
+        magicalDmg += DmgRange;
+        magicalDmg += DmgCriticalEvent;
     }
 
-    public void AttckUnit(Unit target)
+    public void AttckUnit(Unit target, AttackTypeDele atkTypeDelegate )
     {
+        int damage = this.Atk /*- target.def*/;
+        atkTypeDelegate(ref damage);
+        target.hp -= damage;
+
     }
 
-    void CriticalEvent(ref int damage)
+    #region 공격 델리게이트 전용 함수
+    void DmgRange(ref int damage)
+    {
+        float dmgRange = ((float)new Random().Next(90,111))/100;
+        float temp = damage * dmgRange;
+        damage = (int)Math.Round(temp,0);
+    }
+
+    void DmgCriticalEvent(ref int damage)
     {
         if (damage == 0)
             return;
@@ -57,4 +74,5 @@
             damage = 0;
         }
     }
+    #endregion
 }
