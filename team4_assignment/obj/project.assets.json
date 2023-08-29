@@ -8,41 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\조용준\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\ChuNyan\\.nuget\\packages\\": {}
->>>>>>> SkillSystem
+    "/Users/hamyoungjoo/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
+      "projectUniqueName": "/Users/hamyoungjoo/Desktop/team4_assignment/team4_assignment/team4_assignment.csproj",
       "projectName": "team4_assignment",
-      "projectPath": "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
-      "packagesPath": "C:\\Users\\조용준\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\조용준\\Desktop\\team4_assignment\\team4_assignment\\team4_assignment\\obj\\",
+      "projectPath": "/Users/hamyoungjoo/Desktop/team4_assignment/team4_assignment/team4_assignment.csproj",
+      "packagesPath": "/Users/hamyoungjoo/.nuget/packages/",
+      "outputPath": "/Users/hamyoungjoo/Desktop/team4_assignment/team4_assignment/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\조용준\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-      "projectUniqueName": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
-      "projectName": "team4_assignment",
-      "projectPath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\team4_assignment.csproj",
-      "packagesPath": "C:\\Users\\ChuNyan\\.nuget\\packages\\",
-      "outputPath": "D:\\Coding\\Git\\team4_assignment\\team4_assignment\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\ChuNyan\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> SkillSystem
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/hamyoungjoo/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -76,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.307/RuntimeIdentifierGraph.json"
       }
     }
   }

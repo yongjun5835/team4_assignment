@@ -48,10 +48,10 @@ namespace team4_assignment
                 int jobGold = jobInfos[input - 1].Gold;
 
                 Console.Clear();
-                Console.WriteLine($"당신이 선택한 직업은 {jobName}입니다.\n");
+                Console.WriteLine($"당신이 선택한 직업은 {jobName} 입니다.\n");
                 Console.WriteLine("1. 확인 \n2. 다시 선택");
 
-                Program.player.Job = jobName; // 직업 선택 시 player 상태보기에서 직업 이름이 입력됨.
+                Program.player.Job = jobName; // 직업 선택 시 player 상태보기에서 직업 이름이 입력됨. (이하 공격력, 방어력, 골드 변동).
                 Program.player.Atk = jobAtk;
                 Program.player.Def = jobDef;
                 Program.player.Gold = jobGold;
@@ -67,12 +67,13 @@ namespace team4_assignment
                     ChoiceJob();
                 }
 
-            else
-            {
-                Console.WriteLine("입력 값을 다시 확인해주세요.");
-                ChoiceJob();
+                else
+                {
+                    Console.WriteLine("입력 값을 다시 확인해주세요.");
+                    ChoiceJob();
+                }
             }
         }
-    }
 
+    }
 }
