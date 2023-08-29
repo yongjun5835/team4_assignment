@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 class GameManager
 {
@@ -70,7 +71,7 @@ class GameManager
 
     // 대미지 보정할 때 쓰는 함수들을 델리게이트로 묶어서 사용합니다!
     #region 공격 델리게이트 전용 함수
-    public delegate void AttackTypeDele(ref int damage);
+    public delegate void AttackTypeDele(StringBuilder txt, ref int damage);
     public AttackTypeDele physicalDmg;
     public AttackTypeDele magicalDmg;
 
@@ -83,14 +84,14 @@ class GameManager
         magicalDmg += DmgCriticalEvent;
     }
 
-    void DmgRange(ref int damage)
+    void DmgRange(StringBuilder txt, ref int damage)
     {
         float dmgRange = ((float)new Random().Next(90, 111)) / 100;
         float temp = damage * dmgRange;
         damage = (int)Math.Round(temp, 0);
     }
 
-    void DmgCriticalEvent(ref int damage)
+    void DmgCriticalEvent(StringBuilder txt, ref int damage)
     {
         if (damage == 0)
             return;
@@ -101,16 +102,20 @@ class GameManager
         if (randomNum < criticalPercent)
         {
             damage = (int)(damage * 1.2f);
+            txt.Append("을 회피하였습니다.");
+            return;
         }
+        txt.Append("을 회피하였습니다.");
     }
 
-    void DodgeEvent(ref int damage)
+    void DodgeEvent(StringBuilder txt, ref int damage)
     {
         int dodgePercent = 50;
         int randomNum = new Random().Next(0, 100);
         if (randomNum < dodgePercent)
         {
             damage = 0;
+            txt.Append("을 회피하였습니다.");
         }
     }
     #endregion
