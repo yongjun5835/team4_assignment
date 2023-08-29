@@ -3,9 +3,13 @@
 class GameManager
 {
     public static GameManager GM;
+
+
+
     public GameManager()
     {
         GM = this;
+        SettingDele();
     }
 
     /// <summary>
@@ -63,4 +67,52 @@ class GameManager
         Console.WriteLine("입력 값을 다시 확인해주세요.");
         return -1;
     }
+
+    // 대미지 보정할 때 쓰는 함수들을 델리게이트로 묶어서 사용합니다!
+    #region 공격 델리게이트 전용 함수
+    public delegate void AttackTypeDele(ref int damage);
+    public AttackTypeDele physicalDmg;
+    public AttackTypeDele magicalDmg;
+
+    void SettingDele()
+    {
+        physicalDmg += DmgRange;
+        physicalDmg += DodgeEvent;
+        physicalDmg += DmgCriticalEvent;
+        magicalDmg += DmgRange;
+        magicalDmg += DmgCriticalEvent;
+    }
+
+    void DmgRange(ref int damage)
+    {
+        float dmgRange = ((float)new Random().Next(90, 111)) / 100;
+        float temp = damage * dmgRange;
+        damage = (int)Math.Round(temp, 0);
+    }
+
+    void DmgCriticalEvent(ref int damage)
+    {
+        if (damage == 0)
+            return;
+
+        int criticalPercent = 20;
+        int randomNum = new Random().Next(0, 100);
+
+        if (randomNum < criticalPercent)
+        {
+            damage = (int)(damage * 1.2f);
+        }
+    }
+
+    void DodgeEvent(ref int damage)
+    {
+        int dodgePercent = 50;
+        int randomNum = new Random().Next(0, 100);
+        if (randomNum < dodgePercent)
+        {
+            damage = 0;
+        }
+    }
+    #endregion
+
 }
