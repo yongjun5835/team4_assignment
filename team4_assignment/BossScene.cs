@@ -59,15 +59,30 @@ internal class BossScene
     {
         ClearInfo();
         DrawStatUI(53, 10);
-        Console.SetCursorPosition(55, 2);
-        Console.Write("자이언트 참치가 당신을 공격했습니다!");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.SetCursorPosition(55, 3);
-        Console.Write($"당신의 체력은 {Program.player.Hp}남았습니다.");
-        Console.ResetColor();
-        Console.SetCursorPosition(55, 4);
-        Console.Write("다음 행동을 선택해주세요.");
-        Choice4();
+        if (Program.player.Hp > 0)
+        {
+            Console.SetCursorPosition(55, 2);
+            Console.Write("자이언트 참치가 당신을 공격했습니다!");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(55, 3);
+            Console.Write($"당신의 체력은 {Program.player.Hp}남았습니다.");
+            Console.ResetColor();
+            Console.SetCursorPosition(55, 4);
+            Console.Write("다음 행동을 선택해주세요.");
+            Choice4();
+        }
+        else
+        {
+            Console.SetCursorPosition(55, 2);
+            Console.Write("자이언트 참치가 당신을 공격했습니다!");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(55, 3);
+            Console.Write($"당신은 더 이상 참치를 상대할 체력이 없습니다.");
+            Console.ResetColor();
+            Console.SetCursorPosition(55, 4);
+            Console.Write("참치는 유유히 당신의 시야에서 사라졌습니다..");
+            Choice5();
+        }
     }
 
     public void Choice1()
@@ -210,6 +225,36 @@ internal class BossScene
                     Console.Write("                                                        ");
                     Console.SetCursorPosition(53, 28);
                     Console.Write("[0]도망가기 [1]스킬사용 | 올바른 값을 입력해주세요.: ");
+                }
+            }
+        }
+    }
+
+    public void Choice5()
+    {
+        bool isSelect = false;
+        Console.SetCursorPosition(53, 28);
+        Console.Write("                                                        ");
+        Console.SetCursorPosition(53, 28);
+        Console.Write("[0]마을로 복귀하기 | 선택지를 입력해주세요.: ");
+
+        while (isSelect == false)
+        {
+            while (isSelect == false)
+            {
+                string key = Console.ReadLine();
+
+                if (key == "0")
+                {
+                    Program.entrance.EntranceUI();
+                    isSelect = true;
+                }
+                else
+                {
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("                                                        ");
+                    Console.SetCursorPosition(53, 28);
+                    Console.Write("[0]마을로 복귀하기 | 올바른 값을 입력해주세요.: ");
                 }
             }
         }
