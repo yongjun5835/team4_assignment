@@ -51,7 +51,7 @@ internal class StageSelectScene
                 Program.fightScene.StartPhase();
                 isSelect = true;
             }
-            else if (key == "4")
+            else if (key == "4" && Program.fightScene.clearLevel >= 2)
             {
                 Program.bossScene.StartPhase();
                 isSelect = true;
