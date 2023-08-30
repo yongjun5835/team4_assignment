@@ -72,7 +72,4 @@ class Unit
 
         return txt;
     }
-
-
-
 }
