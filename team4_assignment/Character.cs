@@ -25,20 +25,26 @@ namespace team4_assignment
 			Console.WriteLine($"당신의 이름은 {userName}입니다.\n");
             Console.WriteLine("1. 확인 \n2. 이름 변경");
 
-
-            int optionNum = 2;
-            int input = GameManager.GM.SelectOption(optionNum, false, "");
-            switch (input)
+            bool isSelect = false;
+            while (isSelect == false)
             {
-                case 1:
-                   
-                    jobSetting.ChoiceJob();//직업 선택화면 
-                    break;
+                int optionNum = 2;
+                int input = GameManager.GM.SelectOption(optionNum, false, "");
+                switch (input)
+                {
+                    case 1:
+                        isSelect = true;
+                        jobSetting.ChoiceJob();//직업 선택화면 
+                        break;
 
-                case 2:
-                    ChangeName(); // 입력한 이름을 변경할 때 이동 
+                    case 2:
+                        isSelect = true;
+                        ChangeName(); // 입력한 이름을 변경할 때 이동 
+                        break;
 
-                    break;
+                    default:
+                        break;
+                }
             }
         }
 
