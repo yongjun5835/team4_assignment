@@ -8,7 +8,7 @@
         atk = 10;
         def = 5;
         gold = 1500;
-        mp = 50;
+        mp = 500;
         maxMp = mp;
         level = 0;
         exp = 0;

@@ -342,18 +342,21 @@ internal class FightScene
             else if (key == "1")
             {
                 skillTxtHelper = Program.player.MagicalAttackUnits(monsters,fastSpin);
+                Program.player.Mp -= fastSpin.RequiredMp;
                 Program.fightScene.SkillPhase();
                 isSelect = true;
             }
             else if (key == "2")
             {
                 skillTxtHelper = Program.player.MagicalAttackUnits(monsters, wriggleWriggleSpin);
+                Program.player.Mp -= wriggleWriggleSpin.RequiredMp;
                 Program.fightScene.SkillPhase();
                 isSelect = true;
             }
             else if (key == "3")
             {
                 skillTxtHelper = Program.player.MagicalAttackUnits(monsters, rest);
+                Program.player.Mp -= rest.RequiredMp;
                 Program.fightScene.SkillPhase();
                 isSelect = true;
             }

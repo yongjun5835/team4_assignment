@@ -195,12 +195,14 @@ internal class BossScene
                 if (key == "1" && theOldManAndTheSea.useChance == false)
                 {
                     skillTxtHelper = Program.player.MagicalAttackBoss(boss,theOldManAndTheSea);
+                    Program.player.Mp -= theOldManAndTheSea.RequiredMp;
                     DamagePhase();
                     isSelect = true;
                 }
                 else if (key == "2")
                 {
                     skillTxtHelper = Program.player.MagicalAttackBoss(boss, lookAtThisCan);
+                    Program.player.Mp -= lookAtThisCan.RequiredMp;
                     //lookAtThisCan.UseSkill(Program.player, boss,);
                     DamagePhase();
                     isSelect = true;
@@ -208,6 +210,7 @@ internal class BossScene
                 else if (key == "3")
                 {
                     skillTxtHelper = Program.player.MagicalAttackBoss(boss, tunaSliced);
+                    Program.player.Mp -= tunaSliced.RequiredMp;
                     //tunaSliced.UseSkill(Program.player, boss);
                     DamagePhase();
                     isSelect = true;
@@ -215,6 +218,7 @@ internal class BossScene
                 else if (key == "4")
                 {
                     //itadakimasu.UseSkill(Program.player, boss);
+                    Program.player.Mp -= itadakimasu.RequiredMp;
                     skillTxtHelper = Program.player.MagicalAttackBoss(boss, itadakimasu);
                     DamagePhase();
                     isSelect = true;
