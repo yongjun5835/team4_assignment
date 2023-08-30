@@ -23,6 +23,7 @@ class Entrance
         {
             Console.Clear();
             GameManager.GM.MakeUI();
+            RenderMainImg();
             Console.Write("\n\n");
             Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
 
@@ -136,5 +137,62 @@ class Entrance
         Console.SetCursorPosition(26, 17);
         GameManager.GM.PressAnyKey();
         Console.CursorVisible = true;
+    }
+
+    void RenderMainImg()
+    {
+        Queue<string> imgArr = new Queue<string>();
+        string A01 = "                                                           |>>>";
+        string A02 = "                   _                      _                |";
+        string A03 = "    ____________ .' '.    _____/----/-\\ .' './========\\   / \\";
+        string A04 = "   //// ////// /V_.-._\\  |.-.-.|===| _ |-----| u    u |  /___\\";
+        string A05 = "  // /// // ///==\\ u |.  || | ||===||||| |T| |   ||   | .| u |_ _ _ _ _ _";
+        string A06 = " ///////-\\////====\\==|:::::::::::::::::::::::::::::::::::|u u| U U U U U";
+        string A07 = " |----/\\u |--|++++|..|'''''''''''::::::::::::::''''''''''|+++|+-+-+-+-+-+";
+        string A08 = " |u u|u | |u ||||||..|              '::::::::'           |===|>=== _ _ ==";
+        string A09 = " |===|  |u|==|++++|==|              .::::::::.           | T |....| V |..";
+        string A10 = " |u u|u | |u ||HH||         \\|/    .::::::::::.";
+        string A11 = " |===|_.|u|_.|+HH+|_              .::::::::::::.              _";
+        string A12 = "                __(_)___         .::::::::::::::.         ___(_)__";
+        string A13 = "---------------/  / \\  /|       .:::::;;;:::;;:::.       |\\  / \\  \\-------";
+        string A14 = "______________/_______/ |      .::::::;;:::::;;:::.      | \\_______\\________";
+        string A15 = "|       |     [===  =] /|     .:::::;;;::::::;;;:::.     |\\ [==  = ]   |";
+        string A16 = "|_______|_____[ = == ]/ |    .:::::;;;:::::::;;;::::.    | \\[ ===  ]___|____";
+        string A17 = "     |       |[  === ] /|   .:::::;;;::::::::;;;:::::.   |\\ [=  ===] |";
+        string A18 = "_____|_______|[== = =]/ |  .:::::;;;::::::::::;;;:::::.  | \\[ ==  =]_|______";
+        string A19 = " |       |    [ == = ] /| .::::::;;:::::::::::;;;::::::. |\\ [== == ]      |";
+        string A20 = "_|_______|____[=  == ]/ |.::::::;;:::::::::::::;;;::::::.| \\[  === ]______|_";
+        string A21 = "   |       |  [ === =] /.::::::;;::::::::::::::;;;:::::::.\\ [===  =]   |";
+        string A22 = "___|_______|__[ == ==]/.::::::;;;:::::::::::::::;;;:::::::.\\[=  == ]___|_____\n";
+
+        imgArr.Enqueue(A01);
+        imgArr.Enqueue(A02);
+        imgArr.Enqueue(A03);
+        imgArr.Enqueue(A04);
+        imgArr.Enqueue(A05);
+        imgArr.Enqueue(A06);
+        imgArr.Enqueue(A07);
+        imgArr.Enqueue(A08);
+        imgArr.Enqueue(A09);
+        imgArr.Enqueue(A10);
+        imgArr.Enqueue(A11);
+        imgArr.Enqueue(A12);
+        imgArr.Enqueue(A13);
+        imgArr.Enqueue(A14);
+        imgArr.Enqueue(A15);
+        imgArr.Enqueue(A16);
+        imgArr.Enqueue(A17);
+        imgArr.Enqueue(A18);
+        imgArr.Enqueue(A19);
+        imgArr.Enqueue(A20);
+        imgArr.Enqueue(A21);
+        imgArr.Enqueue(A22);
+        int count = imgArr.Count;
+        for (int i = 0; i < count; i++)
+        {
+            Console.SetCursorPosition(4, i+3);
+            Console.Write(imgArr.Dequeue());
+        }
+        
     }
 }
