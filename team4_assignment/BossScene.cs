@@ -191,25 +191,25 @@ internal class BossScene
 
                 if (key == "1")
                 {
-                    theOldManAndTheSea.UseSkill(Program.player);
+                    //theOldManAndTheSea.UseSkill(Program.player);
                     DamagePhase();
                     isSelect = true;
                 }
                 else if (key == "2")
                 {
-                    lookAtThisCan.UseSkill(Program.player, boss);
+                    //lookAtThisCan.UseSkill(Program.player, boss,);
                     DamagePhase();
                     isSelect = true;
                 }
                 else if (key == "3")
                 {
-                    tunaSliced.UseSkill(Program.player, boss);
+                    //tunaSliced.UseSkill(Program.player, boss);
                     DamagePhase();
                     isSelect = true;
                 }
                 else if (key == "4")
                 {
-                    itadakimasu.UseSkill(Program.player, boss);
+                    //itadakimasu.UseSkill(Program.player, boss);
                     DamagePhase();
                     isSelect = true;
                 }

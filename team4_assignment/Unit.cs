@@ -37,21 +37,40 @@ class Unit
         return damage;
     }
 
-    public int AttackUnit(Unit target, CorrectAtkType CorrectDmg, Skill skill)
+    public StringBuilder MagicalAttackBoss(Unit target, Skill skill)
     {
-        StringBuilder txt = new StringBuilder($"{Name}의 공격");
-        int damage = this.Atk /*- target.def*/;
+        StringBuilder txt = new StringBuilder($"공격");
         if (skill.SkillType == SkillType.Solo)
         {
-            skill.UseSkill(this);
+            skill.UseSkill(this,txt);
         }
         else if (skill.SkillType == SkillType.Boss)
         {
-            skill.UseSkillTest(this,target,txt);
+            skill.UseSkill(this,target,txt);
         }
 
-        Console.Write(txt);
-        return damage;
+        return txt;
+    }
+
+    public StringBuilder MagicalAttackUnits(List<Monster> targets, Skill skill)
+    {
+        StringBuilder txt = new StringBuilder($"공격");
+        if (skill.SkillType == SkillType.Solo)
+        {
+            skill.UseSkill(this,txt);
+        }
+        else if (skill.SkillType == SkillType.Taget)
+        {
+            skill.UseSkill(this, targets, txt);
+        }
+        else if (skill.SkillType == SkillType.Boss)
+        {
+            Console.Clear();
+            Console.WriteLine("스킬타입이 보스인데 리스트로 target이 들어옴");
+            Console.WriteLine();
+        }
+
+        return txt;
     }
 
 

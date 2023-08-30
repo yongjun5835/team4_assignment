@@ -14,6 +14,9 @@ internal class FightScene
     FastSpin fastSpin = new FastSpin();
     WriggleWriggleSpin wriggleWriggleSpin = new WriggleWriggleSpin();
     Rest rest = new Rest();
+    TempMagic tempMagic = new TempMagic();
+
+    StringBuilder skillTxtHelper;
 
     public FightScene()
     {
@@ -117,7 +120,7 @@ internal class FightScene
 
         InfoClear();
         Console.SetCursorPosition(2, 4);
-        Console.Write("당신은 신중하게 스킬을 사용했습니다!"); // << 스킬 텍스트
+        Console.Write(skillTxtHelper); // << 스킬 텍스트
 
         if (monsters[0].Hp <= 0 &&
             monsters[1].Hp <= 0 &&
@@ -324,6 +327,7 @@ internal class FightScene
     public void ShowChoice2()
     {
         bool isSelect = false;
+        skillTxtHelper = new StringBuilder();
         Console.SetCursorPosition(0, 28);
         Console.Write("선택지를 입력해주세요.: ");
         while (isSelect == false)
@@ -336,19 +340,19 @@ internal class FightScene
             }
             else if (key == "1")
             {
-                fastSpin.UseSkill(Program.player, monsters);
+                skillTxtHelper = Program.player.MagicalAttackUnits(monsters,fastSpin);
                 Program.fightScene.SkillPhase();
                 isSelect = true;
             }
             else if (key == "2")
             {
-                wriggleWriggleSpin.UseSkill(Program.player, monsters);
+                skillTxtHelper = Program.player.MagicalAttackUnits(monsters, wriggleWriggleSpin);
                 Program.fightScene.SkillPhase();
                 isSelect = true;
             }
             else if (key == "3")
             {
-                rest.UseSkill(Program.player);
+                skillTxtHelper = Program.player.MagicalAttackUnits(monsters, rest);
                 Program.fightScene.SkillPhase();
                 isSelect = true;
             }

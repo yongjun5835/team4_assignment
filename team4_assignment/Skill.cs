@@ -27,29 +27,29 @@ class Skill
     public virtual string Description { get { return description; } set { description = value; } }
     public SkillType SkillType { get { return skillType; } set { skillType = value; } }
 
-
-    public virtual void UseSkill(Unit useUnit) { }
-    public virtual void UseSkill(Unit useUnit, Unit taget) { }
-    public virtual void UseSkill(Unit useUnit, List<Monster> tagets) { }
-
     // 테스트용
-    public virtual void UseSkillTest(Unit useUnit, Unit taget,StringBuilder txt){ }
+    public virtual StringBuilder UseSkill(Unit useUnit, List<Monster> taget,StringBuilder txt){ return null; }
+    public virtual StringBuilder UseSkill(Unit useUnit, Unit taget, StringBuilder txt) { return null; }
+    public virtual StringBuilder UseSkill(Unit useUnit, StringBuilder txt){ return null; }
+
 }
 
 class FastSpin : Skill
 {
+    CorrectAtkType AtkType;
     Random random = new Random();
 
     public FastSpin()
     {
-        name = "빨리 감기!!";
+        name = "빨리 감기";
+        AtkType = GM.magicalDmg;
         skillType = SkillType.Taget;
         requiredMp = 10;
         atkPercent = 2.0f;
         description = $"(공격력 * {atkPercent})로 1마리 랜덤으로 공격";
     }
 
-    public override void UseSkill(Unit useUnit, List<Monster> tagets)
+    public override StringBuilder UseSkill(Unit useUnit, List<Monster> tagets, StringBuilder txt)
     {
         int randomNum;
         while (true)
@@ -60,12 +60,18 @@ class FastSpin : Skill
                 break;
             }
         }
-        tagets[randomNum].Hp -= (int)(useUnit.Atk * atkPercent);
+        int Damage = (int)(useUnit.Atk * atkPercent);
+        AtkType(txt, ref Damage);
+        txt.Insert(0, $"{tagets[randomNum].Name}은 ");
+        txt.Replace("공격", $"{this.Name}");
+        tagets[randomNum].Hp -= Damage;
+        return txt;
     }
 }
 
 class Rest : Skill
 {
+
     public Rest()
     {
         name = "휴식";
@@ -76,11 +82,13 @@ class Rest : Skill
         description = $"사용자의 체력을 (공격력 * {atkPercent})만큼 회복";
     }
 
-    public override void UseSkill(Unit useUnit)
+    public override StringBuilder UseSkill(Unit useUnit, StringBuilder txt)
     {
         useUnit.Hp += (int)(useUnit.Atk * atkPercent);
 
-        Console.WriteLine($"{useUnit.Name}은(는) 잠깐 휴식합니다. \n체력 {(int)(useUnit.Atk * atkPercent)} 회복!!.");
+        txt.Clear();
+        txt.Append($"{useUnit.Name}은 잠깐 휴식을 취합니다.");
+        return txt;
     }
 }
 
@@ -88,21 +96,26 @@ class WriggleWriggleSpin : Skill
 {
     Random random = new Random();
     int AttckUnits = 2;
+    CorrectAtkType AtkType;
 
     public WriggleWriggleSpin()
     {
         name = "요리조리 감기";
         skillType = SkillType.Taget;
+        AtkType = GM.magicalDmg;
         requiredMp = 20;
         atkPercent = 1.5f;
         description = $"(공격력 * {atkPercent})로 {AttckUnits}마리 랜덤으로 공격";
     }
 
-    public override void UseSkill(Unit useUnit, List<Monster> tagets)
+    public override StringBuilder UseSkill(Unit useUnit, List<Monster> tagets, StringBuilder txt)
     {
         bool isAllDeath = false;
+        StringBuilder savetxt = new StringBuilder();
         for (int i = 0; i < AttckUnits; i++)
         {
+            StringBuilder temptxt = new StringBuilder(txt.ToString());
+            int tempNum = 0;
             int randomNum = 0;
             while (isAllDeath == false)
             {
@@ -125,10 +138,16 @@ class WriggleWriggleSpin : Skill
                 }
 
             }
-            tagets[randomNum].Hp -= (int)(useUnit.Atk * atkPercent);
+            int damage = (int)(useUnit.Atk * atkPercent);
+            AtkType(txt, ref damage);
+            temptxt.Insert(0, $"{tagets[randomNum].Name}은 ");
+            temptxt.Replace("공격", $"{Name}");
+            savetxt.Append(temptxt);
+            tagets[randomNum].Hp -= damage;
         }
-        Thread.Sleep(1000);
+        return savetxt;
     }
+   
 }
 
 // 보스전 시작시 player의 bool vsBoss true으로 바꾸시고
@@ -146,10 +165,10 @@ class TheOldManAndTheSea : Skill
         description = $"84일간 물고기 못 잡은 선배 이야기";
     }
 
-    public override void UseSkill(Unit useUnit)
+    public override StringBuilder UseSkill(Unit useUnit, StringBuilder txt)
     {
         if (useUnit is Player == false)
-            return;
+            return txt;
         if (((Player)useUnit).vsBoss == true && useChance == false)
         {
             useChance = true;
@@ -163,6 +182,8 @@ class TheOldManAndTheSea : Skill
             useUnit.Atk -= 10;
             useUnit.Def -= 5;
         }
+
+        return txt;
 
     }
 }
@@ -180,9 +201,11 @@ class LookAtThisCan : Skill
         description = $"(공격력 * {atkPercent}) 저 안에 든 건 나의 가족?";
     }
 
-    public override void UseSkill(Unit useUnit, Unit taget)
+    public override StringBuilder UseSkill(Unit useUnit, Unit taget, StringBuilder txt)
     {
         taget.Hp -= (int)(useUnit.Atk * atkPercent);
+
+        return txt;
     }
 }
 
@@ -198,7 +221,7 @@ class TunaSliced : Skill
         description = $"(공격력 * {atkPercent} * 3) 참치 슬라이스!";
     }
 
-    public override void UseSkill(Unit useUnit, Unit taget)
+    public override StringBuilder UseSkill(Unit useUnit, Unit taget, StringBuilder txt)
     {
         int attckNum = 3;
 
@@ -211,6 +234,8 @@ class TunaSliced : Skill
             taget.Hp -= (int)(useUnit.Atk * atkPercent);
         }
         Program.player.vsBossSkillCombo = true;
+
+        return txt;
     }
 }
 
@@ -258,7 +283,7 @@ class Itadakimasu : Skill
     }
 
 
-    public override void UseSkill(Unit useUnit, Unit taget)
+    public override StringBuilder UseSkill(Unit useUnit, Unit taget , StringBuilder txt)
     {
         if (Program.player.vsBossSkillCombo == true)
         {
@@ -271,27 +296,33 @@ class Itadakimasu : Skill
         {
             useUnit.Hp += 10;
         }
+
+        return txt;
     }
 }
 
 
 class TempMagic : Skill
 {
-    CorrectAtkType correctAtkType;
+    CorrectAtkType AtkType;
     public TempMagic()
     {
         skillType = SkillType.Boss;
-        correctAtkType = GM.magicalDmg;
+        AtkType = GM.magicalDmg;
         requiredMp = 10;
         atkPercent = 2.0f;
         name = "가짜 마법";
         description = $"2.0배수 ";
     }
 
-    public override void UseSkillTest(Unit useUnit, Unit taget, StringBuilder txt)
+    public override StringBuilder UseSkill(Unit useUnit, Unit taget, StringBuilder txt)
     {
         int Damage = (int)(useUnit.Atk * atkPercent);
-        correctAtkType(txt, ref Damage);
+        AtkType(txt, ref Damage);
+        txt.Replace("공격", $"{name}");
         taget.Hp -= Damage;
+
+        return txt;
     }
+
 }
