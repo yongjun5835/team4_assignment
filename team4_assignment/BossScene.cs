@@ -16,6 +16,7 @@ internal class BossScene
     public void StartPhase()
     {
         Program.player.vsBoss = true;
+        boss.Hp = 500;
         Console.Clear();
         DrawTuna(0, 0);
         DrawHpBar(0, 20);
@@ -55,6 +56,7 @@ internal class BossScene
         ClearInfo();
         DrawStatUI(53, 10);
         ReduceHpBar(0, 20);
+        DrawSkillUI(81, 10);
         if (boss.Hp > 0)
         {
             Console.SetCursorPosition(55, 2);
@@ -84,7 +86,9 @@ internal class BossScene
 
     public void MonsterPhase()
     {
-        Program.player.Hp -= boss.Atk;
+        Random rand = new Random();
+        int damage = rand.Next(20, 61);
+        Program.player.Hp -= damage;
 
         ClearInfo();
         DrawStatUI(53, 10);
@@ -140,7 +144,7 @@ internal class BossScene
     {
         bool isSelect = false;
         Console.SetCursorPosition(53, 28);
-        Console.Write("                                                        ");
+        Console.Write("                                                                           ");
         Console.SetCursorPosition(53, 28);
         Console.Write("[0]도망가기 [1]스킬사용 | 선택지를 입력해주세요.: ");
 
@@ -163,7 +167,7 @@ internal class BossScene
                 else
                 {
                     Console.SetCursorPosition(53, 28);
-                    Console.Write("                                                        ");
+                    Console.Write("                                                                           ");
                     Console.SetCursorPosition(53, 28);
                     Console.Write("[0]도망가기 [1]스킬사용 | 올바른 값을 입력해주세요.: ");
                 }
@@ -175,7 +179,7 @@ internal class BossScene
     {
         bool isSelect = false;
         Console.SetCursorPosition(53, 28);
-        Console.Write("                                                        ");
+        Console.Write("                                                                           ");
         Console.SetCursorPosition(53, 28);
         Console.Write("[1]사용 [2]사용 [3]사용 [4]사용 | 선택지를 입력해주세요.: ");
 
@@ -212,7 +216,7 @@ internal class BossScene
                 else
                 {
                     Console.SetCursorPosition(53, 28);
-                    Console.Write("                                                        ");
+                    Console.Write("                                                                           ");
                     Console.SetCursorPosition(53, 28);
                     Console.Write("[1]사용 [2]사용 [3]사용 [4]사용 | 올바른 값을 입력해주세요.: ");
                 }
@@ -224,7 +228,7 @@ internal class BossScene
     {
         bool isSelect = false;
         Console.SetCursorPosition(53, 28);
-        Console.Write("                                                        ");
+        Console.Write("                                                                           ");
         Console.SetCursorPosition(53, 28);
         Console.Write("[0]도망가기 [1]계속하기 | 선택지를 입력해주세요.: ");
 
@@ -247,7 +251,7 @@ internal class BossScene
                 else
                 {
                     Console.SetCursorPosition(53, 28);
-                    Console.Write("                                                        ");
+                    Console.Write("                                                                           ");
                     Console.SetCursorPosition(53, 28);
                     Console.Write("[0]도망가기 [1]계속하기 | 올바른 값을 입력해주세요.: ");
                 }
@@ -259,7 +263,7 @@ internal class BossScene
     {
         bool isSelect = false;
         Console.SetCursorPosition(53, 28);
-        Console.Write("                                                        ");
+        Console.Write("                                                                           ");
         Console.SetCursorPosition(53, 28);
         Console.Write("[0]도망가기 [1]스킬사용 | 선택지를 입력해주세요.: ");
 
@@ -282,7 +286,7 @@ internal class BossScene
                 else
                 {
                     Console.SetCursorPosition(53, 28);
-                    Console.Write("                                                        ");
+                    Console.Write("                                                                           ");
                     Console.SetCursorPosition(53, 28);
                     Console.Write("[0]도망가기 [1]스킬사용 | 올바른 값을 입력해주세요.: ");
                 }
@@ -294,7 +298,7 @@ internal class BossScene
     {
         bool isSelect = false;
         Console.SetCursorPosition(53, 28);
-        Console.Write("                                                        ");
+        Console.Write("                                                                           ");
         Console.SetCursorPosition(53, 28);
         Console.Write("[0]마을로 복귀하기 | 선택지를 입력해주세요.: ");
 
@@ -312,7 +316,7 @@ internal class BossScene
                 else
                 {
                     Console.SetCursorPosition(53, 28);
-                    Console.Write("                                                        ");
+                    Console.Write("                                                                           ");
                     Console.SetCursorPosition(53, 28);
                     Console.Write("[0]마을로 복귀하기 | 올바른 값을 입력해주세요.: ");
                 }
@@ -324,7 +328,7 @@ internal class BossScene
     {
         bool isSelect = false;
         Console.SetCursorPosition(53, 28);
-        Console.Write("                                                        ");
+        Console.Write("                                                                           ");
         Console.SetCursorPosition(53, 28);
         Console.Write("[0]보상 확인하기 | 선택지를 입력해주세요.: ");
 
@@ -342,7 +346,7 @@ internal class BossScene
                 else
                 {
                     Console.SetCursorPosition(53, 28);
-                    Console.Write("                                                        ");
+                    Console.Write("                                                                           ");
                     Console.SetCursorPosition(53, 28);
                     Console.Write("[0]보상 확인하기 | 올바른 값을 입력해주세요.: ");
                 }
