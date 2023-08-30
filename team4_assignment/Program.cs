@@ -9,11 +9,6 @@ internal class Program
         Character character = new Character();
         character.InputName();// 캐릭터 생성기능
         string userName = character.UserName;
-
-        // Inventory 객체 생성
-        Inventory inventory = new Inventory();
-        inventory.DisplayInventory();
-        inventory.InventoryEquip();
     }
 
     public static FightScene fightScene = new FightScene();
