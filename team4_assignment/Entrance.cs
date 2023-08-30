@@ -14,7 +14,7 @@ class Entrance
     public void DefaultSetting()
     {
         player = Program.player;
-        GameManager.GM.PlayerCheat(); // << 치트 코드임
+        //GameManager.GM.PlayerCheat(); // << 치트 코드임
     }
 
     public void EntranceUI()
