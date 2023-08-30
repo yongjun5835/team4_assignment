@@ -8,6 +8,7 @@ enum SkillType
 {
     Solo,
     Taget,
+    Boss
 }
 
 class Skill
@@ -63,6 +64,7 @@ class Rest : Skill
     public Rest()
     {
         name = "휴식";
+        skillType = SkillType.Solo;
         requiredMp = 5;
         atkPercent = 1.2f;
 
@@ -85,6 +87,7 @@ class WriggleWriggleSpin : Skill
     public WriggleWriggleSpin()
     {
         name = "요리조리 감기";
+        skillType = SkillType.Taget;
         requiredMp = 20;
         atkPercent = 1.5f;
         description = $"(공격력 * {atkPercent})로 {AttckUnits}마리 랜덤으로 공격";
@@ -132,6 +135,7 @@ class TheOldManAndTheSea : Skill
     public TheOldManAndTheSea()
     {
         name = "도서정독";
+        skillType = SkillType.Solo;
         requiredMp = 10;
         atkPercent = 1.0f;
         description = $"84일간 물고기도 못 잡은 선배 이야기다. ";
@@ -165,7 +169,7 @@ class LookAtThisCan : Skill
     public LookAtThisCan()
     {
         name = "캔 따기";
-        skillType = SkillType.Taget;
+        skillType = SkillType.Boss;
         requiredMp = 10;
         atkPercent = 2.0f;
         description = $"(공격력 * {atkPercent}) 저 안에 든 건 나의 가족이었을까..?";
@@ -183,7 +187,7 @@ class TunaSliced : Skill
     public TunaSliced()
     {
         name = "회 썰기";
-        skillType = SkillType.Taget;
+        skillType = SkillType.Boss;
         requiredMp = 10;
         atkPercent = 0.4f;
         description = $"(공격력 * {atkPercent} * 3) 넥 슬라이스! 보디 슬라이스! 테일 슬라이스!";
@@ -210,7 +214,7 @@ class Itadakimasu : Skill
 
     public Itadakimasu()
     {
-        skillType = SkillType.Taget;
+        skillType = SkillType.Boss;
         requiredMp = 10;
         atkPercent = 2.0f;
         name = "간식타임";
@@ -246,7 +250,6 @@ class Itadakimasu : Skill
             return description;
         }
     }
-
 
 
     public override void UseSkill(Unit useUnit, Unit taget)
