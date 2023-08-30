@@ -120,8 +120,24 @@ internal class FightScene
         DrawDisplay("다음 페이즈로", "X", "X", "X");
 
         InfoClear();
+
+        StringBuilder subText = new StringBuilder();
+        StringBuilder tempText = new StringBuilder(skillTxtHelper.ToString());
+        for (int i = 5; i < tempText.Length; i++)
+        {
+            if (tempText[i] == '\n')
+            {
+                skillTxtHelper.Remove(i, skillTxtHelper.Length-i);
+                tempText.Remove(0,i+1);
+                subText = tempText;
+                break;
+            }
+        }
         Console.SetCursorPosition(2, 4);
         Console.Write(skillTxtHelper); // << 스킬 텍스트
+        Console.SetCursorPosition(2, 5);
+        Console.Write(subText); // << 스킬 텍스트
+
 
         if (monsters[0].Hp <= 0 &&
             monsters[1].Hp <= 0 &&

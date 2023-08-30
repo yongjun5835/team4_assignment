@@ -143,7 +143,7 @@ class WriggleWriggleSpin : Skill
             AtkType(temptxt, ref damage);
             temptxt.Insert(0, $"{tagets[randomNum].Name}은 ");
             temptxt.Replace("공격으로", $"{Name}로");
-            savetxt.Append(temptxt + "\n  ");
+            savetxt.Append(temptxt + "\n");
             tagets[randomNum].Hp -= damage;
         }
         txt.Clear();
