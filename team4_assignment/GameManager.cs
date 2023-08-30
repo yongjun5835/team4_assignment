@@ -118,6 +118,7 @@ class GameManager
         }
         Console.SetCursorPosition(x, y);
         Console.Write(text);
+        Console.ResetColor();
     }
 
     // 대미지 보정용 코드, 직접적인 공격은 안 함
