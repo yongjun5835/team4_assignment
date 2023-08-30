@@ -24,9 +24,8 @@ class Entrance
             Console.Clear();
             GameManager.GM.MakeUI();
             RenderMainImg();
-            Console.Write("\n\n");
-            GameManager.GM.DrawText(2, 2, "참치 사냥을 떠나는 것이에요", "");
-            GameManager.GM.DrawText(2, 4, "1. 상태보기 2. 던전 입장 3. 인벤토리 4. 여관", "");
+            GameManager.GM.DrawText(2, 27, "참치 사냥을 떠나는 것이에요", "");
+            GameManager.GM.DrawText(2, 29, "1. 상태보기 2. 던전 입장 3. 인벤토리 4. 여관", "");
 
             if (Program.player.Hp <= 0)
             {
@@ -56,15 +55,6 @@ class Entrance
                 case 4:
                     Inn();
                     break;
-
-            }
-        }
-    }
-
-    void Inn()
-    {
-        int optionNum = 2;
-        int cheatCode = 0;
 
             }
         }
