@@ -26,7 +26,7 @@ internal class BossScene
         DrawStatUI(53, 10);
         DrawSkillUI(81, 10);
         Console.SetCursorPosition(55, 2);
-        Console.Write("자이언트 첨치가 출현했습니다!");
+        Console.Write("자이언트 참치가 출현했습니다!");
         Console.ForegroundColor = ConsoleColor.Red;
         Console.SetCursorPosition(55, 3);
         Console.Write("녀석은 무지하게 화가 나 있습니다.");
