@@ -77,22 +77,22 @@ class GameManager
     }
 
     // 용준님이 만든 UI 틀
-    //public void MakeUI()
-    //{
-    //    Console.Clear();
-    //    Console.SetCursorPosition(0, 0);
-    //    Console.Write("*-----------------------------------------------------------------------------------*");
-    //    Console.SetCursorPosition(0, 25);
-    //    Console.Write("*-----------------------------------------------------------------------------------*");
-    //    for (int i = 1; i < 25; i++)
-    //    {
-    //        Console.SetCursorPosition(0, i);
-    //        Console.Write("|");
-    //        Console.SetCursorPosition(84, i);
-    //        Console.Write("|");
-    //    }
-    //    Console.WriteLine();
-    //}
+    public void MakeUI()
+    {
+        Console.Clear();
+        Console.SetCursorPosition(0, 0);
+        Console.Write("*-----------------------------------------------------------------------------------*");
+        Console.SetCursorPosition(0, 25);
+        Console.Write("*-----------------------------------------------------------------------------------*");
+        for (int i = 1; i < 25; i++)
+        {
+            Console.SetCursorPosition(0, i);
+            Console.Write("|");
+            Console.SetCursorPosition(84, i);
+            Console.Write("|");
+        }
+        Console.SetCursorPosition(3, 2);
+    }
 
     // 대미지 보정용 코드, 직접적인 공격은 안 함
     #region 공격 델리게이트 전용 함수

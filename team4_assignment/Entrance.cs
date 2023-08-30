@@ -70,7 +70,7 @@ class Entrance
         while (true)
         {
             Console.Clear();
-            //GameManager.GM.MakeUI();
+            GameManager.GM.MakeUI();
             Console.Write("\n\n아늑하고 따뜻한 이곳은 ");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("'여관'\n");
@@ -116,7 +116,7 @@ class Entrance
         Console.CursorVisible = false;
         string text = "푸~푸르르푸~푸린푸우린~";
         Console.Clear();
-        //GameManager.GM.MakeUI();
+        GameManager.GM.MakeUI();
         Console.ForegroundColor= ConsoleColor.Cyan;
         for (int i = 0; i < text.Length; i++)
         {
