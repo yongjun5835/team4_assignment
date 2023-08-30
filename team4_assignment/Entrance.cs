@@ -66,11 +66,20 @@ class Entrance
         int optionNum = 2;
         int cheatCode = 0;
 
+            }
+        }
+    }
+
+    void Inn()
+    {
+        int optionNum = 2;
+        int cheatCode = 0;
+
         while (true)
         {
             Console.Clear();
             GameManager.GM.MakeUI();
-            Console.Write("\n\n아늑하고 따뜻한 이곳은 ");
+            GameManager.GM.DrawText(0, 27, "아늑하고 따뜻한 이곳은 ", "blue");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("'여관'\n");
             Console.ResetColor();
