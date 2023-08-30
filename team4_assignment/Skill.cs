@@ -46,7 +46,7 @@ class FastSpin : Skill
         skillType = SkillType.Taget;
         requiredMp = 10;
         atkPercent = 2.0f;
-        description = $"(공격력 * {atkPercent})로 1마리 랜덤으로 공격";
+        description = $"(공격력 * {atkPercent})으로 1마리 랜덤으로 공격";
     }
 
     public override StringBuilder UseSkill(Unit useUnit, List<Monster> tagets, StringBuilder txt)
@@ -63,7 +63,7 @@ class FastSpin : Skill
         int Damage = (int)(useUnit.Atk * atkPercent);
         AtkType(txt, ref Damage);
         txt.Insert(0, $"{tagets[randomNum].Name}은 ");
-        txt.Replace("공격", $"{this.Name}");
+        txt.Replace("공격으로", $"{this.Name}로");
         tagets[randomNum].Hp -= Damage;
         return txt;
     }
@@ -105,7 +105,7 @@ class WriggleWriggleSpin : Skill
         AtkType = GM.magicalDmg;
         requiredMp = 20;
         atkPercent = 1.5f;
-        description = $"(공격력 * {atkPercent})로 {AttckUnits}마리 랜덤으로 공격";
+        description = $"(공격력 * {atkPercent})으로 {AttckUnits}마리 랜덤으로 공격";
     }
 
     public override StringBuilder UseSkill(Unit useUnit, List<Monster> tagets, StringBuilder txt)
@@ -132,8 +132,9 @@ class WriggleWriggleSpin : Skill
                     }
                     if (num == tagets.Count - 1)
                     {
-                        isAllDeath = true;
-                        break;
+                        txt.Clear();
+                        txt.Append(savetxt);
+                        return txt;
                     }
                 }
 
@@ -141,7 +142,7 @@ class WriggleWriggleSpin : Skill
             int damage = (int)(useUnit.Atk * atkPercent);
             AtkType(temptxt, ref damage);
             temptxt.Insert(0, $"{tagets[randomNum].Name}은 ");
-            temptxt.Replace("공격", $"{Name}");
+            temptxt.Replace("공격으로", $"{Name}로");
             savetxt.Append(temptxt + "\n  ");
             tagets[randomNum].Hp -= damage;
         }
@@ -248,7 +249,7 @@ class TunaSliced : Skill
             taget.Hp -= damage;
         }
         txt.Clear();
-        txt.Append($"{taget.Name}는 {Name}으로 {totalDmg}의 피해를 입었다.");
+        txt.Append($"{taget.Name}는 {Name}로 {totalDmg}의 피해를 입었다.");
         Program.player.vsBossSkillCombo = true;
 
         return txt;
