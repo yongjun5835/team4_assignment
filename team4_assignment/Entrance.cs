@@ -25,13 +25,12 @@ class Entrance
             GameManager.GM.MakeUI();
             RenderMainImg();
             Console.Write("\n\n");
-            Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
-
-            Console.WriteLine("1. 상태보기 2. 던전 입장 3. 인벤토리 4. 여관");
+            GameManager.GM.DrawText(2, 2, "참치 사냥을 떠나는 것이에요", "");
+            GameManager.GM.DrawText(2, 4, "1. 상태보기 2. 던전 입장 3. 인벤토리 4. 여관", "");
 
             if (Program.player.Hp <= 0)
             {
-                Console.WriteLine("당신은 체력이 없어 던전에 입장할 수 없습니다!");
+                GameManager.GM.DrawText(2, 6, "당신은 체력이 없어 던전에 입장할 수 없습니다!", "");
             }
 
             int input = GameManager.GM.SelectOption(optionNum, false, "");
