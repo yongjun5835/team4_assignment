@@ -29,13 +29,16 @@ class Unit
 
 
 
-
+    private int CalculateDef(Unit target)
+    {
+        return (int)(this.Atk * 3 * (1.0 - (target.Def / (1.0 + target.Def))));
+    }
 
 
     public int AttackUnit(Unit target, AttackTypeDele atkTypeDelegate )
     {
         StringBuilder txt = new StringBuilder($"{Name}의 공격");
-        int damage = this.Atk /*- target.def*/;
+        int damage = CalculateDef(target); //원래 기본은 /*- target.def*/ 이용
         atkTypeDelegate(txt, ref damage);
         target.hp -= damage;
         Console.Write(txt);
