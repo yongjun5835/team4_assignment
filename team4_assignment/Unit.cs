@@ -27,7 +27,7 @@ class Unit
     public int Gold { get { return gold; } set { gold = value; } }
     public bool IsDead { get { return isDead; } set { isDead = value; } }
 
-    public int AttackUnit(Unit target, AttackTypeDele atkTypeDelegate )
+    public int AttackUnit(Unit target, CorrectAtkType atkTypeDelegate )
     {
         StringBuilder txt = new StringBuilder($"{Name}의 공격");
         int damage = this.Atk /*- target.def*/;
@@ -37,9 +37,9 @@ class Unit
         return damage;
     }
 
-    public int AttackUnit(Unit target, AttackTypeDele atkTypeDelegate, Skill skill)
+    public int AttackUnit(Unit target, CorrectAtkType CorrectDmg, Skill skill)
     {
-        StringBuilder txt = new StringBuilder($"{Name}의 마법");
+        StringBuilder txt = new StringBuilder($"{Name}의 공격");
         int damage = this.Atk /*- target.def*/;
         if (skill.SkillType == SkillType.Solo)
         {
@@ -47,11 +47,9 @@ class Unit
         }
         else if (skill.SkillType == SkillType.Boss)
         {
-            skill.UseSkill(this,target);
+            skill.UseSkillTest(this,target,txt);
         }
 
-        atkTypeDelegate(txt, ref damage);
-        target.hp -= damage;
         Console.Write(txt);
         return damage;
     }

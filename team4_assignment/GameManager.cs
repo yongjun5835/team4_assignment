@@ -69,11 +69,11 @@ class GameManager
         return -1;
     }
 
-    // 대미지 보정할 때 쓰는 함수들을 델리게이트로 묶어서 사용합니다!
+    // 대미지 보정용 코드, 직접적인 공격은 안 함
     #region 공격 델리게이트 전용 함수
-    public delegate void AttackTypeDele(StringBuilder txt, ref int damage);
-    public AttackTypeDele physicalDmg;
-    public AttackTypeDele magicalDmg;
+    public delegate void CorrectAtkType(StringBuilder txt, ref int damage);
+    public CorrectAtkType physicalDmg;
+    public CorrectAtkType magicalDmg;
 
     void SettingDele()
     {

@@ -117,7 +117,7 @@ internal class FightScene
 
         InfoClear();
         Console.SetCursorPosition(2, 4);
-        Console.Write("당신은 신중하게 스킬을 사용했습니다!");
+        Console.Write("당신은 신중하게 스킬을 사용했습니다!"); // << 스킬 텍스트
 
         if (monsters[0].Hp <= 0 &&
             monsters[1].Hp <= 0 &&
@@ -320,7 +320,7 @@ internal class FightScene
             }
         }
     }
-
+    // 마법 사용 구간
     public void ShowChoice2()
     {
         bool isSelect = false;
@@ -329,7 +329,6 @@ internal class FightScene
         while (isSelect == false)
         {
             string key = Console.ReadLine();
-
             if (key == "0")
             {
                 Program.fightScene.StartPhase();

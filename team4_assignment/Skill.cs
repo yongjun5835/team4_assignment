@@ -1,8 +1,11 @@
 ﻿
 using System;
 using System.Net;
+using System.Text;
 using System.Threading.Channels;
 using System.Xml.Linq;
+using static GameManager;
+using static System.Net.Mime.MediaTypeNames;
 
 enum SkillType
 {
@@ -28,6 +31,9 @@ class Skill
     public virtual void UseSkill(Unit useUnit) { }
     public virtual void UseSkill(Unit useUnit, Unit taget) { }
     public virtual void UseSkill(Unit useUnit, List<Monster> tagets) { }
+
+    // 테스트용
+    public virtual void UseSkillTest(Unit useUnit, Unit taget,StringBuilder txt){ }
 }
 
 class FastSpin : Skill
@@ -54,7 +60,6 @@ class FastSpin : Skill
                 break;
             }
         }
-
         tagets[randomNum].Hp -= (int)(useUnit.Atk * atkPercent);
     }
 }
@@ -160,7 +165,7 @@ class TheOldManAndTheSea : Skill
         }
 
     }
-} 
+}
 
 class LookAtThisCan : Skill
 {
@@ -220,10 +225,10 @@ class Itadakimasu : Skill
         name = "간식타임";
         description = $"HP 10을 회복한다.";
     }
-    public override string Name 
-    { 
-        get 
-        { 
+    public override string Name
+    {
+        get
+        {
             if (Program.player.vsBossSkillCombo == true)
             {
                 name = "꺼__억";
@@ -232,8 +237,8 @@ class Itadakimasu : Skill
             {
                 name = "간식시간";
             }
-            return name; 
-        } 
+            return name;
+        }
     }
 
     public override string Description
@@ -243,7 +248,8 @@ class Itadakimasu : Skill
             if (Program.player.vsBossSkillCombo == true)
             {
                 description = $"(HP 60 회복, 공격력 * {atkPercent}) 눈 앞에서 살점";
-            }else
+            }
+            else
             {
                 description = $"HP 10을 회복한다.";
             }
@@ -269,4 +275,23 @@ class Itadakimasu : Skill
 }
 
 
+class TempMagic : Skill
+{
+    CorrectAtkType correctAtkType;
+    public TempMagic()
+    {
+        skillType = SkillType.Boss;
+        correctAtkType = GM.magicalDmg;
+        requiredMp = 10;
+        atkPercent = 2.0f;
+        name = "가짜 마법";
+        description = $"2.0배수 ";
+    }
 
+    public override void UseSkillTest(Unit useUnit, Unit taget, StringBuilder txt)
+    {
+        int Damage = (int)(useUnit.Atk * atkPercent);
+        correctAtkType(txt, ref Damage);
+        taget.Hp -= Damage;
+    }
+}

@@ -18,7 +18,7 @@
     }
 
     private string job = "";
-    private int gold;
+    private int gold = 0;
 
     public bool vsBoss = false;
     public bool vsBossSkillCombo = false;
