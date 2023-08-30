@@ -22,7 +22,8 @@ class Entrance
         while (true)
         {
             Console.Clear();
-            //GameManager.GM.MakeUI();
+            GameManager.GM.MakeUI();
+            RenderMainImg();
             Console.Write("\n\n");
             Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
 
