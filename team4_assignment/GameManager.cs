@@ -96,7 +96,7 @@ class GameManager
 
     /*
     DrawText 사용법
-    GameManager.GM.DrawText(x좌표, y좌표, "텍스트", "원하는 색상 소문자로")
+    GameManager.GM.DrawText(x좌표, y좌표, "텍스트", "원하는 색상 소문자로");
     */
     public void DrawText(int x, int y, string text, string color)
     {
