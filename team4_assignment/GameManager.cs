@@ -94,6 +94,32 @@ class GameManager
         Console.SetCursorPosition(3, 2);
     }
 
+    /*
+    DrawText 사용법
+    GameManager.GM.DrawText(x좌표, y좌표, "텍스트", "원하는 색상 소문자로")
+    */
+    public void DrawText(int x, int y, string text, string color)
+    {
+        if (color == "red")
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+        }
+        else if (color == "green")
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
+        else if (color == "blue")
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+        }
+        else if (color == "yellow")
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+        }
+        Console.SetCursorPosition(x, y);
+        Console.Write(text);
+    }
+
     // 대미지 보정용 코드, 직접적인 공격은 안 함
     #region 공격 델리게이트 전용 함수
     public delegate void CorrectAtkType(StringBuilder txt, ref int damage);
