@@ -117,6 +117,13 @@ class GameManager
             txt.Append("을 회피하였습니다.");
         }
     }
+
+    public void PlayerCheat()
+    {
+        Program.player.Atk += 50;
+        Program.player.MaxHp += 5000;
+        Program.player.Hp += 5000;
+    }
     #endregion
 
 }

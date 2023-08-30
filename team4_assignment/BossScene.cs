@@ -12,6 +12,8 @@ internal class BossScene
     LookAtThisCan lookAtThisCan = new LookAtThisCan();
     TunaSliced tunaSliced = new TunaSliced();
     Itadakimasu itadakimasu = new Itadakimasu();
+    StringBuilder skillTxtHelper = new StringBuilder();
+
 
     public void StartPhase()
     {
@@ -60,7 +62,7 @@ internal class BossScene
         if (boss.Hp > 0)
         {
             Console.SetCursorPosition(55, 2);
-            Console.Write("스킬 사용에 성공했습니다!");
+            Console.Write($"{skillTxtHelper}");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(55, 3);
             Console.Write($"자이언트 참치의 체력은 {boss.Hp}남았습니다.");
@@ -178,6 +180,7 @@ internal class BossScene
     public void Choice2()
     {
         bool isSelect = false;
+        skillTxtHelper.Clear();
         Console.SetCursorPosition(53, 28);
         Console.Write("                                                                           ");
         Console.SetCursorPosition(53, 28);
@@ -189,20 +192,22 @@ internal class BossScene
             {
                 string key = Console.ReadLine();
 
-                if (key == "1")
+                if (key == "1" && theOldManAndTheSea.useChance == false)
                 {
-                    //theOldManAndTheSea.UseSkill(Program.player);
+                    skillTxtHelper = Program.player.MagicalAttackBoss(boss,theOldManAndTheSea);
                     DamagePhase();
                     isSelect = true;
                 }
                 else if (key == "2")
                 {
+                    skillTxtHelper = Program.player.MagicalAttackBoss(boss, lookAtThisCan);
                     //lookAtThisCan.UseSkill(Program.player, boss,);
                     DamagePhase();
                     isSelect = true;
                 }
                 else if (key == "3")
                 {
+                    skillTxtHelper = Program.player.MagicalAttackBoss(boss, tunaSliced);
                     //tunaSliced.UseSkill(Program.player, boss);
                     DamagePhase();
                     isSelect = true;
@@ -210,6 +215,7 @@ internal class BossScene
                 else if (key == "4")
                 {
                     //itadakimasu.UseSkill(Program.player, boss);
+                    skillTxtHelper = Program.player.MagicalAttackBoss(boss, itadakimasu);
                     DamagePhase();
                     isSelect = true;
                 }
@@ -218,7 +224,13 @@ internal class BossScene
                     Console.SetCursorPosition(53, 28);
                     Console.Write("                                                                           ");
                     Console.SetCursorPosition(53, 28);
-                    Console.Write("[1]사용 [2]사용 [3]사용 [4]사용 | 올바른 값을 입력해주세요.: ");
+                    StringBuilder text = new StringBuilder("[1]사용 [2]사용 [3]사용 [4]사용 | 올바른 값을 입력해주세요.: ");
+                    if (key == "1" && theOldManAndTheSea.useChance == true)
+                    {
+                        text.Replace("올바른 값을 입력해주세요.:", "이미 읽었습니다.:");
+                    }
+                    Console.Write(text);
+                    //Console.Write("[1]사용 [2]사용 [3]사용 [4]사용 | 올바른 값을 입력해주세요.: "); << 기존 코드
                 }
             }
         }

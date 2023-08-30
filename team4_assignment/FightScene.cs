@@ -116,6 +116,7 @@ internal class FightScene
 
     public void SkillPhase()
     {
+
         DrawDisplay("다음 페이즈로", "X", "X", "X");
 
         InfoClear();

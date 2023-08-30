@@ -28,9 +28,9 @@ class Skill
     public SkillType SkillType { get { return skillType; } set { skillType = value; } }
 
     // 테스트용
-    public virtual StringBuilder UseSkill(Unit useUnit, List<Monster> taget,StringBuilder txt){ return null; }
+    public virtual StringBuilder UseSkill(Unit useUnit, List<Monster> taget, StringBuilder txt) { return null; }
     public virtual StringBuilder UseSkill(Unit useUnit, Unit taget, StringBuilder txt) { return null; }
-    public virtual StringBuilder UseSkill(Unit useUnit, StringBuilder txt){ return null; }
+    public virtual StringBuilder UseSkill(Unit useUnit, StringBuilder txt) { return null; }
 
 }
 
@@ -139,22 +139,24 @@ class WriggleWriggleSpin : Skill
 
             }
             int damage = (int)(useUnit.Atk * atkPercent);
-            AtkType(txt, ref damage);
+            AtkType(temptxt, ref damage);
             temptxt.Insert(0, $"{tagets[randomNum].Name}은 ");
             temptxt.Replace("공격", $"{Name}");
-            savetxt.Append(temptxt);
+            savetxt.Append(temptxt + "\n  ");
             tagets[randomNum].Hp -= damage;
         }
-        return savetxt;
+        txt.Clear();
+        txt.Append(savetxt);
+        return txt;
     }
-   
+
 }
 
 // 보스전 시작시 player의 bool vsBoss true으로 바꾸시고
 // 끝나면 vsBoss false한 후 UseSkill() 다시 사용해주세요! 
 class TheOldManAndTheSea : Skill
 {
-    bool useChance = false;
+    public bool useChance = false;
 
     public TheOldManAndTheSea()
     {
@@ -183,6 +185,8 @@ class TheOldManAndTheSea : Skill
             useUnit.Def -= 5;
         }
 
+        txt.Clear();
+        txt.Append($"(이것저것 상승)선배님의 의지를 이어받았다.");
         return txt;
 
     }
@@ -190,11 +194,12 @@ class TheOldManAndTheSea : Skill
 
 class LookAtThisCan : Skill
 {
-    Random random = new Random();
+    CorrectAtkType AtkType;
 
     public LookAtThisCan()
     {
         name = "캔 따기";
+        AtkType = GM.magicalDmg;
         skillType = SkillType.Boss;
         requiredMp = 10;
         atkPercent = 2.0f;
@@ -203,7 +208,10 @@ class LookAtThisCan : Skill
 
     public override StringBuilder UseSkill(Unit useUnit, Unit taget, StringBuilder txt)
     {
-        taget.Hp -= (int)(useUnit.Atk * atkPercent);
+        int damage = (int)(useUnit.Atk * atkPercent);
+        AtkType(txt, ref damage);
+        taget.Hp -= damage;
+        txt.Replace("공격", Name);
 
         return txt;
     }
@@ -211,19 +219,22 @@ class LookAtThisCan : Skill
 
 class TunaSliced : Skill
 {
+    CorrectAtkType AtkType;
 
     public TunaSliced()
     {
         name = "회 썰기";
+        AtkType = GM.magicalDmg;
         skillType = SkillType.Boss;
         requiredMp = 10;
-        atkPercent = 0.4f;
+        atkPercent = 0.6f;
         description = $"(공격력 * {atkPercent} * 3) 참치 슬라이스!";
     }
 
     public override StringBuilder UseSkill(Unit useUnit, Unit taget, StringBuilder txt)
     {
         int attckNum = 3;
+        int totalDmg = 0;
 
         for (int i = 0; i < attckNum; i++)
         {
@@ -231,8 +242,13 @@ class TunaSliced : Skill
             {
                 break;
             }
-            taget.Hp -= (int)(useUnit.Atk * atkPercent);
+            int damage = (int)(useUnit.Atk * atkPercent);
+            AtkType(txt,ref damage);
+            totalDmg += damage;
+            taget.Hp -= damage;
         }
+        txt.Clear();
+        txt.Append($"{taget.Name}는 {Name}으로 {totalDmg}의 피해를 입었다.");
         Program.player.vsBossSkillCombo = true;
 
         return txt;
@@ -241,9 +257,11 @@ class TunaSliced : Skill
 
 class Itadakimasu : Skill
 {
+    CorrectAtkType AtkType;
 
     public Itadakimasu()
     {
+        AtkType = GM.magicalDmg;
         skillType = SkillType.Boss;
         requiredMp = 10;
         atkPercent = 2.0f;
@@ -283,18 +301,21 @@ class Itadakimasu : Skill
     }
 
 
-    public override StringBuilder UseSkill(Unit useUnit, Unit taget , StringBuilder txt)
+    public override StringBuilder UseSkill(Unit useUnit, Unit taget, StringBuilder txt)
     {
         if (Program.player.vsBossSkillCombo == true)
         {
             taget.Hp -= (int)(useUnit.Atk * atkPercent);
             useUnit.Hp += 60;
             Program.player.vsBossSkillCombo = false;
-
+            txt.Clear();
+            txt.Append($"(살점 주인 앞에서){useUnit.Name}은 회를 맛있게 먹었다.");
         }
         else
         {
             useUnit.Hp += 10;
+            txt.Clear();
+            txt.Append($"{useUnit.Name}은 체력을 10 회복하였다.");
         }
 
         return txt;
