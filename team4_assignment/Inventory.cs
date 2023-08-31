@@ -47,7 +47,7 @@ class Inventory
         Program.player.Atk -= item.Atk;
         Program.player.Def -= item.Def;
     }
-    public void AddQuantity1(int index, int amount)
+    public void AddQuantity1(int index, int amount)//HP포션
     {
 
 
@@ -56,18 +56,18 @@ class Inventory
         Console.WriteLine("Hp포션이 드랍 되었습니다!");
 
     }
-    public void AddQuantity2(int index, int amount) 
+    public void AddQuantity2(int index, int amount) //MP포션
     {
         inventoryPotion[index].Quantity += amount;
         Console.SetCursorPosition(2, 11);
         Console.WriteLine("Mp포션이 드랍 되었습니다!");
     }
-    public void DropItem()
+    public void DropItem()//스테이지 아이템 드랍
     {
         Random random = new Random();
         int itemType = 1;
 
-        if (random.Next(1, 10) < itemType)
+        if (random.Next(1, 10) == itemType)
         {
             Console.SetCursorPosition(2, 9);
             Console.WriteLine("-------------------------------------");
