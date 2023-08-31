@@ -10,7 +10,6 @@ internal class Program
         character.InputName();// 캐릭터 생성기능
         string userName = character.UserName;
 
-  
     }
 
     public static FightScene fightScene = new FightScene();
