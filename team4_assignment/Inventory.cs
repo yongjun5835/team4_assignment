@@ -46,15 +46,32 @@ class Inventory
         Program.player.Atk -= item.Atk;
         Program.player.Def -= item.Def;
     }
+    public void AddQuantity1(int index, int amount)
+    {
+
+
+        inventoryPotion[index].Quantity += amount;
+        Console.SetCursorPosition(2, 10);
+        Console.WriteLine("Hp포션이 드랍 되었습니다!");
+
+    }
+    public void AddQuantity2(int index, int amount) 
+    {
+        inventoryPotion[index].Quantity += amount;
+        Console.SetCursorPosition(2, 10);
+        Console.WriteLine("Mp포션이 드랍 되었습니다!");
+    }
 
     class Item
     {
+
+        private int quantity;
         public string Name;
         public int Atk;
         public int Def;
         public string Desc;
         public int Hp;
-        public int Quantity;
+        public int Quantity { get { return quantity; }set{ quantity = value; } }
         public int Mp;
 
         public bool isEquiped;
@@ -83,55 +100,66 @@ class Inventory
         Console.WriteLine("2. 회복아이템"); //물약 
         Console.WriteLine();
         Console.WriteLine("0. 뒤로가기");
-
-        int optionNum = 2;
-        int input = GameManager.GM.SelectOption(optionNum, true, "");
-        switch (input)
+        while (true)
         {
-            case 0:
-                Program.entrance.EntranceUI();
-                break;
-            case 1:
-                InventoryEquip();
-                break;
-            case 2:
-                InventoryConsumption();
-                break;
-            default:
-                break;
+            int optionNum = 2;
+            int input = GameManager.GM.SelectOption(optionNum, true, "");
+            switch (input)
+            {
+                case 0:
+                    Program.entrance.EntranceUI();
+                    break;
+                case 1:
+                    InventoryEquip();
+                    break;
+                case 2:
+                    InventoryConsumption();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     public void InventoryEquip() //장착아이템 목록
     {
-        Console.Clear();
-        Console.WriteLine("[인벤토리_장비아이템]");
-        Console.WriteLine();
-        Console.WriteLine("[아이템 목록]");
-        Console.WriteLine();
-        // 아이템
-        for (int i = 0; i < inventory.Length; i++)
+        while (true)
         {
-            if (inventory[i] == null)
-                break;
+            Console.Clear();
+            Console.WriteLine("[인벤토리_장비아이템]");
+            Console.WriteLine();
+            Console.WriteLine("[아이템 목록]");
+            Console.WriteLine();
+            // 아이템
+            for (int i = 0; i < inventory.Length; i++)
+            {
+                if (inventory[i] == null)
+                    break;
 
-            if (inventory[i].isEquiped)
-                Console.Write("\u001b[31m[E]\u001b[0m");
+                if (inventory[i].isEquiped)
+                    Console.Write("\u001b[31m[E]\u001b[0m");
 
-            Console.WriteLine($" {inventory[i].Name,-8} |    공격력 : {inventory[i].Atk, -3} |    방어력 : {inventory[i].Def,-3} |  {inventory[i].Desc}");
-        }
-        Console.WriteLine();
-        Console.WriteLine("1. 장착관리");
-        Console.WriteLine("0. 뒤로가기");
+                Console.WriteLine($" {inventory[i].Name,-8} |    공격력 : {inventory[i].Atk,-3} |    방어력 : {inventory[i].Def,-3} |  {inventory[i].Desc}");
+            }
+            Console.WriteLine();
+            Console.WriteLine("1. 장착관리");
+            Console.WriteLine("0. 뒤로가기");
 
-        int optionNum = 2
-            ;
-        int input = GameManager.GM.SelectOption(optionNum, false, "");
-        switch (input)
-        {
-            case 1:
-                InventoryEquipManagement();
-                break;
+            int optionNum = 1;
+            int input = GameManager.GM.SelectOption(optionNum, true);
+            switch (input)
+            {
+                case 0:
+                    DisplayInventory();
+                    break;
+                case 1:
+                    InventoryEquipManagement();
+                    break;
+                default:
+                    break;
+               
+
+            }
         }
     }
 

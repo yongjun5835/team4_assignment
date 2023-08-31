@@ -212,8 +212,28 @@ internal class FightScene
 
         ShowChoice4();
     }
+    public void DropPotion()
+    {
+        Random random = new Random();
 
-    public void Result()//결과창
+        //포션 드롭 확률 설정 50 %
+        int dropChance = 50;
+        if (random.Next(0, 100) < dropChance)
+        {
+            int potionIndex = 0; //  포션의 인덱스 설정
+            int potionAmount = 1;
+            Program.inventory.AddQuantity1(potionIndex, potionAmount);
+        }
+        
+        else if(random.Next(0, 100) > dropChance)
+        {
+            int potionIndex = 1; //  포션의 인덱스 설정
+            int potionAmount = 1;
+            Program.inventory.AddQuantity2(potionIndex, potionAmount);
+        }
+    }
+
+        public void Result()//결과창
     {
         DrawDisplay("메인으로", "X", "X", "X");
 
@@ -243,6 +263,7 @@ internal class FightScene
             Console.WriteLine($"경험치 {totalExp}를 획득했습니다");
 
             Program.player.CheckLevelup();
+            DropPotion();
         }
 
         ShowChoice5();
