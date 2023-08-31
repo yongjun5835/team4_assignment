@@ -19,4 +19,5 @@ internal class Program
     public static StageSelectScene stageSelectScene = new StageSelectScene();
     public static BossScene bossScene = new BossScene();
     public static Shop shop = new Shop();
+    public static Inventory inventory = new Inventory(); 
 }

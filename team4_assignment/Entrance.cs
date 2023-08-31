@@ -50,7 +50,7 @@ class Entrance
                     }
                     break;
                 case 3:
-                    inventory.DisplayInventory();
+                    Program.inventory.DisplayInventory();
                     break;
                 case 4:
                     Inn();
