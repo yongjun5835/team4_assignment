@@ -110,12 +110,13 @@ class Player : Unit
                 level++; // 레벨업
                 atk += 1;
                 def++;
-                Console.SetCursorPosition(2, 8);
-                Console.WriteLine($"레벨업!   {level+1}레벨을 달성하셨습니다!");
-
+                Console.SetCursorPosition(2, 6);
+                Console.WriteLine("-------------------------------------");        
+                Console.SetCursorPosition(2, 7);
+                Console.WriteLine($"레벨업!   {level + 1}레벨을 달성하셨습니다!");
                 int totalExp = exp - maxExp[i];
                 exp = totalExp;
-                Console.SetCursorPosition(2, 9);
+                Console.SetCursorPosition(2, 8);
                 Console.WriteLine($"다음 레벨까지 남은 경험치는 {maxExp[i+1]-exp}");
             }
             else
