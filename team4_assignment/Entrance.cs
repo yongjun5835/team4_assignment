@@ -18,14 +18,14 @@ class Entrance
 
     public void EntranceUI()
     {
-        int optionNum = 4;
+        int optionNum = 5;
         while (true)
         {
             Console.Clear();
             GameManager.GM.MakeUI();
             RenderMainImg();
-            GameManager.GM.DrawText(2, 27, "참치 사냥을 떠나는 것이에요", "");
-            GameManager.GM.DrawText(2, 29, "1. 상태보기 2. 던전 입장 3. 인벤토리 4. 여관", "");
+            GameManager.GM.DrawText(2, 1, "참치 사냥을 떠나는 것이에요", "");
+            GameManager.GM.DrawText(2, 2, "1. 상태보기 2. 던전 입장 3. 인벤토리 4. 여관 5. 상점", "");
 
             if (Program.player.Hp <= 0)
             {
@@ -54,6 +54,9 @@ class Entrance
                     break;
                 case 4:
                     Inn();
+                    break;
+                case 5:
+                    Program.shop.EnterShop();
                     break;
 
             }

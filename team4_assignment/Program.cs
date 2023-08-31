@@ -21,4 +21,5 @@ internal class Program
     public static Entrance entrance = new Entrance();
     public static StageSelectScene stageSelectScene = new StageSelectScene();
     public static BossScene bossScene = new BossScene();
+    public static Shop shop = new Shop();
 }
