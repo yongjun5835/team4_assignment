@@ -3,7 +3,8 @@
 
 ### 📌 게임 흐름도 
 ---
-img
+![teamproject](https://github.com/yjun8629/team4_assignment/assets/141575778/be3ffa5d-89dc-4906-97a0-6b0eaf5e4ba3)
+
 
 ### 📌 담당 기능 
 ---
