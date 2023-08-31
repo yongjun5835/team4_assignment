@@ -16,15 +16,15 @@ namespace team4_assignment
             public string Name { get; set; }
             public int Atk { get; set; }
             public int Def { get; set; }
-            public int Gold { get; set; }
+            public int Gold { get; set; } 
         }
 
         private JobInfo[] jobInfos = new JobInfo[] // 직업 종류와 능력치
         {
-            new JobInfo { Name = "횟집 사장", Atk =7 , Def = 7, Gold = 1500 },
-            new JobInfo { Name = "전문 낚시꾼", Atk = 10, Def = 4, Gold = 1500},
-            new JobInfo { Name = "해양 경찰", Atk = 5, Def = 9, Gold = 1500 },
-            new JobInfo { Name = "참치그룹 회장", Atk = 1, Def = 2, Gold = 2000}
+            new JobInfo { Name = "횟집 사장", Atk = 10 , Def = 10, Gold = 1500 },
+            new JobInfo { Name = "전문 낚시꾼", Atk = 13, Def = 7, Gold = 1500},
+            new JobInfo { Name = "해양 경찰", Atk = 8, Def = 12, Gold = 1500 },
+            new JobInfo { Name = "참치그룹 회장", Atk = 4, Def = 6, Gold = 2500}
         };
 
         public void ChoiceJob()

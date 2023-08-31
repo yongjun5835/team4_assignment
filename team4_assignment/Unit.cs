@@ -31,7 +31,7 @@ class Unit
 
     private int CalculateDef(Unit target)
     {
-        return (int)(this.Atk * 3 * (1.0 - (target.Def / (1.0 + target.Def))));
+        return (int)(this.Atk * 5 * (1.0 - (target.Def / (1.0 + target.Def))));
     }
 
 
