@@ -68,14 +68,14 @@ class Player : Unit
         Console.SetCursorPosition(3, 7);
         GameManager.GM.DrawText(3, 2, "이름 ","blue"); Console.Write($": {Name}");
         GameManager.GM.DrawText(3, 3, "직업 ","blue"); Console.Write($": {job}");
-        GameManager.GM.DrawText(60, 2, $"이력서","green");
-        GameManager.GM.DrawText(60, 3, $"Lv : {level+1}","white");
-        GameManager.GM.DrawText(68, 3, $"({exp}".PadLeft(4,' ')+" / " + $"{maxExp[Level+1]})".PadRight(4,' '),"white");
-        GameManager.GM.DrawText(60, 4, $"체력   : {Hp} / {maxHp}","white");
-        GameManager.GM.DrawText(60, 5, $"마나   : {Mp} / {MaxMp}", "white");
-        GameManager.GM.DrawText(60, 6, $"공격력 : {Atk}", "white");
-        GameManager.GM.DrawText(60, 7, $"방어력 : {Def}", "white");
-        GameManager.GM.DrawText(60, 8, $"골드   : {Gold}", "white");
+        GameManager.GM.DrawText(57, 2, $"<이력서>","green");
+        GameManager.GM.DrawText(57, 3, $"Lv : {level+1}","white");
+        GameManager.GM.DrawText(64, 3, $"({exp}".PadLeft(5,' ')+" / " + $"{maxExp[Level+1]})","white");
+        GameManager.GM.DrawText(57, 4, $"체력   : {Hp} / {maxHp}","white");
+        GameManager.GM.DrawText(57, 5, $"마나   : {Mp} / {MaxMp}", "white");
+        GameManager.GM.DrawText(57, 6, $"공격력 : {Atk}", "white");
+        GameManager.GM.DrawText(57, 7, $"방어력 : {Def}", "white");
+        GameManager.GM.DrawText(57, 8, $"골드   : {Gold}", "white");
 
         GameManager.GM.DrawText(1, 5, "---------------------------------------------*", "white");
         GameManager.GM.DrawText(46, 6, "|", "white");

@@ -10,14 +10,14 @@
   <Class Name="Entrance">
     <Position X="19.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAAAACEAAAAAAAAAAgADAAAAAAAAACA=</HashCode>
+      <HashCode>AAAAIAAAAAAAAAIAACEAAAAAAAAAAgADAAAAAAAAACA=</HashCode>
       <FileName>Entrance.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FightScene">
     <Position X="21.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAAMKAQABAAAAgACAAIKQEACQAABJIAAAAAIAEAAA=</HashCode>
+      <HashCode>EAAAAMKAQABAAAAgAKAAIKQEACQAABJIAAAAAIAEAAA=</HashCode>
       <FileName>FightScene.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -38,7 +38,7 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>FAAAAAAAAAAEAAABAAFAAAAAAAAAAAACAAAAAQBAAAA=</HashCode>
+      <HashCode>FAAAAAAAAAAEEAABAAFAAAAAAAAAAAACAAAAAQBAAAA=</HashCode>
       <FileName>Inventory.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -52,14 +52,14 @@
   <Class Name="Player">
     <Position X="9" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAARAAAAIACAAAAAAAAAIAAAACQAABAAAACAAAAAE=</HashCode>
+      <HashCode>EAAAARAAAAIACAAABAAAAAIAAEACQAABAAAACAAAAAE=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Program" Collapsed="true">
     <Position X="14.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAQAAAAQAAAAAAAAAAAAAAAEAAABAAAAFAAAAAA=</HashCode>
+      <HashCode>AAAAAAQAAAAQAAAAAAAAAAAAAAAEAAADgAAAFAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -200,7 +200,7 @@
   <Class Name="Unit">
     <Position X="6.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAICARACAAAAAACAAAAAkAQAABGEAAMBgABCAAAAQgM=</HashCode>
+      <HashCode>EAICARECAAAAAACAAAAAkAQAABGEAAMBgABCAAAAQgM=</HashCode>
       <FileName>Unit.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -225,7 +225,7 @@
       <FileName>JobSetting.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="SkillType" Collapsed="true">
+  <Enum Name="SkillType">
     <Position X="11.25" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAUAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
