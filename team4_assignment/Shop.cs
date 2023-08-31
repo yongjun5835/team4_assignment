@@ -47,7 +47,7 @@ internal class Shop
                 else
                 {
                     Console.SetCursorPosition(75, 25);
-                    Console.Write("                             ");
+                    Console.Write("                                               ");
                     Console.SetCursorPosition(75, 25);
                     Console.Write("올바른 값을 입력해주세요.: ");
                 }
