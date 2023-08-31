@@ -255,14 +255,15 @@ internal class FightScene
             Program.player.Exp += totalExp;
             Program.player.Gold += totalGold;
 
-            Console.SetCursorPosition(2, 5);
+            Console.SetCursorPosition(2, 3);
             Console.WriteLine($"골드 {totalGold}를 획득했습니다!");
-            Console.SetCursorPosition(2, 6);
+            Console.SetCursorPosition(2, 4);
             Console.WriteLine($"총 소지하신 골드는 {Program.player.Gold}원 입니다.");
-            Console.SetCursorPosition(2, 7);
+            Console.SetCursorPosition(2, 5);
             Console.WriteLine($"경험치 {totalExp}를 획득했습니다");
-
             Program.player.CheckLevelup();
+            Program.inventory.DropItem();
+
             DropPotion();
         }
 

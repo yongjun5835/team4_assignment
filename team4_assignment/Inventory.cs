@@ -8,6 +8,7 @@ class Inventory
     public Player Player;
     Item[] inventory;
     Item[] inventoryPotion;
+    private int ItemCount;
 
 
 
@@ -51,18 +52,45 @@ class Inventory
 
 
         inventoryPotion[index].Quantity += amount;
-        Console.SetCursorPosition(2, 10);
+        Console.SetCursorPosition(2, 11);
         Console.WriteLine("Hp포션이 드랍 되었습니다!");
 
     }
     public void AddQuantity2(int index, int amount) 
     {
         inventoryPotion[index].Quantity += amount;
-        Console.SetCursorPosition(2, 10);
+        Console.SetCursorPosition(2, 11);
         Console.WriteLine("Mp포션이 드랍 되었습니다!");
     }
+    public void DropItem()
+    {
+        Random random = new Random();
+        int itemType = 1;
 
-    class Item
+        if (random.Next(1, 10) < itemType)
+        {
+            Console.SetCursorPosition(2, 9);
+            Console.WriteLine("-------------------------------------");
+            Item droppedItem = new Item(name: "아무짝에도 쓸모없는 비늘", atk: 0, def: 1, desc: "장식용인가..", hp: 0, mp: 0, qu: 1);
+            Console.SetCursorPosition(2, 10);
+            Console.WriteLine($"몬스터가 아이템을 떨어뜨렸습니다: {droppedItem.Name}");
+
+            AddItem(droppedItem); 
+        }
+    }
+    public void AddItem(Item item)//아이템 추가
+    {
+        for (int index = 0; index < inventory.Length; index++)
+        {
+            if (inventory[index] == null) // 비여있는 슬롯 체크
+            {
+                inventory[index] = item;
+                ItemCount++;
+                return;
+            }
+        }
+    }
+    public class Item
     {
 
         private int quantity;
