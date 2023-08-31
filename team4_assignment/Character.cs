@@ -6,7 +6,22 @@ namespace team4_assignment
         
         JobSetting jobSetting = new JobSetting();
         public string UserName { get; set; }
-        
+        string BG1 = ("                                        |");
+        string BG2 = ("                                      \\ _ /");
+        string BG3 = ("                                    -= (_) =-");
+        string BG4 = ("                                      /   \\");
+        string BG5 = ("                                        | ");
+
+
+        string BGa = ("    .\\/.                                  ");
+        string BGb = (".\\\\//o\\\\                      ,\\/.                      ,~~");
+        string BGc = ("//o\\\\|,\\/.   ,.,.,   ,\\/.  ,\\//o\\\\                     |\\");
+        string BGd = ("  |  |//o\\  /###/#\\  //o\\  /o\\\\|                      /| \\");
+        string BGe = ("^^|^^|^~|^^^|' '|:|^^^|^^^^^|^^|^^^\"\"\"\"\"\"\"\"(\"~~~~~~~~/_|__\\~~~~~~~~~~");
+        string BGf = (" .|'' . |  '''\"\"'\"''. |`===`|''  '\"\" \"\" \" (\" ~~~~ ~ ~======~~  ~~ ~");
+        string BGg = (" jgs^^   ^^^ ^ ^^^ ^^^^ ^^^ ^^ ^^ \"\" \"\"\"( \" ~~~~~~ ~~~~~  ~~~ ~");
+
+        string line = ("---------------------------------------------------------------------------------");
         public Character()
 		{
 
@@ -14,16 +29,50 @@ namespace team4_assignment
 
 		public void InputName()
 		{
-            Console.Clear();
-            Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
-            Console.WriteLine("원하시는 이름을 설정해 주세요.\n");
+            GameManager.GM.MakeUI();
+            GameManager.GM.DrawText(27, 2, "~참치 사냥을 떠나는 것이에요~", "white");
+            GameManager.GM.DrawText(26, 12, "원하시는 이름을 설정해 주세요!", "white");
+            GameManager.GM.DrawText(2, 4, ($"{line}"), "white");
+            GameManager.GM.DrawText(30, 5, ($"{BG1}"), "yellow");
+            GameManager.GM.DrawText(30, 6, ($"{BG2}"), "yellow");
+            GameManager.GM.DrawText(30, 7, ($"{BG3}"), "yellow");
+            GameManager.GM.DrawText(30, 8, ($"{BG4}"), "yellow");
+            GameManager.GM.DrawText(30, 9, ($"{BG5}"), "yellow");
+            GameManager.GM.DrawText(7, 15, ($"{BGa}"), "blue");
+            GameManager.GM.DrawText(7, 16, ($"{BGb}"), "blue");
+            GameManager.GM.DrawText(7, 17, ($"{BGc}"), "blue");
+            GameManager.GM.DrawText(7, 18, ($"{BGd}"), "blue");
+            GameManager.GM.DrawText(7, 19, ($"{BGe}"), "blue");
+            GameManager.GM.DrawText(7, 20, ($"{BGf}"), "blue");
+            GameManager.GM.DrawText(7, 21, ($"{BGg}"), "blue");
+            GameManager.GM.DrawText(2, 22, ($"{line}\n"), "white");
+            GameManager.GM.DrawText(35, 24, "  "," " );
+
+
+
+
+
+
+            //Console.Clear();
+            //Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
+            //Console.WriteLine("원하시는 이름을 설정해 주세요.\n");
 
             string userName = Console.ReadLine(); // 사용자가 설정하려는 이름을 입력받는 부분
             Program.player.Name = userName;
-            
+
             Console.Clear();
-			Console.WriteLine($"당신의 이름은 {userName}입니다.\n");
-            Console.WriteLine("1. 확인 \n2. 이름 변경");
+            GameManager.GM.MakeUI();
+            GameManager.GM.DrawText(26, 12, ($"당신의 이름은 {userName}입니다!"), "white");
+            GameManager.GM.DrawText(2, 21, ($"{line}\n"), "white");
+            GameManager.GM.DrawText(2, 23, "1. 확인 2. 이름 변경", "white");
+            GameManager.GM.DrawText(2, 26, " ", "");
+
+            
+
+
+
+            //Console.WriteLine($"당신의 이름은 {userName}입니다.\n");
+            //         Console.WriteLine("1. 확인 \n2. 이름 변경");
 
             bool isSelect = false;
             while (isSelect == false)
@@ -51,15 +100,42 @@ namespace team4_assignment
         public void ChangeName() // 이름을 재설정 할 때. 
         {
             Console.Clear();
-            Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
-            Console.WriteLine("변경 할 이름을 설정해 주세요.\n");
+            GameManager.GM.MakeUI();
+            GameManager.GM.DrawText(27, 2, "~참치 사냥을 떠나는 것이에요~", "white");
+            GameManager.GM.DrawText(26, 12, "변경 할 이름을 설정해 주세요.", "red");
+            GameManager.GM.DrawText(2, 4, ($"{line}"), "white");
+            GameManager.GM.DrawText(30, 5, ($"{BG1}"), "yellow");
+            GameManager.GM.DrawText(30, 6, ($"{BG2}"), "yellow");
+            GameManager.GM.DrawText(30, 7, ($"{BG3}"), "yellow");
+            GameManager.GM.DrawText(30, 8, ($"{BG4}"), "yellow");
+            GameManager.GM.DrawText(30, 9, ($"{BG5}"), "yellow");
+            GameManager.GM.DrawText(7, 15, ($"{BGa}"), "blue");
+            GameManager.GM.DrawText(7, 16, ($"{BGb}"), "blue");
+            GameManager.GM.DrawText(7, 17, ($"{BGc}"), "blue");
+            GameManager.GM.DrawText(7, 18, ($"{BGd}"), "blue");
+            GameManager.GM.DrawText(7, 19, ($"{BGe}"), "blue");
+            GameManager.GM.DrawText(7, 20, ($"{BGf}"), "blue");
+            GameManager.GM.DrawText(7, 21, ($"{BGg}"), "blue");
+            GameManager.GM.DrawText(2, 22, ($"{line}\n"), "white");
+            GameManager.GM.DrawText(35, 24, "  ", " ");
+
+            //Console.Clear();
+            //Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
+            //Console.WriteLine("변경 할 이름을 설정해 주세요.\n");
 
             string userName = Console.ReadLine();
             Program.player.Name = userName;
 
             Console.Clear();
-            Console.WriteLine($"당신의 이름은 {userName}입니다.\n");
-            Console.WriteLine("1. 확인  \n2. 이름 변경");
+            GameManager.GM.MakeUI();
+            GameManager.GM.DrawText(26, 12, ($"당신의 이름은 {userName}입니다!"), "white");
+            GameManager.GM.DrawText(2, 21, ($"{line}\n"), "white");
+            GameManager.GM.DrawText(2, 23, "1. 확인 2. 이름 변경", "white");
+            GameManager.GM.DrawText(2, 26, " ", "");
+
+            //Console.Clear();
+            //Console.WriteLine($"당신의 이름은 {userName}입니다.\n");
+            //Console.WriteLine("1. 확인  \n2. 이름 변경");
 
             bool isSelect = false;
             while (isSelect == false)
@@ -84,7 +160,6 @@ namespace team4_assignment
             }
 
         }
-
 
     }
 
