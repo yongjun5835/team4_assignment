@@ -1,6 +1,6 @@
 ﻿class Player : Unit
 {
-    private int[] maxExp = { 0, 10, 35, 65, 100 }; // 레벨별 필요 경험치
+    private int[] maxExp = { 50, 100, 200, 300, 400, 500, 600, 700 }; // 레벨별 필요 경험치
     public Player()
     {
         hp = 100;
@@ -8,9 +8,9 @@
         atk = 10;
         def = 5;
         gold = 1500;
-        mp = 50;
+        mp = 500;
         maxMp = mp;
-        level = 1;
+        level = 0;
         exp = 0;
 
         skills.Add(new FastSpin());
@@ -18,7 +18,7 @@
     }
 
     private string job = "";
-    private int gold;
+    private int gold = 0;
 
     public bool vsBoss = false;
     public bool vsBossSkillCombo = false;
@@ -31,75 +31,50 @@
 
     public void StatusUI()
     {
-        Console.Clear();
-        Console.WriteLine($"이름 : {Name}");
-        Console.WriteLine($"직업 : {Job}");
-        Console.WriteLine($"레벨 : {level}    경험치 :{exp}/{maxExp[level]}");
-        Console.WriteLine($"체력 : {Hp} / {maxHp}");
-        Console.WriteLine($"마나 : {mp} / {maxMp}");
-        Console.WriteLine($"공격력 : {Atk}");
-        Console.WriteLine($"방어력 : {Def}");
-        Console.WriteLine($"금화 : {Gold}");
-        Console.WriteLine("\n1. 나가기");
-        int inputKey = GameManager.GM.SelectOption(1, false);
-        switch (inputKey)
+        while (true)
         {
-            case 1:
-                return;
-            default:
-                break;
+            Console.Clear();
+            Console.WriteLine($"이름 : {Name}");
+            Console.WriteLine($"직업 : {Job}");
+            Console.WriteLine($"레벨 : {level + 1}    경험치 :{exp}/{maxExp[level]}");
+            Console.WriteLine($"체력 : {Hp} / {maxHp}");
+            Console.WriteLine($"마나 : {mp} / {maxMp}");
+            Console.WriteLine($"공격력 : {Atk}");
+            Console.WriteLine($"방어력 : {Def}");
+            Console.WriteLine($"금화 : {Gold}");
+            Console.WriteLine("\n1. 나가기");
+            int inputKey = GameManager.GM.SelectOption(1, false);
+            switch (inputKey)
+            {
+                case 1:
+                    return;
+                default:
+                    break;
+            }
         }
     }
-
+    
     public void CheckLevelup()
     {
-        for (int i = level - 1; i < maxExp.Length; i++) // maxExp 배열 사용
+        for (int i = level; i < maxExp.Length; i++) // maxExp 배열 사용
         {
             if (exp >= maxExp[i])
             {
                 level++; // 레벨업
                 atk += 1;
                 def++;
-                exp = 0;
                 Console.SetCursorPosition(2, 8);
-                Console.WriteLine($"레벨업!{level}레벨을 달성하셨습니다!");
+                Console.WriteLine($"레벨업!   {level+1}레벨을 달성하셨습니다!");
+
+                int totalExp = exp - maxExp[i];
+                exp = totalExp;
+                Console.SetCursorPosition(2, 9);
+                Console.WriteLine($"다음 레벨까지 남은 경험치는 {maxExp[i+1]-exp}");
             }
             else
             {
                 break;
             }
-        }
-    }
-
-    public void UseSkill(Skill skill)
-    {
-        if (Mp < skill.RequiredMp)
-        {
-            Console.WriteLine("\n마나가 부족합니다.");
-            Thread.Sleep(1000);
-            return;
-        }
-        Mp -= skill.RequiredMp;
-        skill.UseSkill(this);
-    }
-
-    public void UseSkill(Skill skill, List<Monster> tagets)
-    {
-        if (Mp < skill.RequiredMp)
-        {
-            Console.WriteLine("\n마나가 부족합니다.");
-            Thread.Sleep(1000);
-            return;
-        }
-        Mp -= skill.RequiredMp;
-
-        if (skill.SkillType == SkillType.Solo)
-        {
-            skill.UseSkill(this);
-        }
-        else if (skill.SkillType == SkillType.Taget)
-        {
-            skill.UseSkill(this, tagets);
         }
     }
 

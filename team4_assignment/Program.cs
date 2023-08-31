@@ -9,6 +9,7 @@ internal class Program
         Character character = new Character();
         character.InputName();// 캐릭터 생성기능
         string userName = character.UserName;
+
     }
 
     public static FightScene fightScene = new FightScene();
@@ -16,4 +17,6 @@ internal class Program
     public static Entrance entrance = new Entrance();
     public static StageSelectScene stageSelectScene = new StageSelectScene();
     public static BossScene bossScene = new BossScene();
+    public static Shop shop = new Shop();
+    public static Inventory inventory = new Inventory(); 
 }

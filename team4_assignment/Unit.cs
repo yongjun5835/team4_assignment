@@ -28,19 +28,55 @@ class Unit
     public bool IsDead { get { return isDead; } set { isDead = value; } }
 
 
+    private int CalculateDef(Unit target)
+    {
+        return (int)(this.Atk * 5 * (1.0 - (target.Def / (1.0 + target.Def))));
+    }
 
 
-
-
-    public int AttackUnit(Unit target, AttackTypeDele atkTypeDelegate )
+    public int AttackUnit(Unit target, CorrectAtkType atkTypeDelegate )
     {
         StringBuilder txt = new StringBuilder($"{Name}의 공격");
-        int damage = this.Atk /*- target.def*/;
+        int damage = CalculateDef(target); //원래 기본은 /*- target.def*/ 이용
         atkTypeDelegate(txt, ref damage);
         target.hp -= damage;
         Console.Write(txt);
         return damage;
     }
 
+    public StringBuilder MagicalAttackBoss(Unit target, Skill skill)
+    {
+        StringBuilder txt = new StringBuilder($"공격");
+        if (skill.SkillType == SkillType.Solo)
+        {
+            skill.UseSkill(this,txt);
+        }
+        else if (skill.SkillType == SkillType.Boss)
+        {
+            skill.UseSkill(this,target,txt);
+        }
 
+        return txt;
+    }
+
+    public StringBuilder MagicalAttackUnits(List<Monster> targets, Skill skill)
+    {
+        StringBuilder txt = new StringBuilder($"공격");
+        if (skill.SkillType == SkillType.Solo)
+        {
+            skill.UseSkill(this,txt);
+        }
+        else if (skill.SkillType == SkillType.Taget)
+        {
+            skill.UseSkill(this, targets, txt);
+        }
+        else if (skill.SkillType == SkillType.Boss)
+        {
+            Console.Clear();
+            Console.WriteLine("스킬타입이 보스인데 리스트로 target이 들어옴");
+            Console.WriteLine();
+        }
+
+        return txt;
+    }
 }
