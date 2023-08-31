@@ -95,6 +95,7 @@ class Entrance
                         break;
                     }
                     player.Hp = player.MaxHp;
+                    player.Mp = player.MaxMp;
                     player.Gold -= 500;
                     SleepAni();
                     break;
