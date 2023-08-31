@@ -31,23 +31,26 @@
 
     public void StatusUI()
     {
-        Console.Clear();
-        Console.WriteLine($"이름 : {Name}");
-        Console.WriteLine($"직업 : {Job}");
-        Console.WriteLine($"레벨 : {level + 1}    경험치 :{exp}/{maxExp[level]}");
-        Console.WriteLine($"체력 : {Hp} / {maxHp}");
-        Console.WriteLine($"마나 : {mp} / {maxMp}");
-        Console.WriteLine($"공격력 : {Atk}");
-        Console.WriteLine($"방어력 : {Def}");
-        Console.WriteLine($"금화 : {Gold}");
-        Console.WriteLine("\n1. 나가기");
-        int inputKey = GameManager.GM.SelectOption(1, false);
-        switch (inputKey)
+        while (true)
         {
-            case 1:
-                return;
-            default:
-                break;
+            Console.Clear();
+            Console.WriteLine($"이름 : {Name}");
+            Console.WriteLine($"직업 : {Job}");
+            Console.WriteLine($"레벨 : {level + 1}    경험치 :{exp}/{maxExp[level]}");
+            Console.WriteLine($"체력 : {Hp} / {maxHp}");
+            Console.WriteLine($"마나 : {mp} / {maxMp}");
+            Console.WriteLine($"공격력 : {Atk}");
+            Console.WriteLine($"방어력 : {Def}");
+            Console.WriteLine($"금화 : {Gold}");
+            Console.WriteLine("\n1. 나가기");
+            int inputKey = GameManager.GM.SelectOption(1, false);
+            switch (inputKey)
+            {
+                case 1:
+                    return;
+                default:
+                    break;
+            }
         }
     }
     
