@@ -23,8 +23,9 @@ class Entrance
         {
             Console.Clear();
             GameManager.GM.MakeUI();
-            RenderMainImg();
-            GameManager.GM.DrawText(2, 1, "참치 사냥을 떠나는 것이에요", "");
+            RenderMainImg(); 
+            GameManager.GM.DrawText(2, 1, "마~씻는 참치 낚시", "blue");
+            Console.Write("하러 떠나는 것이에요!!");
             GameManager.GM.DrawText(2, 2, "1. 상태보기 2. 던전 입장 3. 인벤토리 4. 여관 5. 상점", "");
 
             if (Program.player.Hp <= 0)
@@ -72,13 +73,13 @@ class Entrance
         {
             Console.Clear();
             GameManager.GM.MakeUI();
-            GameManager.GM.DrawText(0, 27, "아늑하고 따뜻한 이곳은 ", "blue");
+            RenderInn();
+            GameManager.GM.DrawText(2, 1, "아늑하고 따뜻한 이곳은 ", "white");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("'여관'\n");
+            Console.Write("'통조림 여관'\n");
             Console.ResetColor();
-
-            Console.WriteLine("1. 내일을 맞이하기 (500 G)  2. 돌아가기");
-            int input = GameManager.GM.SelectOption(optionNum, false);
+            GameManager.GM.DrawText(2, 2, "1. 내일을 맞이하기 (500 G)  2. 돌아가기", "white");
+            int input = GameManager.GM.SelectOption(optionNum, false,"");
             switch (input)
             {
                 case 1:
@@ -95,6 +96,7 @@ class Entrance
                         break;
                     }
                     player.Hp = player.MaxHp;
+                    player.Mp = player.MaxMp;
                     player.Gold -= 500;
                     SleepAni();
                     break;
@@ -196,4 +198,47 @@ class Entrance
         }
         
     }
+
+    void RenderInn()
+    {
+        Queue<string> imgArr = new Queue<string>();
+        string A01 = "                                   /\\";
+        string A02 = "                              /\\  //\\\\";
+        string A03 = "                       /\\    //\\\\///\\\\\\        /\\";
+        string A04 = "                      //\\\\  ///\\////\\\\\\\\  /\\  //\\\\";
+        string A05 = "         /\\          /  ^ \\/^ ^/^  ^  ^ \\/^ \\/  ^ \\";
+        string A06 = "        / ^\\    /\\  / ^   /  ^/ ^ ^ ^   ^\\ ^/  ^^  \\";
+        string A07 = "       /^   \\  / ^\\/ ^ ^   ^ / ^  ^    ^  \\/ ^   ^  \\       *";
+        string A08 = "      /  ^ ^ \\/^  ^\\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \\     /|\\";
+        string A09 = "     / ^ ^  ^ \\ ^  _\\___________________|  |_____^ ^  \\   /||o\\";
+        string A10 = "    / ^^  ^ ^ ^\\  /______________________________\\ ^ ^ \\ /|o|||\\";
+        string A11 = "   /  ^  ^^ ^ ^  /________________________________\\  ^  /|||||o|\\ ";
+        string A12 = "  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||\\";
+        string A13 = " / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |";
+        string A14 = "/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo";
+
+        imgArr.Enqueue(A01);
+        imgArr.Enqueue(A02);
+        imgArr.Enqueue(A03);
+        imgArr.Enqueue(A04);
+        imgArr.Enqueue(A05);
+        imgArr.Enqueue(A06);
+        imgArr.Enqueue(A07);
+        imgArr.Enqueue(A08);
+        imgArr.Enqueue(A09);
+        imgArr.Enqueue(A10);
+        imgArr.Enqueue(A11);
+        imgArr.Enqueue(A12);
+        imgArr.Enqueue(A13);
+        imgArr.Enqueue(A14);
+
+        int count = imgArr.Count;
+        for (int i = 0; i < count; i++)
+        {
+            Console.SetCursorPosition(4, i + 3 +8);
+            Console.Write(imgArr.Dequeue());
+        }
+
+    }
+
 }

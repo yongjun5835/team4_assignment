@@ -46,14 +46,20 @@ class Inventory
         Program.player.Atk -= item.Atk;
         Program.player.Def -= item.Def;
     }
-    public void AddQuantity(int index, int amount)
+    public void AddQuantity1(int index, int amount)
     {
 
 
         inventoryPotion[index].Quantity += amount;
         Console.SetCursorPosition(2, 10);
-        Console.WriteLine("포션이 드랍 되었습니다!");
+        Console.WriteLine("Hp포션이 드랍 되었습니다!");
 
+    }
+    public void AddQuantity2(int index, int amount) 
+    {
+        inventoryPotion[index].Quantity += amount;
+        Console.SetCursorPosition(2, 10);
+        Console.WriteLine("Mp포션이 드랍 되었습니다!");
     }
 
     class Item

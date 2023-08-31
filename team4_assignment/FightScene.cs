@@ -222,12 +222,14 @@ internal class FightScene
         {
             int potionIndex = 0; //  포션의 인덱스 설정
             int potionAmount = 1;
-            Program.inventory.AddQuantity(potionIndex, potionAmount);
+            Program.inventory.AddQuantity1(potionIndex, potionAmount);
         }
-        else
+        
+        else if(random.Next(0, 100) > dropChance)
         {
-            Console.SetCursorPosition(2, 10);
-            Console.WriteLine("");
+            int potionIndex = 1; //  포션의 인덱스 설정
+            int potionAmount = 1;
+            Program.inventory.AddQuantity2(potionIndex, potionAmount);
         }
     }
 
