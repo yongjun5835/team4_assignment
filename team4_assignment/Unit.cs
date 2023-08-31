@@ -27,10 +27,17 @@ class Unit
     public int Gold { get { return gold; } set { gold = value; } }
     public bool IsDead { get { return isDead; } set { isDead = value; } }
 
+
+    private int CalculateDef(Unit target)
+    {
+        return (int)(this.Atk * 5 * (1.0 - (target.Def / (1.0 + target.Def))));
+    }
+
+
     public int AttackUnit(Unit target, CorrectAtkType atkTypeDelegate )
     {
         StringBuilder txt = new StringBuilder($"{Name}의 공격");
-        int damage = this.Atk /*- target.def*/;
+        int damage = CalculateDef(target); //원래 기본은 /*- target.def*/ 이용
         atkTypeDelegate(txt, ref damage);
         target.hp -= damage;
         Console.Write(txt);
