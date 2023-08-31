@@ -14,6 +14,9 @@ internal class FightScene
     FastSpin fastSpin = new FastSpin();
     WriggleWriggleSpin wriggleWriggleSpin = new WriggleWriggleSpin();
     Rest rest = new Rest();
+    TempMagic tempMagic = new TempMagic();
+
+    StringBuilder skillTxtHelper;
 
     public FightScene()
     {
@@ -113,11 +116,28 @@ internal class FightScene
 
     public void SkillPhase()
     {
+
         DrawDisplay("다음 페이즈로", "X", "X", "X");
 
         InfoClear();
+
+        StringBuilder subText = new StringBuilder();
+        StringBuilder tempText = new StringBuilder(skillTxtHelper.ToString());
+        for (int i = 5; i < tempText.Length; i++)
+        {
+            if (tempText[i] == '\n')
+            {
+                skillTxtHelper.Remove(i, skillTxtHelper.Length-i);
+                tempText.Remove(0,i+1);
+                subText = tempText;
+                break;
+            }
+        }
         Console.SetCursorPosition(2, 4);
-        Console.Write("당신은 신중하게 스킬을 사용했습니다!");
+        Console.Write(skillTxtHelper); // << 스킬 텍스트
+        Console.SetCursorPosition(2, 5);
+        Console.Write(subText); // << 스킬 텍스트
+
 
         if (monsters[0].Hp <= 0 &&
             monsters[1].Hp <= 0 &&
@@ -320,16 +340,16 @@ internal class FightScene
             }
         }
     }
-
+    // 마법 사용 구간
     public void ShowChoice2()
     {
         bool isSelect = false;
+        skillTxtHelper = new StringBuilder();
         Console.SetCursorPosition(0, 28);
         Console.Write("선택지를 입력해주세요.: ");
         while (isSelect == false)
         {
             string key = Console.ReadLine();
-
             if (key == "0")
             {
                 Program.fightScene.StartPhase();
@@ -337,19 +357,22 @@ internal class FightScene
             }
             else if (key == "1")
             {
-                fastSpin.UseSkill(Program.player, monsters);
+                skillTxtHelper = Program.player.MagicalAttackUnits(monsters,fastSpin);
+                Program.player.Mp -= fastSpin.RequiredMp;
                 Program.fightScene.SkillPhase();
                 isSelect = true;
             }
             else if (key == "2")
             {
-                wriggleWriggleSpin.UseSkill(Program.player, monsters);
+                skillTxtHelper = Program.player.MagicalAttackUnits(monsters, wriggleWriggleSpin);
+                Program.player.Mp -= wriggleWriggleSpin.RequiredMp;
                 Program.fightScene.SkillPhase();
                 isSelect = true;
             }
             else if (key == "3")
             {
-                rest.UseSkill(Program.player);
+                skillTxtHelper = Program.player.MagicalAttackUnits(monsters, rest);
+                Program.player.Mp -= rest.RequiredMp;
                 Program.fightScene.SkillPhase();
                 isSelect = true;
             }

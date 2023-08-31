@@ -69,11 +69,63 @@ class GameManager
         return -1;
     }
 
-    // 대미지 보정할 때 쓰는 함수들을 델리게이트로 묶어서 사용합니다!
+    // 추가적인 키입력을 원할 때
+    public void PressAnyKey()
+    {
+        Console.WriteLine("계속하시려면 아무 키나 눌려주세요.");
+        Console.ReadKey();
+    }
+
+    // 용준님이 만든 UI 틀
+    public void MakeUI()
+    {
+        Console.Clear();
+        Console.SetCursorPosition(0, 0);
+        Console.Write("*-----------------------------------------------------------------------------------*");
+        Console.SetCursorPosition(0, 25);
+        Console.Write("*-----------------------------------------------------------------------------------*");
+        for (int i = 1; i < 25; i++)
+        {
+            Console.SetCursorPosition(0, i);
+            Console.Write("|");
+            Console.SetCursorPosition(84, i);
+            Console.Write("|");
+        }
+        Console.SetCursorPosition(3, 2);
+    }
+
+    /*
+    DrawText 사용법
+    GameManager.GM.DrawText(x좌표, y좌표, "텍스트", "원하는 색상 소문자로");
+    */
+    public void DrawText(int x, int y, string text, string color)
+    {
+        if (color == "red")
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+        }
+        else if (color == "green")
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
+        else if (color == "blue")
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+        }
+        else if (color == "yellow")
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+        }
+        Console.SetCursorPosition(x, y);
+        Console.Write(text);
+        Console.ResetColor();
+    }
+
+    // 대미지 보정용 코드, 직접적인 공격은 안 함
     #region 공격 델리게이트 전용 함수
-    public delegate void AttackTypeDele(StringBuilder txt, ref int damage);
-    public AttackTypeDele physicalDmg;
-    public AttackTypeDele magicalDmg;
+    public delegate void CorrectAtkType(StringBuilder txt, ref int damage);
+    public CorrectAtkType physicalDmg;
+    public CorrectAtkType magicalDmg;
 
     void SettingDele()
     {
@@ -116,6 +168,17 @@ class GameManager
             damage = 0;
             txt.Append("을 회피하였습니다.");
         }
+    }
+
+    public void PlayerCheat()
+    {
+        Program.player.Atk += 100;
+        Program.player.Def += 50;
+        Program.player.MaxHp += 5000;
+        Program.player.Hp += 5000;
+        Program.player.Gold += 5000;
+        Console.WriteLine("치트 사용됨");
+        Thread.Sleep(1000);
     }
     #endregion
 
