@@ -6,6 +6,16 @@ using System.Threading.Tasks;
 
 internal class Shop
 {
+    Inventory shopInven = new Inventory(); // 상점 아이템
+    Inventory.Item[] itemList = new Inventory.Item[5];
+
+    public Shop() 
+    {
+        shopInven.InventoryGetSet = itemList;
+    }
+
+
+
     public void EnterShop()
     {
         Console.Clear();
@@ -155,5 +165,22 @@ internal class Shop
         Console.Write("/_____/_____/_____/_____/_____/_____/_____/_____/_____/_____/_____/");
         Console.SetCursorPosition(x, y + 25);
         Console.Write("_______________________________________________________________");
+    }
+
+    void SellItem(Inventory.Item sellitem)
+    {
+        Player player = Program.player; // 플레이어
+        Inventory playerInven = Program.inventory; // 플레이어 인벤
+
+        player.Gold += sellitem.
+
+
+        
+
+       
+
+        
+
+
     }
 }
