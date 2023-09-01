@@ -22,8 +22,8 @@ class Inventory
     {
         inventory = new Item[10];
 
-        inventory[0] = new Item(name: "    앞치마    ", atk: 0, def: 2, desc: "방어력을 올려준다고? 오케이~", hp: 0,mp:0, qu: 0, gold: 500);;
-        inventory[1] = new Item(name: "주방에 있던 칼", atk: 5, def: 0, desc: "물고기랑 싸우려면 일단 들고가자..", hp: 0, mp: 0, qu: 0, gold: 1000);
+        inventory[0] = new Item(name: "    앞치마    ", atk: 0, def: 20, desc: "방어력을 올려준다고? 오케이~", hp: 0,mp:0, qu: 0, gold: 500);;
+        inventory[1] = new Item(name: "주방에 있던 칼", atk: 80, def: 0, desc: "물고기랑 싸우려면 일단 들고가자..", hp: 0, mp: 0, qu: 0, gold: 1000);
 
 
         inventoryPotion = new Item[5];

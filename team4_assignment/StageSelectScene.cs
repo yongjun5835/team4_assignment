@@ -8,6 +8,8 @@ internal class StageSelectScene
 {
     public void StageSelect()
     {
+
+        Entrance entrance = new Entrance();
         Console.Clear();
 
         string canEnter2 = (Program.fightScene.clearLevel >= 1) ? "[입장가능]" : "[입장불가]";
@@ -22,6 +24,8 @@ internal class StageSelectScene
         Console.ResetColor();
         Console.Write(" 4. 자이언트참치 잡으러 가기");
         Console.WriteLine("");
+        Console.WriteLine("");
+        Console.WriteLine("0. 뒤로가기");
 
         bool isSelect = false;
         Console.SetCursorPosition(0, 28);
@@ -29,8 +33,12 @@ internal class StageSelectScene
         while (isSelect == false)
         {
             string key = Console.ReadLine();
-
-            if (key == "1")
+            if (key == "0")
+            {
+                entrance.EntranceUI();
+              
+            }
+            else if (key == "1")
             {
                 Program.fightScene.stageLevel = 1;
                 Program.fightScene.Restart();
