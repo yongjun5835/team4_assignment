@@ -16,7 +16,18 @@ class Unit
     protected bool isDead = false;
 
     public string Name { get { return name; } set { name = value; } }
-    public virtual int Hp { get { return hp; } set { hp = value; } }
+    public virtual int Hp 
+    { 
+        get { return hp; } 
+        set 
+        { 
+            hp = value;
+            if (hp >maxHp)
+            {
+                hp = maxHp;
+            }
+        } 
+    }
     public int Mp { get { return mp; } set { mp = value; } }
     public int Atk { get { return atk; } set { atk = value; } }
     public int Def { get { return def; } set { def = value; } }
