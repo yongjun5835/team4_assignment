@@ -11,15 +11,14 @@ internal class Shop
 
     Inventory.Item[] playerInven; // 플레이어 인벤토리 
 
-    public Shop() 
+    public Shop()
     {
         shopInven.InventoryGetSet = itemList; // 클래스끼리 연결
-
-        for (int i = 0; i < itemList.Length; i++) // 가짜로 5개 채웁니다
-        {
-            itemList[i] = new Inventory.Item("가짜", 0, 0, "가짜", 0, 0, 0,0);
-        }
-
+        itemList[0] = new Inventory.Item("딱딱한 가쓰오부시", 10,0, "가쓰오부시다.", 0, 0, 0, 1000);
+        itemList[1] = new Inventory.Item("대나무 낚시대", 20, 0, "풍류를 즐길 줄 아는 자의 낚싯대", 0, 0, 0, 2000);
+        itemList[2] = new Inventory.Item("ㅇㅇ스커스 사시미", 30, 0, "중고가형 브랜드다.", 0, 0, 0, 3000);
+        itemList[3] = new Inventory.Item("구명조끼", 0, 10, "나를 살려줄 든든한 친구", 0, 0, 0, 1000);
+        itemList[4] = new Inventory.Item("아이스 박스", 0, 0, "살아서 다시 보길 바란다", 0, 50, 0, 500);
     }
 
 
@@ -132,9 +131,9 @@ internal class Shop
         Console.Write("*-------------------------------------*");
         for (int i = 1; i < 4; i++)
         {
-            Console.SetCursorPosition(x, y+i);
+            Console.SetCursorPosition(x, y + i);
             Console.Write("|");
-            Console.SetCursorPosition(x+38, y+i);
+            Console.SetCursorPosition(x + 38, y + i);
             Console.Write("|");
         }
         GameManager.GM.DrawText(x + 2, y + 2, $"현재 소지금은 {Program.player.Gold}골드입니다.", "yellow");
@@ -214,7 +213,7 @@ internal class Shop
     void SellItem(Inventory.Item sellitem)
     {
 
-        Program.player.Gold += (int)(sellitem.Gold*0.8f);
+        Program.player.Gold += (int)(sellitem.Gold * 0.8f);
 
         sellitem = null;
     }
