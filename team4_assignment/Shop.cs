@@ -51,12 +51,7 @@ internal class Shop
                 }
                 else if (key == "1")
                 {
-                    Program.entrance.EntranceUI();
-                    isSelect = true;
-                }
-                else if (key == "2")
-                {
-                    Program.entrance.EntranceUI();
+                    Trade();
                     isSelect = true;
                 }
                 else
@@ -68,6 +63,19 @@ internal class Shop
                 }
             }
         }
+    }
+
+    public void Trade()
+    {
+        Console.Clear();
+        GameManager.GM.DrawText(2, 7, " _         .         _", "");
+        GameManager.GM.DrawText(2, 8, "(_______.-' '-._______)", "");
+        GameManager.GM.DrawText(2, 9, "", "");
+        GameManager.GM.DrawText(2, 10, "       거래하기", "");
+        GameManager.GM.DrawText(2, 11, " _______       _______", "");
+        GameManager.GM.DrawText(2, 12, "(_      '-. .-'      _)", "");
+        GameManager.GM.DrawText(2, 13, "           '", "");
+        Choice1();
     }
 
     public void DrawGoldUI(int x, int y)
