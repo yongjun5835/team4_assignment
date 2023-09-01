@@ -75,7 +75,7 @@ class Inventory
         {
             Console.SetCursorPosition(2, 9);
             Console.WriteLine("-------------------------------------");
-            Item droppedItem = new Item(name: "아무짝에도 쓸모없는 비늘", atk: 0, def: 1, desc: "장식용인가..", hp: 0, mp: 0, qu: 1);
+            Item droppedItem = new Item(name: "아무짝에도 쓸모없는 비늘", atk: 0, def: 1, desc: "장식용인가..", hp: 0, mp: 0, qu: 1, gold:10);
 
             
             bool isAlreadyOwned = inventory.Any(item => item != null && item.Name == droppedItem.Name);//중복드랍 체크

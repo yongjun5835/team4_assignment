@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 internal class Shop
 {
-    Inventory shopInven = new Inventory(); // 상점 아이템
-    Inventory.Item[] itemList = new Inventory.Item[5];
+    Inventory shopInven = new Inventory(); 
+    Inventory.Item[] itemList = new Inventory.Item[5]; // 상점 인벤토리
+
+    Inventory.Item[] playerInven; // 플레이어 인벤토리 
 
     public Shop() 
     {
         shopInven.InventoryGetSet = itemList;
+
     }
 
 
@@ -42,6 +45,7 @@ internal class Shop
 
     public void Choice1()
     {
+        playerInven = Program.inventory.InventoryGetSet;
         bool isSelect = false;
         Console.SetCursorPosition(75, 25);
         Console.Write("                          ");
@@ -204,17 +208,29 @@ internal class Shop
 
     void SellItem(Inventory.Item sellitem)
     {
+
+        Program.player.Gold += (int)(sellitem.Gold*0.8f);
+
+        sellitem = null;
+    }
+
+    void BuyItem(Inventory.Item buyItem)
+    {
         Player player = Program.player; // 플레이어
-        Inventory playerInven = Program.inventory; // 플레이어 인벤
 
-        player.Gold += sellitem.
+        // 빈자리에 추가 
+        for (int i = 0; i < playerInven.Length; i++)
+        {
+            if (playerInven[i] == null)
+            {
+                Program.player.Gold -= buyItem.Gold;
+                playerInven[i] = buyItem;
+                return;
+            }
+        }
+        // 꽉찼으면
 
-
-        
-
-       
-
-        
+        Console.WriteLine("인벤토리가 꽉 찼습니다.");
 
 
     }
