@@ -15,6 +15,11 @@ internal class Shop
     {
         shopInven.InventoryGetSet = itemList;
 
+        for (int i = 0; i < itemList.Length; i++)
+        {
+            itemList[i] = new Inventory.Item("가짜", 0, 0, "가짜", 0, 0, 0,0);
+        }
+
     }
 
 
