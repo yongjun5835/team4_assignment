@@ -8,23 +8,28 @@ class Inventory
     public Player Player;
     Item[] inventory;
     Item[] inventoryPotion;
+    private int ItemCount;
+
+
+    public Item[] InventoryGetSet { get { return inventory; }set { inventory = value; } }
 
 
 
-    
+
+
 
     public Inventory()
     {
         inventory = new Item[10];
 
-        inventory[0] = new Item(name: "    앞치마    ", atk: 0, def: 2, desc: "방어력을 올려준다고? 오케이~", hp: 0,mp:0, qu: 0);;
-        inventory[1] = new Item(name: "주방에 있던 칼", atk: 5, def: 0, desc: "물고기랑 싸우려면 일단 들고가자..", hp: 0, mp: 0, qu: 0);
+        inventory[0] = new Item(name: "    앞치마    ", atk: 0, def: 20, desc: "방어력을 올려준다고? 오케이~", hp: 0,mp:0, qu: 0, gold: 500);;
+        inventory[1] = new Item(name: "주방에 있던 칼", atk: 80, def: 0, desc: "물고기랑 싸우려면 일단 들고가자..", hp: 0, mp: 0, qu: 0, gold: 1000);
 
 
         inventoryPotion = new Item[5];
 
-        inventoryPotion[0] = new Item(name: "Hp포션", atk: 0, def: 0, desc: "Hp를 30회복한다.", hp: 30, mp: 0, qu: 3);
-        inventoryPotion[1] = new Item(name: "Mp포션", atk: 0, def: 0, desc: "Mp를 30회복한다.", hp: 0, mp: 30, qu: 3);
+        inventoryPotion[0] = new Item(name: "Hp포션", atk: 0, def: 0, desc: "Hp를 30회복한다.", hp: 30, mp: 0, qu: 3, gold: 100);
+        inventoryPotion[1] = new Item(name: "Mp포션", atk: 0, def: 0, desc: "Mp를 30회복한다.", hp: 0, mp: 30, qu: 3, gold: 100);
     }
 
     static void Equipitem(Item item)
@@ -46,23 +51,59 @@ class Inventory
         Program.player.Atk -= item.Atk;
         Program.player.Def -= item.Def;
     }
-    public void AddQuantity1(int index, int amount)
+    public void AddQuantity1(int index, int amount)//HP포션
     {
 
 
         inventoryPotion[index].Quantity += amount;
-        Console.SetCursorPosition(2, 10);
+        Console.SetCursorPosition(2, 11);
         Console.WriteLine("Hp포션이 드랍 되었습니다!");
 
     }
-    public void AddQuantity2(int index, int amount) 
+    public void AddQuantity2(int index, int amount) //MP포션
     {
         inventoryPotion[index].Quantity += amount;
-        Console.SetCursorPosition(2, 10);
+        Console.SetCursorPosition(2, 11);
         Console.WriteLine("Mp포션이 드랍 되었습니다!");
     }
+    public void DropItem()//스테이지 아이템 드랍
+    {
+        Random random = new Random();
+        int itemType = 1;
 
-    class Item
+        if (random.Next(1, 10) == itemType)
+        {
+            Console.SetCursorPosition(2, 9);
+            Console.WriteLine("-------------------------------------");
+            Item droppedItem = new Item(name: "아무짝에도 쓸모없는 비늘", atk: 0, def: 1, desc: "장식용인가..", hp: 0, mp: 0, qu: 1, gold:10);
+
+            
+            bool isAlreadyOwned = inventory.Any(item => item != null && item.Name == droppedItem.Name);//중복드랍 체크
+            if (!isAlreadyOwned)
+            {
+                Console.SetCursorPosition(2, 10);
+                Console.WriteLine($"몬스터가 아이템을 떨어뜨렸습니다: {droppedItem.Name}");
+
+                AddItem(droppedItem);
+            }
+
+
+
+        }
+    }
+    public void AddItem(Item item)//아이템 추가
+    {
+        for (int index = 0; index < inventory.Length; index++)
+        {
+            if (inventory[index] == null) // 비여있는 슬롯 체크
+            {
+                inventory[index] = item;
+                ItemCount++;
+                return;
+            }
+        }
+    }
+    public class Item
     {
 
         private int quantity;
@@ -73,10 +114,12 @@ class Inventory
         public int Hp;
         public int Quantity { get { return quantity; }set{ quantity = value; } }
         public int Mp;
+        int gold; //
+        public int Gold { get { return gold; } set { gold = value; } } //
 
         public bool isEquiped;
 
-        public Item(string name, int atk, int def, string desc, int hp, int mp,int qu)
+        public Item(string name, int atk, int def, string desc, int hp, int mp,int qu,int gold)
         {
             Name = name;
             Atk = atk;
@@ -85,6 +128,7 @@ class Inventory
             Hp = hp;
             Mp = mp;
             Quantity = qu;
+            this.gold = gold; // 
             isEquiped = false;
         }
 
