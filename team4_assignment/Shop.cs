@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 internal class Shop
 {
-    Inventory shopInven = new Inventory(); 
+    Inventory shopInven = new Inventory();  // 상점
     Inventory.Item[] itemList = new Inventory.Item[5]; // 상점 인벤토리
 
     Inventory.Item[] playerInven; // 플레이어 인벤토리 
 
     public Shop() 
     {
-        shopInven.InventoryGetSet = itemList;
+        shopInven.InventoryGetSet = itemList; // 클래스끼리 연결
 
-        for (int i = 0; i < itemList.Length; i++)
+        for (int i = 0; i < itemList.Length; i++) // 가짜로 5개 채웁니다
         {
             itemList[i] = new Inventory.Item("가짜", 0, 0, "가짜", 0, 0, 0,0);
         }

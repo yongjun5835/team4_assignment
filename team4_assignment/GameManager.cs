@@ -177,6 +177,7 @@ class GameManager
         Program.player.MaxHp += 5000;
         Program.player.Hp += 5000;
         Program.player.Gold += 5000;
+        Program.fightScene.clearLevel = 4;
         Console.WriteLine("치트 사용됨");
         Thread.Sleep(1000);
     }
