@@ -233,8 +233,8 @@ internal class FightScene
         }
     }
 
-        public void Result()//결과창
-    {
+    public void Result()//결과창
+    { 
         DrawDisplay("메인으로", "X", "X", "X");
 
         InfoClear();
@@ -261,8 +261,8 @@ internal class FightScene
             Console.WriteLine($"총 소지하신 골드는 {Program.player.Gold}원 입니다.");
             Console.SetCursorPosition(2, 5);
             Console.WriteLine($"경험치 {totalExp}를 획득했습니다");
-            Program.player.CheckLevelup();
-            Program.inventory.DropItem();
+            Program.player.CheckLevelup();//레벨업 체크
+            Program.inventory.DropItem();//아이템
 
             DropPotion();
         }
