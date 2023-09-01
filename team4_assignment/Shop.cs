@@ -120,6 +120,18 @@ internal class Shop
         GameManager.GM.DrawText(28, 23, "    ) (                                                                             ) (", "");
         GameManager.GM.DrawText(28, 24, "   {___}                                                                           {___}", "");
 
+        GameManager.GM.DrawText(40, 4, $"[1] {itemList[0].Name} / {itemList[0].Desc} / 공격력 +{itemList[0].Atk} / 방어력 +{itemList[0].Def}", "yellow");
+        GameManager.GM.DrawText(40, 5, $"가격: {itemList[0].Gold}", "yellow");
+        GameManager.GM.DrawText(40, 6, $"[2] {itemList[1].Name} / {itemList[1].Desc} / 공격력 +{itemList[1].Atk} / 방어력 +{itemList[1].Def}", "yellow");
+        GameManager.GM.DrawText(40, 7, $"가격: {itemList[1].Gold}", "yellow");
+        GameManager.GM.DrawText(40, 8, $"[3] {itemList[2].Name} / {itemList[2].Desc} / 공격력 +{itemList[2].Atk} / 방어력 +{itemList[2].Def}", "yellow");
+        GameManager.GM.DrawText(40, 9, $"가격: {itemList[2].Gold}", "yellow");
+        GameManager.GM.DrawText(40, 10, $"[4] {itemList[3].Name} / {itemList[3].Desc} / 공격력 +{itemList[3].Atk} / 방어력 +{itemList[3].Def}", "yellow");
+        GameManager.GM.DrawText(40, 11, $"가격: {itemList[3].Gold}", "yellow");
+        GameManager.GM.DrawText(40, 12, $"[5] {itemList[4].Name} / {itemList[4].Desc} / 공격력 +{itemList[4].Atk} / 방어력 +{itemList[4].Def}", "yellow");
+        GameManager.GM.DrawText(40, 13, $"가격: {itemList[4].Gold}", "yellow");
+        DrawGoldUI(55, 17);
+
         Choice1();
     }
 
