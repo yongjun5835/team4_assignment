@@ -12,10 +12,25 @@ internal class Shop
         DrawShop(0, 0);
         DrawGoldUI(75, 0);
         DrawShopUI(75, 5);
-        Choice();
+        GameManager.GM.DrawText(83, 7, " _         .         _", "");
+        GameManager.GM.DrawText(83, 8, "(_______.-' '-._______)", "");
+        GameManager.GM.DrawText(83, 9, "", "");
+        GameManager.GM.DrawText(83, 10, "      [0]메인으로", "");
+        GameManager.GM.DrawText(83, 11, " _______       _______", "");
+        GameManager.GM.DrawText(83, 12, "(_      '-. .-'      _)", "");
+        GameManager.GM.DrawText(83, 13, "           '", "");
+
+        GameManager.GM.DrawText(83, 15, " _         .         _", "");
+        GameManager.GM.DrawText(83, 16, "(_______.-' '-._______)", "");
+        GameManager.GM.DrawText(83, 17, "", "");
+        GameManager.GM.DrawText(83, 18, "      [1]거래하기", "");
+        GameManager.GM.DrawText(83, 19, " _______       _______", "");
+        GameManager.GM.DrawText(83, 20, "(_      '-. .-'      _)", "");
+        GameManager.GM.DrawText(83, 21, "           '", "");
+        Choice1();
     }
 
-    public void Choice()
+    public void Choice1()
     {
         bool isSelect = false;
         Console.SetCursorPosition(75, 25);
