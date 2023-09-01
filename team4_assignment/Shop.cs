@@ -15,7 +15,7 @@ internal class Shop
     {
         shopInven.InventoryGetSet = itemList; // 클래스끼리 연결
         itemList[0] = new Inventory.Item("딱딱한 가쓰오부시", 10,0, "가쓰오부시다.", 0, 0, 0, 1000);
-        itemList[1] = new Inventory.Item("대나무 낚시대", 20, 0, "풍류를 즐길 줄 아는 자의 낚싯대", 0, 0, 0, 2000);
+        itemList[1] = new Inventory.Item("대나무 낚시대", 20, 0, "풍류를 즐기는 낚싯대", 0, 0, 0, 2000);
         itemList[2] = new Inventory.Item("ㅇㅇ스커스 사시미", 30, 0, "중고가형 브랜드다.", 0, 0, 0, 3000);
         itemList[3] = new Inventory.Item("구명조끼", 0, 10, "나를 살려줄 든든한 친구", 0, 0, 0, 1000);
         itemList[4] = new Inventory.Item("아이스 박스", 0, 0, "살아서 다시 보길 바란다", 0, 50, 0, 500);
@@ -130,6 +130,8 @@ internal class Shop
         GameManager.GM.DrawText(40, 11, $"가격: {itemList[3].Gold}", "yellow");
         GameManager.GM.DrawText(40, 12, $"[5] {itemList[4].Name} / {itemList[4].Desc} / 공격력 +{itemList[4].Atk} / 방어력 +{itemList[4].Def}", "yellow");
         GameManager.GM.DrawText(40, 13, $"가격: {itemList[4].Gold}", "yellow");
+
+        GameManager.GM.DrawText(40, 15, $"[0] 메인으로", "");
         DrawGoldUI(55, 17);
 
         Choice1();
