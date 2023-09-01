@@ -75,11 +75,20 @@ class Inventory
         {
             Console.SetCursorPosition(2, 9);
             Console.WriteLine("-------------------------------------");
-            Item droppedItem = new Item(name: "아무짝에도 쓸모없는 비늘", atk: 0, def: 1, desc: "장식용인가..", hp: 0, mp: 0, qu: 1, gold:10);
-            Console.SetCursorPosition(2, 10);
-            Console.WriteLine($"몬스터가 아이템을 떨어뜨렸습니다: {droppedItem.Name}");
+            Item droppedItem = new Item(name: "아무짝에도 쓸모없는 비늘", atk: 0, def: 1, desc: "장식용인가..", hp: 0, mp: 0, qu: 1);
 
-            AddItem(droppedItem); 
+            
+            bool isAlreadyOwned = inventory.Any(item => item != null && item.Name == droppedItem.Name);//중복드랍 체크
+            if (!isAlreadyOwned)
+            {
+                Console.SetCursorPosition(2, 10);
+                Console.WriteLine($"몬스터가 아이템을 떨어뜨렸습니다: {droppedItem.Name}");
+
+                AddItem(droppedItem);
+            }
+
+
+
         }
     }
     public void AddItem(Item item)//아이템 추가

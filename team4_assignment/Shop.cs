@@ -61,12 +61,7 @@ internal class Shop
                 }
                 else if (key == "1")
                 {
-                    Program.entrance.EntranceUI();
-                    isSelect = true;
-                }
-                else if (key == "2")
-                {
-                    Program.entrance.EntranceUI();
+                    Trade();
                     isSelect = true;
                 }
                 else
@@ -78,6 +73,46 @@ internal class Shop
                 }
             }
         }
+    }
+
+    public void Trade()
+    {
+        Console.Clear();
+        GameManager.GM.DrawText(2, 7, " _         .         _", "");
+        GameManager.GM.DrawText(2, 8, "(_______.-' '-._______)", "");
+        GameManager.GM.DrawText(2, 9, "", "");
+        GameManager.GM.DrawText(2, 10, "       거래 하기", "");
+        GameManager.GM.DrawText(2, 11, " _______       _______", "");
+        GameManager.GM.DrawText(2, 12, "(_      '-. .-'      _)", "");
+        GameManager.GM.DrawText(2, 13, "           '", "");
+
+        GameManager.GM.DrawText(28, 0, "    ___                                                                             ___", "");
+        GameManager.GM.DrawText(28, 1, "   {   }                                                                           {   }", "");
+        GameManager.GM.DrawText(28, 2, " ___)_(___                                                                       ___)_(___", "");
+        GameManager.GM.DrawText(28, 3, "|         |---------------------------------------------------------------------|         |", "");
+        GameManager.GM.DrawText(28, 4, "|         |                                                                     |  -      |", "");
+        GameManager.GM.DrawText(28, 5, "|        -|                                                                     |-        |", "");
+        GameManager.GM.DrawText(28, 6, "|      -  |                                                                     |         |", "");
+        GameManager.GM.DrawText(28, 7, "|         |                                                                     |  -      |", "");
+        GameManager.GM.DrawText(28, 8, "|        -|                                                                     |         |", "");
+        GameManager.GM.DrawText(28, 9, "|     -   |                                                                     |-        |", "");
+        GameManager.GM.DrawText(28, 10, "|         |                                                                     |         |", "");
+        GameManager.GM.DrawText(28, 11, "|         |                                                                     |   -     |", "");
+        GameManager.GM.DrawText(28, 12, "|        -|                                                                     |         |", "");
+        GameManager.GM.DrawText(28, 13, "|         |                                                                     |-        |", "");
+        GameManager.GM.DrawText(28, 14, "|      -  |                                                                     |         |", "");
+        GameManager.GM.DrawText(28, 15, "|         |                                                                     |  -      |", "");
+        GameManager.GM.DrawText(28, 16, "|        -|                                                                     |         |", "");
+        GameManager.GM.DrawText(28, 17, "|     -   |                                                                     |-        |", "");
+        GameManager.GM.DrawText(28, 18, "|         |                                                                     |  -      |", "");
+        GameManager.GM.DrawText(28, 19, "|        -|                                                                     |-        |", "");
+        GameManager.GM.DrawText(28, 20, "|         |                                                                     |         |", "");
+        GameManager.GM.DrawText(28, 21, "|     -   |                                                                     |  -      |", "");
+        GameManager.GM.DrawText(28, 22, "|_________|---------------------------------------------------------------------|_________|", "");
+        GameManager.GM.DrawText(28, 23, "    ) (                                                                             ) (", "");
+        GameManager.GM.DrawText(28, 24, "   {___}                                                                           {___}", "");
+
+        Choice1();
     }
 
     public void DrawGoldUI(int x, int y)
