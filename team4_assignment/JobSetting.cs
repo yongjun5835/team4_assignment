@@ -76,14 +76,6 @@ namespace team4_assignment
                 GameManager.GM.DrawText(2, 26, "  ", " ");
                 GameManager.GM.DrawText(0, 27, "원하시는 선택지를 입력해주세요.\n", "");
 
-
-
-
-
-                //Console.WriteLine("원하시는 직업을 선택하세요.\n");
-
-
-
                 if (!int.TryParse(Console.ReadLine(), out input) || input < 1 || input > optionNum)
                 {
                     Console.WriteLine("입력 값을 다시 확인해주세요.");
@@ -94,9 +86,6 @@ namespace team4_assignment
                     int jobDef = jobInfos[input - 1].Def;
                     int jobGold = jobInfos[input - 1].Gold;
 
-                    //Console.Clear();
-                    //Console.WriteLine($"당신이 선택한 직업은 {jobName} 입니다.\n");
-                    //Console.WriteLine("1. 확인 \n2. 다시 선택");
                     Console.Clear();
                     GameManager.GM.MakeUI();
                     GameManager.GM.DrawText(23, 12, ($"당신이 선택한 직업은 {jobName} 입니다."), "yellow");

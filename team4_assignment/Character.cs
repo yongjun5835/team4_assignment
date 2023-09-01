@@ -47,14 +47,6 @@ namespace team4_assignment
             GameManager.GM.DrawText(35, 24, "  "," " );
 
 
-
-
-
-
-            //Console.Clear();
-            //Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
-            //Console.WriteLine("원하시는 이름을 설정해 주세요.\n");
-
             string userName = Console.ReadLine(); // 사용자가 설정하려는 이름을 입력받는 부분
             Program.player.Name = userName;
 
@@ -66,13 +58,6 @@ namespace team4_assignment
             GameManager.GM.DrawText(2, 26, " ", "");
             GameManager.GM.DrawText(0, 27, "원하시는 선택지를 입력해주세요.\n", "");
 
-
-
-
-
-
-            //Console.WriteLine($"당신의 이름은 {userName}입니다.\n");
-            //         Console.WriteLine("1. 확인 \n2. 이름 변경");
 
             bool isSelect = false;
             while (isSelect == false)
@@ -119,10 +104,6 @@ namespace team4_assignment
             GameManager.GM.DrawText(2, 22, "---------------------------------------------------------------------------------\n", "white");
             GameManager.GM.DrawText(35, 24, "  ", " ");
 
-            //Console.Clear();
-            //Console.WriteLine("참치 사냥을 떠나는 것이에요\n");
-            //Console.WriteLine("변경 할 이름을 설정해 주세요.\n");
-
             string userName = Console.ReadLine();
             Program.player.Name = userName;
 
@@ -132,10 +113,6 @@ namespace team4_assignment
             GameManager.GM.DrawText(2, 22, "---------------------------------------------------------------------------------\n", "white");
             GameManager.GM.DrawText(2, 23, "1. 확인 2. 이름 변경", "white");
             GameManager.GM.DrawText(2, 26, " ", "");
-
-            //Console.Clear();
-            //Console.WriteLine($"당신의 이름은 {userName}입니다.\n");
-            //Console.WriteLine("1. 확인  \n2. 이름 변경");
 
             bool isSelect = false;
             while (isSelect == false)

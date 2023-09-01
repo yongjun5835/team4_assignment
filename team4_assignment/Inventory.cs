@@ -22,8 +22,8 @@ class Inventory
     {
         inventory = new Item[10];
 
-        inventory[0] = new Item(name: "    앞치마    ", atk: 0, def: 20, desc: "방어력을 올려준다고? 오케이~", hp: 0,mp:0, qu: 0, gold: 500);;
-        inventory[1] = new Item(name: "주방에 있던 칼", atk: 80, def: 0, desc: "물고기랑 싸우려면 일단 들고가자..", hp: 0, mp: 0, qu: 0, gold: 1000);
+        inventory[0] = new Item(name: "|     앞치마    ", atk: 0, def: 20, desc: "방어력을 올려준다고? 오케이~", hp: 0,mp:0, qu: 0, gold: 500);;
+        inventory[1] = new Item(name: "| 주방에 있던 칼", atk: 80, def: 0, desc: "물고기랑 싸우려면 일단 들고가자..", hp: 0, mp: 0, qu: 0, gold: 1000);
 
 
         inventoryPotion = new Item[5];
@@ -138,12 +138,23 @@ class Inventory
     public void DisplayInventory()
     {
         Console.Clear();
-        Console.WriteLine("[인벤토리]");
-        Console.WriteLine();
-        Console.WriteLine("1. 장비아이템"); //장비
-        Console.WriteLine("2. 회복아이템"); //물약 
-        Console.WriteLine();
-        Console.WriteLine("0. 뒤로가기");
+        GameManager.GM.MakeUI();
+        GameManager.GM.DrawText(35, 2, "[인벤토리]", "white");
+        GameManager.GM.DrawText(2, 4, "---------------------------------------------------------------------------------", "white");
+        GameManager.GM.DrawText(2, 6, "1. 장비아이템", "white");
+        GameManager.GM.DrawText(2, 7, "2. 회복아이템", "white");
+        GameManager.GM.DrawText(2, 22, "---------------------------------------------------------------------------------\n", "white");
+        GameManager.GM.DrawText(2, 23, "0. 뒤로가기", "white");
+        GameManager.GM.DrawText(2, 26, " ", "");
+        GameManager.GM.DrawText(0, 27, "원하시는 선택지를 입력해주세요.\n", "");
+
+        //Console.Clear();
+        //Console.WriteLine("[인벤토리]");
+        //Console.WriteLine();
+        //Console.WriteLine("1. 장비아이템"); //장비
+        //Console.WriteLine("2. 회복아이템"); //물약 
+        //Console.WriteLine();
+        //Console.WriteLine("0. 뒤로가기");
         while (true)
         {
             int optionNum = 2;
@@ -170,10 +181,16 @@ class Inventory
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("[인벤토리_장비아이템]");
-            Console.WriteLine();
-            Console.WriteLine("[아이템 목록]");
-            Console.WriteLine();
+            GameManager.GM.MakeUI();
+            GameManager.GM.DrawText(30, 2, "[인벤토리 - 장비아이템]", "white");
+            GameManager.GM.DrawText(2, 4, "---------------------------------------------------------------------------------", "white");
+            GameManager.GM.DrawText(2, 6, "[아이템 목록]\n\n", "white");
+     
+            //Console.Clear();
+            //Console.WriteLine("[인벤토리_장비아이템]");
+            //Console.WriteLine();
+            //Console.WriteLine("[아이템 목록]");
+            //Console.WriteLine();
             // 아이템
             for (int i = 0; i < inventory.Length; i++)
             {
@@ -181,13 +198,19 @@ class Inventory
                     break;
 
                 if (inventory[i].isEquiped)
-                    Console.Write("\u001b[31m[E]\u001b[0m");
+                    Console.Write("|" + "\u001b[31m[E]\u001b[0m");
 
-                Console.WriteLine($" {inventory[i].Name,-8} |    공격력 : {inventory[i].Atk,-3} |    방어력 : {inventory[i].Def,-3} |  {inventory[i].Desc}");
+                Console.WriteLine($"{inventory[i].Name,-8} | 공격력 : {inventory[i].Atk,-3}| 방어력 : {inventory[i].Def,-3}|{inventory[i].Desc}");
             }
-            Console.WriteLine();
-            Console.WriteLine("1. 장착관리");
-            Console.WriteLine("0. 뒤로가기");
+
+            GameManager.GM.DrawText(2, 20, "---------------------------------------------------------------------------------\n", "white");
+            GameManager.GM.DrawText(2, 22, "1. 장착관리", "white");
+            GameManager.GM.DrawText(2, 23, "0. 뒤로가기", "white");
+            GameManager.GM.DrawText(2, 26, " ", "");
+
+            //Console.WriteLine();
+            //Console.WriteLine("1. 장착관리");
+            //Console.WriteLine("0. 뒤로가기");
 
             int optionNum = 1;
             int input = GameManager.GM.SelectOption(optionNum, true);
@@ -210,10 +233,15 @@ class Inventory
     public void InventoryEquipManagement() //장착관리
     {
         Console.Clear();
-        Console.WriteLine("[인벤토리_장비아이템]");
-        Console.WriteLine();
-        Console.WriteLine("[아이템 목록]");
-        Console.WriteLine();
+        GameManager.GM.MakeUI();
+        GameManager.GM.DrawText(25, 2, "[인벤토리 - 장비아이템_장착관리]", "white");
+        GameManager.GM.DrawText(2, 4, "---------------------------------------------------------------------------------", "white");
+        GameManager.GM.DrawText(2, 6, "[아이템 목록]\n\n", "white");
+        //Console.Clear();
+        //Console.WriteLine("[인벤토리_장비아이템]");
+        //Console.WriteLine();
+        //Console.WriteLine("[아이템 목록]");
+        //Console.WriteLine();
 
         // 아이템
         for (int i = 0; i < inventory.Length; i++)
@@ -221,16 +249,22 @@ class Inventory
             if (inventory[i] == null)
                 break;
 
-            Console.Write(i + 1 + ".");
+            Console.Write(i + 1 + ". ");
             if (inventory[i].isEquiped)
-                Console.Write("\u001b[31m[E]\u001b[0m");
+                Console.Write("|"+"\u001b[31m[E]\u001b[0m");
 
+            Console.WriteLine($"{inventory[i].Name,-8} | 공격력 : {inventory[i].Atk,-3}| 방어력 : {inventory[i].Def,-3}|{inventory[i].Desc}");
 
-            Console.WriteLine($" {inventory[i].Name,-8} |    공격력 : {inventory[i].Atk,-3} |    방어력 : {inventory[i].Def,-3} |  {inventory[i].Desc}");
         }
-        Console.WriteLine();
-        Console.WriteLine("0. 뒤로가기");
-        Console.WriteLine();
+
+        GameManager.GM.DrawText(2, 20, "---------------------------------------------------------------------------------\n", "white");
+        GameManager.GM.DrawText(2, 22, "(아이템 번호 입력 - 장착, 재입력 - 해제)", "blue");
+        GameManager.GM.DrawText(2, 23, "0. 뒤로가기", "white");
+        GameManager.GM.DrawText(2, 26, " ", "");
+        GameManager.GM.DrawText(0, 27, "원하시는 선택지를 입력해주세요.\n", "");
+        //Console.WriteLine();
+        //Console.WriteLine("0. 뒤로가기");
+        //Console.WriteLine();
 
 
         //장착
@@ -279,20 +313,29 @@ class Inventory
     }
     public void InventoryConsumption() // 물약
     {
-        Console.Clear();
 
-        Console.WriteLine("[인벤토리_회복아이템]");
-        Console.WriteLine();
+        Console.Clear();
+        GameManager.GM.MakeUI();
+        GameManager.GM.DrawText(30, 2, "[인벤토리 - 회복아이템]", "white");
+        GameManager.GM.DrawText(2, 4, "---------------------------------------------------------------------------------", "white");
+        GameManager.GM.DrawText(2, 6, "[아이템 목록]\n\n", "white");
+        //Console.Clear();
+
+        //Console.WriteLine("[인벤토리_회복아이템]");
+        //Console.WriteLine();
         for (int i = 0; i < inventoryPotion.Length; i++)
         {
             if (inventoryPotion[i] == null)
                 break;
 
-            Console.Write(i + 1 + ".");
+            Console.Write("| "+ (i + 1) + ".");
             Console.WriteLine($"   {inventoryPotion[i].Name,-5}  |  {inventoryPotion[i].Desc,-3}  |  ( 남은 갯수 : \u001b[32m{inventoryPotion[i].Quantity}\u001b[0m )");
         }
-        Console.WriteLine();
-        Console.WriteLine("0. 뒤로가기");
+        GameManager.GM.DrawText(2, 23, "0. 뒤로가기", "white");
+        GameManager.GM.DrawText(2, 26, " ", "");
+        GameManager.GM.DrawText(0, 27, "원하시는 선택지를 입력해주세요.\n", "");
+        //Console.WriteLine();
+        //Console.WriteLine("0. 뒤로가기");
 
         //포션 사용!
         string input = Console.ReadLine();
