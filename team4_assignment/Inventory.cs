@@ -243,24 +243,32 @@ class Inventory
             }
             else if (x >= 1 && x <= inventory.Length)
             {
-                Item item = inventory[x - 1]; 
-                if (item.isEquiped)
+                Item item = inventory[x - 1];
+                if (item == null)
                 {
-                    Unequopitem(item);
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine("아이템이 해제되었습니다.");
-                    Console.ResetColor();
-                    Thread.Sleep(1000);
+                    Console.WriteLine("잘못 입력하셨습니다.");
+                    InventoryEquipManagement();
                 }
                 else
                 {
-                    Equipitem(item);
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine("아이템이 장착되었습니다.");
-                    Console.ResetColor();
-                    Thread.Sleep(1000);
+                    if (item.isEquiped)
+                    {
+                        Unequopitem(item);
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("아이템이 해제되었습니다.");
+                        Console.ResetColor();
+                        Thread.Sleep(1000);
+                    }
+                    else
+                    {
+                        Equipitem(item);
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("아이템이 장착되었습니다.");
+                        Console.ResetColor();
+                        Thread.Sleep(1000);
+                    }
+                    InventoryEquipManagement();
                 }
-                InventoryEquipManagement();
             }
             else
             {

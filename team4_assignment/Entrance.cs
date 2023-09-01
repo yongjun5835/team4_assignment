@@ -26,7 +26,8 @@ class Entrance
             RenderMainImg(); 
             GameManager.GM.DrawText(2, 1, "마~씻는 참치 낚시", "blue");
             Console.Write("하러 떠나는 것이에요!!");
-            GameManager.GM.DrawText(2, 2, "1. 상태보기 2. 던전 입장 3. 인벤토리 4. 여관 5. 상점", "");
+            GameManager.GM.DrawText(2, 3, "1. 상태보기 2. 던전 입장 3. 인벤토리 4. 여관 5. 상점", "");
+            GameManager.GM.DrawText(0, 27, "원하시는 선택지를 입력해주세요.\n ", "");
 
             if (Program.player.Hp <= 0)
             {
