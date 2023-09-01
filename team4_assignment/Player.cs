@@ -31,18 +31,38 @@
 
     public void StatusUI()
     {
+        string line = ("---------------------------------------------------------------------------------");
+
         while (true)
         {
             Console.Clear();
-            Console.WriteLine($"이름 : {Name}");
-            Console.WriteLine($"직업 : {Job}");
-            Console.WriteLine($"레벨 : {level + 1}    경험치 :{exp}/{maxExp[level]}");
-            Console.WriteLine($"체력 : {Hp} / {maxHp}");
-            Console.WriteLine($"마나 : {mp} / {maxMp}");
-            Console.WriteLine($"공격력 : {Atk}");
-            Console.WriteLine($"방어력 : {Def}");
-            Console.WriteLine($"금화 : {Gold}");
-            Console.WriteLine("\n1. 나가기");
+            GameManager.GM.MakeUI();
+            GameManager.GM.DrawText(36, 2, "[MY INFO]", "white");
+            GameManager.GM.DrawText(2, 4, ($"{line}"), "white");
+            GameManager.GM.DrawText(2, 6, ($"이  름 : {Name}"), "white");
+            GameManager.GM.DrawText(2, 7, ($"직  업 : {Job}"), "white");
+            GameManager.GM.DrawText(2, 8, ($"레  벨 : {level + 1}    경험치 :{exp}/{maxExp[level]}"), "white");
+            GameManager.GM.DrawText(2, 9, ($"체  력 : {Hp} / {maxHp}"), "white");
+            GameManager.GM.DrawText(2, 10, ($"마  나 : {mp} / {maxMp}"), "white");
+            GameManager.GM.DrawText(2, 11,($"공격력 : {Atk}"), "white");
+            GameManager.GM.DrawText(2, 12,($"방어력 : {Def}"), "white");
+            GameManager.GM.DrawText(2, 13,($"금  화 : {Gold} G"), "white");
+            GameManager.GM.DrawText(2, 22, ($"{line}"), "white");
+            GameManager.GM.DrawText(2, 23, ("1.나가기"), "white");
+            GameManager.GM.DrawText(0, 26, " ", "");
+
+
+
+
+            //Console.WriteLine($"이름 : {Name}");
+            //Console.WriteLine($"직업 : {Job}");
+            //Console.WriteLine($"레벨 : {level + 1}    경험치 :{exp}/{maxExp[level]}");
+            //Console.WriteLine($"체력 : {Hp} / {maxHp}");
+            //Console.WriteLine($"마나 : {mp} / {maxMp}");
+            //Console.WriteLine($"공격력 : {Atk}");
+            //Console.WriteLine($"방어력 : {Def}");
+            //Console.WriteLine($"금화 : {Gold}");
+            //Console.WriteLine("\n1. 나가기");
             int inputKey = GameManager.GM.SelectOption(1, false);
             switch (inputKey)
             {
