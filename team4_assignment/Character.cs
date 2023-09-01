@@ -20,7 +20,6 @@ namespace team4_assignment
         string BGf = (" .|'' . |  '''\"\"'\"''. |`===`|''  '\"\" \"\" \" (\" ~~~~ ~ ~======~~  ~~ ~");
         string BGg = (" ^^ ^^   ^^^ ^ ^^^ ^^^^ ^^^ ^^ ^^ \"\" \"\"\"( \" ~~~~~~ ~~~~~  ~~~ ~");
 
-        string line = ("---------------------------------------------------------------------------------");
         public Character()
 		{
 
@@ -30,7 +29,7 @@ namespace team4_assignment
 		{
             GameManager.GM.MakeUI();
             GameManager.GM.DrawText(27, 2, "~참치 사냥을 떠나는 것이에요~", "white");
-            GameManager.GM.DrawText(2, 4, ($"{line}"), "white");
+            GameManager.GM.DrawText(2, 4, "---------------------------------------------------------------------------------", "white");
             GameManager.GM.DrawText(30, 5, ($"{BG1}"), "yellow");
             GameManager.GM.DrawText(30, 6, ($"{BG2}"), "yellow");
             GameManager.GM.DrawText(30, 7, ($"{BG3}"), "yellow");
@@ -44,7 +43,7 @@ namespace team4_assignment
             GameManager.GM.DrawText(7, 19, ($"{BGe}"), "blue");
             GameManager.GM.DrawText(7, 20, ($"{BGf}"), "blue");
             GameManager.GM.DrawText(7, 21, ($"{BGg}"), "blue");
-            GameManager.GM.DrawText(2, 22, ($"{line}\n"), "white");
+            GameManager.GM.DrawText(2, 22, "---------------------------------------------------------------------------------\n", "white");
             GameManager.GM.DrawText(35, 24, "  "," " );
 
 
@@ -62,7 +61,7 @@ namespace team4_assignment
             Console.Clear();
             GameManager.GM.MakeUI();
             GameManager.GM.DrawText(26, 12, ($"당신의 이름은 {userName}입니다!"), "yellow");
-            GameManager.GM.DrawText(2, 22, ($"{line}\n"), "white");
+            GameManager.GM.DrawText(2, 22, "---------------------------------------------------------------------------------\n", "white");
             GameManager.GM.DrawText(2, 23, "1. 확인 2. 이름 변경", "white");
             GameManager.GM.DrawText(2, 26, " ", "");
             GameManager.GM.DrawText(0, 27, "원하시는 선택지를 입력해주세요.\n", "");
@@ -103,7 +102,7 @@ namespace team4_assignment
             Console.Clear();
             GameManager.GM.MakeUI();
             GameManager.GM.DrawText(27, 2, "~참치 사냥을 떠나는 것이에요~", "white");
-            GameManager.GM.DrawText(2, 4, ($"{line}"), "white");
+            GameManager.GM.DrawText(2, 4, "---------------------------------------------------------------------------------", "white");
             GameManager.GM.DrawText(30, 5, ($"{BG1}"), "yellow");
             GameManager.GM.DrawText(30, 6, ($"{BG2}"), "yellow");
             GameManager.GM.DrawText(30, 7, ($"{BG3}"), "yellow");
@@ -117,7 +116,7 @@ namespace team4_assignment
             GameManager.GM.DrawText(7, 19, ($"{BGe}"), "blue");
             GameManager.GM.DrawText(7, 20, ($"{BGf}"), "blue");
             GameManager.GM.DrawText(7, 21, ($"{BGg}"), "blue");
-            GameManager.GM.DrawText(2, 22, ($"{line}\n"), "white");
+            GameManager.GM.DrawText(2, 22, "---------------------------------------------------------------------------------\n", "white");
             GameManager.GM.DrawText(35, 24, "  ", " ");
 
             //Console.Clear();
@@ -130,7 +129,7 @@ namespace team4_assignment
             Console.Clear();
             GameManager.GM.MakeUI();
             GameManager.GM.DrawText(26, 12, ($"당신의 이름은 {userName}입니다!"), "yellow");
-            GameManager.GM.DrawText(2, 22, ($"{line}\n"), "white");
+            GameManager.GM.DrawText(2, 22, "---------------------------------------------------------------------------------\n", "white");
             GameManager.GM.DrawText(2, 23, "1. 확인 2. 이름 변경", "white");
             GameManager.GM.DrawText(2, 26, " ", "");
 

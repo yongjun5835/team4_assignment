@@ -44,8 +44,6 @@ namespace team4_assignment
             string JobBG13 =  "         //\\___=                 >'____))__v--\\     >('>";
         
 
-            string line = ("---------------------------------------------------------------------------------");
-
             int optionNum = jobInfos.Length;
             int input = 0;
             while (input < 1 || input > optionNum)
@@ -53,14 +51,14 @@ namespace team4_assignment
                 Console.Clear();
                 GameManager.GM.MakeUI();
                 GameManager.GM.DrawText(27, 2, "원하시는 직업을 선택하세요.", "white");
-                GameManager.GM.DrawText(2, 4, ($"{line}\n"), "white");
+                GameManager.GM.DrawText(2, 4, "---------------------------------------------------------------------------------\n", "white");
                 GameManager.GM.DrawText(2, 5, ($"\n"), "white");
 
                 for (int i = 0; i < jobInfos.Length; i++) //직업 수 만큼 앞 보기 숫자가 늘어나며 선택지 증가. 
                 {
                     Console.WriteLine($"\t{i + 1}. {jobInfos[i].Name} ( 공격력 : {jobInfos[i].Atk} , 방어력 : {jobInfos[i].Def} , 소지 금화 : {jobInfos[i].Gold} G)");
                 }
-                GameManager.GM.DrawText(2, 11, ($"{line}"), "white");
+                GameManager.GM.DrawText(2, 11, "---------------------------------------------------------------------------------\n", "white");
 
                 GameManager.GM.DrawText(6, 12, ($"{JobBG1}"), "");
                 GameManager.GM.DrawText(6, 13, ($"{JobBG2}"), "");
@@ -102,7 +100,7 @@ namespace team4_assignment
                     Console.Clear();
                     GameManager.GM.MakeUI();
                     GameManager.GM.DrawText(23, 12, ($"당신이 선택한 직업은 {jobName} 입니다."), "yellow");
-                    GameManager.GM.DrawText(2, 22, ($"{line}\n"), "white");
+                    GameManager.GM.DrawText(2, 22, "---------------------------------------------------------------------------------\n", "white");
                     GameManager.GM.DrawText(2, 23, "1. 확인 2. 다시 선택", "");
                     GameManager.GM.DrawText(2, 26, " ", "");
 
